@@ -94,31 +94,25 @@
 .register-box .content li span {
   display: inline-block;
   vertical-align: top;
-  line-height: 39px;
+  line-height: 35px;
+}
+.register-box .content li .label {
+  width: 60px;
+  color: #33d6ff;
+  padding: 0;
 }
 .register-box .content li .input-box {
   display: inline-block;
   min-height: 65px;
 }
-.register-box .content li .input-box input[type='text'] {
+.register-box .content li .input-box input {
+  width: 433px;
   height: 35px;
   border: 2px solid #33d6ff;
   border-radius: 10px;
   outline: none;
   margin-left: 15px;
   padding: 0 20px;
-}
-.register-box .content li .input-box .width-type0 {
-  width: 461px;
-}
-.register-box .content li .input-box .width-type1 {
-  width: 447px;
-}
-.register-box .content li .input-box .width-type2 {
-  width: 433px;
-}
-.register-box .content li .input-box .width-type3 {
-  width: 377px;
 }
 .register-box .content li .input-box label {
   margin-left: 35px;
@@ -133,6 +127,7 @@
 }
 .register-box .content li .radio-box input {
   line-height: 39px;
+  outline: none;
 }
 .register-box .content li .radio-box #group {
   margin-left: 20px;
@@ -141,6 +136,9 @@
   line-height: 39px;
   color: #999;
   cursor: pointer;
+}
+.register-box .content .group-li {
+  display: none;
 }
 .register-box .content .content-member {
   margin-top: 20px;
