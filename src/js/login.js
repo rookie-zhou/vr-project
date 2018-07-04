@@ -1,9 +1,10 @@
-import './../css/style.css';
 import 'bootcss';
-// import './lib/step/iF.step.css';
 import 'jquery';
-import 'bootjs';
-import config from './config';
-import './lib/select2/css/select2.css';
-import select2 from './lib/select2/js/select2.js';
+import './lib/remodal/remodal.css';
+import './lib/remodal/remodal-default-theme.css';
+import './lib/remodal/remodal.min.js';
+import './../css/style.css';
 import './../css/login.css';
+
+var inst = $('[data-remodal-id=modal]').remodal();
+inst.open();

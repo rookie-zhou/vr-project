@@ -1,62 +1,104 @@
 .login-section {
   width: 488px;
   height: 397px;
-  margin: 50px 0 50px 650px;
-  border: 1px solid #ccc;
-  padding: 10px 40px 0;
+  margin: 50px 0 50px 675px;
+  position: relative;
+  background: transparent;
 }
-.login-section a {
+.login-section .login-bg {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.login-section .content {
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  right: 50px;
+}
+.login-section .content a {
   color: #999;
 }
-.login-section input {
+.login-section .content a:hover {
+  color: #00ccff;
+  text-decoration: none;
+  text-shadow: rgba(153, 153, 153, 0.647) 1px 1px 2px;
+}
+.login-section .content input {
   outline: none;
   border: none;
-  width: 200px;
+  width: 88%;
   color: #999;
   vertical-align: top;
   line-height: 31px;
+  margin-left: 2%;
 }
-.login-section .input-box {
+.login-section .content .input-box {
   border: 2px solid #33d6ff;
-  border-radius: 5px;
+  border-radius: 10px;
   height: 48px;
   padding: 6.5px 5px;
 }
-.login-section .line-one {
+.login-section .content .line-one {
   overflow: auto;
 }
-.login-section .line-one .logo {
+.login-section .content .line-one .logo {
+  display: inline-block;
   width: 123px;
   height: 62px;
-  border: 1px solid #ccc;
   float: left;
-  overflow: auto;
 }
-.login-section .line-one a {
+.login-section .content .line-one a {
   display: inline-block;
   vertical-align: top;
   margin-top: 25px;
 }
-.login-section .line-one .cannot-login {
+.login-section .content .line-one .cannot-login {
   margin-left: 40px;
-  margin-right: 8px;
-  padding-right: 8px;
-  border-right: 3px solid #ccc;
+  margin-right: 10px;
 }
-.login-section .line-two {
-  margin-top: 10px;
-}
-.login-section .line-two .logo {
+.login-section .content .line-one .split-line {
+  color: #666;
   display: inline-block;
-  width: 30px;
-  height: 31px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.64);
+  margin-right: 10px;
+  margin-top: 23px;
 }
-.login-section .line-three {
-  height: 48px;
+.login-section .content .line-two {
   margin-top: 20px;
 }
-.login-section .line-three .logo {
+.login-section .content .line-two .logo {
   display: inline-block;
   width: 30px;
   height: 31px;
+}
+.login-section .content .line-three {
+  height: 48px;
+  margin-top: 40px;
+}
+.login-section .content .line-three .logo {
+  display: inline-block;
+  width: 30px;
+  height: 31px;
+}
+.login-section .content .line-four {
+  margin-top: 15px;
+}
+.login-section .content .line-four .forgot-password {
+  color: red;
+}
+.login-section .content .line-five {
+  margin-top: 15px;
+}
+.login-section .content .line-five button {
+  outline: none;
+  height: 45px;
+  width: 100%;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0099ff;
+  border-radius: 5px;
 }

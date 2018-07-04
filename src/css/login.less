@@ -1,62 +1,104 @@
 .login-section {
     width: 488px;
     height: 397px;
-    margin: 50px 0 50px 650px;
-    border: 1px solid #ccc;
-    padding: 10px 40px 0;
-    a {
-        color: #999;
+    margin: 50px 0 50px 675px;
+    position: relative;
+    background: transparent;
+    .login-bg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
     }
-    input {
-        outline: none;
-        border: none;
-        width: 200px;
-        color: #999;
-        vertical-align: top;
-        line-height: 31px;
-    }
-    .input-box {
-        border: 2px solid #33d6ff;
-        border-radius: 5px;
-        height: 48px;
-        padding: 6.5px 5px;
-    }
-    .line-one {
-        overflow: auto;
-        .logo {
-            width: 123px;
-            height: 62px;
-            border: 1px solid #ccc;
-            float: left;
-            overflow: auto;
-        }
+    .content {
+        position: absolute;
+        top: 15px;
+        left: 50px;
+        right: 50px;
         a {
-            display: inline-block;
+            color: #999;
+        }
+        a:hover {
+            color: rgb(0, 204, 255);
+            text-decoration: none;
+            text-shadow: rgba(153, 153, 153, .647) 1px 1px 2px;
+        }
+        input {
+            outline: none;
+            border: none;
+            width: 88%;
+            color: #999;
             vertical-align: top;
-            margin-top: 25px;
+            line-height: 31px;
+            margin-left: 2%;
         }
-        .cannot-login {
-            margin-left: 40px;
-            margin-right: 8px;
-            padding-right: 8px;
-            border-right: 3px solid #ccc;
+        .input-box {
+            border: 2px solid #33d6ff;
+            border-radius: 10px;
+            height: 48px;
+            padding: 6.5px 5px;
         }
-    }
-    .line-two {
-        margin-top: 10px;
-        .logo {
-            display: inline-block;
-            width: 30px;
-            height: 31px;
+        .line-one {
+            overflow: auto;
+            .logo {
+                display: inline-block;
+                width: 123px;
+                height: 62px;
+                float: left;
+            }
+            a {
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 25px;
+            }
+            .cannot-login {
+                margin-left: 40px;
+                margin-right: 10px;
+            }
+            .split-line {
+                color: #666;
+                display: inline-block;
+                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.64);
+                margin-right: 10px;
+                margin-top: 23px;
+            }
         }
-    }
-    .line-three {
-        height: 48px;
-        margin-top: 20px;
-        .logo {
-            display: inline-block;
-            width: 30px;
-            height: 31px;
+        .line-two {
+            margin-top: 20px;
+            .logo {
+                display: inline-block;
+                width: 30px;
+                height: 31px;
+            }
+        }
+        .line-three {
+            height: 48px;
+            margin-top: 40px;
+            .logo {
+                display: inline-block;
+                width: 30px;
+                height: 31px;
+            }
+        }
+        .line-four {
+            margin-top: 15px;
+            .forgot-password {
+                color: red;
+            }
+        }
+        .line-five {
+            margin-top: 15px;
+            button {
+                outline: none;
+                height: 45px;
+                width: 100%;
+                background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(0, 204, 255, 1) 100%, rgba(0, 204, 255, 1) 100%);
+                box-sizing: border-box;
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgba(0, 153, 255, 1);
+                border-radius: 5px;
+            }
         }
     }
 }

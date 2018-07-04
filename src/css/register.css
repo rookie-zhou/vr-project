@@ -1,3 +1,107 @@
-div {
+.register-box {
+  margin-left: 32px;
+}
+.register-box .register-header {
+  width: 1198px;
+  height: 72px;
+  background: linear-gradient(180deg, #0099ff 0%, #0099ff 0%, #0099ff 45%, #ffffff 100%, #ffffff 100%);
+}
+.register-box .register-header .logo {
+  width: 123px;
+  height: 62px;
+  display: inline-block;
+  vertical-align: top;
+}
+.register-box .register-header p {
+  display: inline-block;
+  color: #fff;
+}
+.register-box .register-header .to-index {
+  float: right;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+.register-box .register-header a {
+  color: #FFCC33;
+  text-decoration: none;
+}
+.register-box .register-header a :hover {
+  color: #000;
+}
+.register-box .registerPage-header {
+  width: 900px;
+  height: 70px;
+  padding-top: 30px;
+  margin-left: 99px;
+}
+.register-box .registerPage-header .btn {
+  font-size: 15px;
+  outline: none;
+  height: 40px;
+  width: 140px;
+  border-radius: 0;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  border-color: #00ccff;
+  background: linear-gradient(0deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+}
+.register-box .registerPage-header .btn:hover {
+  color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #0000ff 100%, #0000ff 100%);
+}
+.register-box .registerPage-header .box {
+  float: right;
+}
+.register-box .registerPage-header .box span {
+  color: #FFCC33;
+}
+.register-box .registerPage-header .box a {
+  text-decoration: none;
+  color: #FFCC33;
+}
+.register-box .registerPage-header .box a:hover {
+  color: #00ccff;
+}
+.register-box .content {
+  width: 900px;
+  height: 692px;
+  border: 1px solid #17c1fe;
+  margin-left: 99px;
+}
+.register-box .content .content-header {
+  height: 62px;
+  background: linear-gradient(0deg, #ffffff 0%, #ffffff 0%, rgba(109, 145, 248, 0.2) 100%, rgba(109, 145, 248, 0.2) 100%);
+}
+.register-box .content .content-header p {
+  color: #999;
+  margin: 0;
+  line-height: 62px;
+}
+.register-box .content .content-member {
+  margin-top: 20px;
+}
+.register-box .content .content-member li {
+  margin-top: 10px;
+}
+.register-box .content .content-member li span {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 39px;
+}
+.register-box .content .content-member li .input-box {
+  display: inline-block;
+}
+.register-box .content .content-member li .input-box input {
+  width: 447px;
+  height: 35px;
+  border: 2px solid #33d6ff;
+  border-radius: 10px;
+  outline: none;
+  margin-left: 15px;
+  padding: 0 20px;
+}
+.register-box .content .content-member li .input-box label {
+  margin-left: 35px;
+  line-height: 30px;
   color: red;
 }
