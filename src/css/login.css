@@ -87,6 +87,7 @@
 }
 .login-section .content .line-four .forgot-password {
   color: red;
+  cursor: pointer;
 }
 .login-section .content .line-five {
   margin-top: 15px;

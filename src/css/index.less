@@ -1,3 +1,88 @@
-div {
-    color: red;
+.document {
+    .header {
+        width: 100%;
+        height: 75px;
+        .logo {
+            width: 123px;
+            height: 62px;
+            vertical-align: top;
+        }
+        .search-box {
+            display: inline-block;
+            margin-top: 15px;
+            .input-box {
+                width: 674px;
+                height: 36px;
+                border: 2px solid #00ccff;
+                border-radius: 15px;
+                input {
+                    outline: none;
+                    border: none;
+                    width: 545px;
+                    height: 22px;
+                    margin: 5px 0 5px 15px;
+                }
+                .search-btn {
+                    display: inline-block;
+                    width: 110px;
+                    height: 32px;
+                    background: #00ccff;
+                    border-radius: 13px;
+                    span {
+                        display: inline-block;
+                        line-height: 32px;
+                        margin-left: 10px;
+                        color: #fff;
+                        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+                        letter-spacing: 4px;
+                    }
+                }
+            }
+            .keyWord-box {
+                margin: 5px 0 0 15px;
+                ul {
+                    display: inline-block;
+                    li {
+                        cursor: pointer;
+                        span {
+                            color: #0099FF;
+                        }
+                    }
+                }
+            }
+        }
+        .member-box {
+            display: inline-block;
+            vertical-align: top;
+            padding-left: 20px;
+            span {
+                font-family: '黑体 Bold', '黑体 Regular', '黑体';
+                font-size: 15px;
+                color: #FFCC33;
+                font-weight: 700px;
+            }
+            a {
+                text-decoration: none;
+                font-family: '黑体 Bold', '黑体 Regular', '黑体';
+                font-size: 15px;
+                color: #FFCC33;
+                font-weight: 700px;
+            }
+            a:hover {
+                color: rgb(0, 204, 255);
+            }
+            .split-line {
+                color: #666;
+                display: inline-block;
+                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.64);
+                margin-right: 10px;
+            }
+        }
+    }
+    .nav {
+        margin-left: 11px;
+        height: 46px;
+        width: 1240px;
+        background: linear-gradient(180deg, rgba(0, 153, 255, 1) 0%, rgba(0, 153, 255, 1) 0%, rgba(0, 153, 255, 1) 45%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 1) 100%);
+    }
 }
