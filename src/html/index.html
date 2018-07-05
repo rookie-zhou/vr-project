@@ -10,10 +10,10 @@
 <body>
     <div class="document">
         <div class="header">
-            <img class="logo" src="./../asset/img/logo.jpg" alt="">
+            <img class="logo" src="./../asset/img/logo.png" alt="">
             <div class="search-box">
                 <div class="input-box">
-                    <input type="text" placeholder="输入名称关键字搜索......">
+                    <input class="search-keyword" type="text" placeholder="输入名称关键字搜索......">
                     <div class="search-btn text-center">
                         <img src="./../asset/index/findbutton.png" alt="">
                         <span class="font-14">搜 索</span>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="keyWord-box">
                     <span>热门搜索：</span>
-                    <ul class="list-unstyled list-inline">
+                    <ul class="list-unstyled list-inline keywords">
                         <li>
                             <span class="font-12">VR小学教育</span>
                         </li>
@@ -38,22 +38,32 @@
                 </div>
                 <div class="line-two">
                     <a>开发者中心</a>
-                    <a class="split-line">|
-                        </>
-                        <a href="./login.html">会员登录</a>
-                        <a class="split-line">|</a>
-                        <a href="./register.html">免费注册</a>
+                    <a class="split-line">|</a>
+                    <a href="./login.html">会员登录</a>
+                    <a class="split-line">|</a>
+                    <a href="./register.html">免费注册</a>
                 </div>
             </div>
         </div>
         <div class="nav">
             <ul class="list-inline list-unstyled">
                 <li>
-                    <img src="" alt="">
+                    <img src="./../asset/index/u63.png" alt="">
                     <span>首页</span>
                 </li>
-                <li>
+                <li class="education">
                     <span>VR教育</span>
+                    <ul class="list-unstyled education-box">
+                        <li>
+                            <p>建筑教育</p>
+                        </li>
+                        <li>
+                            <p>科普知识教育</p>
+                        </li>
+                        <li>
+                            <p>K12教育</p>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <span>VR家装</span>
@@ -81,7 +91,48 @@
                 </li>
             </ul>
         </div>
-    </div>
+        <div class="container-fluid content">
+            <div class="row hot-ranking ranking">
+                <div class="title-box">
+                    <img src="./../asset/index/u122.png" alt="">
+                    <span>浏览热度排行榜</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="vr-box">
+                        <img src="./../asset/index/phb1-img_u110.png" alt="" width="100%">
+                        <p class="name">VR游戏3A大制</p>
+                        <p class="id-box">
+                            <span>ID:</span>
+                            <span>1003</span>
+                        </p>
+                        <p class="hot-num">
+                            <img src="./../asset/index/u115.png" alt="">
+                            <span>99</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row download-ranking ranking">
+                <div class="title-box">
+                    <img src="./../asset/index/u128.png" alt="">
+                    <span>下载热度排行榜</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="vr-box">
+                        <img src="./../asset/index/phb1-img_u110.png" alt="" width="100%">
+                        <p class="name">VR游戏3A大制</p>
+                        <p class="id-box">
+                            <span>ID:</span>
+                            <span>1003</span>
+                        </p>
+                        <p class="hot-num">
+                            <img src="./../asset/index/u137.png" alt="">
+                            <span>99</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 

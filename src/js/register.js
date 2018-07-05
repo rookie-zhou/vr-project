@@ -1,11 +1,15 @@
 import "bootcss";
 import "jquery";
 import 'bootjs';
+import './lib/remodal/remodal.css';
+import './lib/remodal/remodal-default-theme.css';
+import './lib/remodal/remodal.min.js';
 import "../css/style.css";
 import './../css/register.css';
 
 $(function () {
-    // 正则表达式
+    // 弹框
+    var loginModal = $('[data-remodal-id=registerModal]').remodal();
     var param = {
         page: 'member',
         agree: true,
@@ -29,6 +33,7 @@ $(function () {
             confirm: false,
         }
     }
+    // 正则表达式
     var regular = {
         name: /^[0-9a-zA-Z_]{5,}$/,
         phoneNo: /^[1][0-9]{10}$/,
@@ -287,9 +292,12 @@ $(function () {
     $('.post-btn').on('click', function () {
         if (param.page == 'member') {
             // 会员注册
-
+            $('.modal-title').html('会员注册');
+            loginModal.open();
         } else {
             // 开发者注册
+            $('.modal-title').html('开发者注册');
+            loginModal.open();
 
         }
     });

@@ -18,10 +18,30 @@ $(function () {
         fogotPasswordModal.open();
     });
     $('.btn-login').on('click', function () {
-        $('.modal-title').html('正在登录');
         loginModal.open();
-        // loginModal.close();
+        var userName = $('.user-name').val();
+        var password = $('.password').val();
+        $.ajax({
+            url: '/userCTL',
+            method: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                method: 'login',
+                username: userName,
+                password: password
+            },
+            success: function (res) {
+                $('.login-result').html('登录成功');
+                loginModal.open();
+            },
+            error: function (res) {
+                $('.login-result').html('服务器繁忙，请稍后再试！');
+                loginModal.open();
+            }
+        })
     });
+
     function checkParams() {
         if (params.userName && params.password) {
             // 解除禁用 注册按钮
@@ -35,7 +55,7 @@ $(function () {
     $('.user-name').bind('input propertychange', function () {
         if ($(this).val()) {
             params.userName = true;
-        }else {
+        } else {
             params.userName = false;
         }
         checkParams();
@@ -44,7 +64,7 @@ $(function () {
     $('.password').bind('input propertychange', function () {
         if ($(this).val()) {
             params.password = true;
-        }else {
+        } else {
             params.password = false;
         }
         checkParams();

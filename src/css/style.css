@@ -65,3 +65,17 @@ body .document .foot .text {
 body .border-color {
   border-color: #33d6ff;
 }
+body .remodal-confirm {
+  color: #333;
+  padding: 0;
+  height: 35px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  box-sizing: border-box;
+  border: 1px solid #0099ff;
+}
+body .remodal-confirm:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  box-sizing: border-box;
+  border: 1px solid #0099ff;
+}

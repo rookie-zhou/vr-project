@@ -2,6 +2,7 @@
     .header {
         width: 100%;
         height: 75px;
+        padding-left: 11px;
         .logo {
             width: 123px;
             height: 62px;
@@ -21,6 +22,7 @@
                     width: 545px;
                     height: 22px;
                     margin: 5px 0 5px 15px;
+                    font-size: 12px;
                 }
                 .search-btn {
                     display: inline-block;
@@ -53,20 +55,23 @@
         }
         .member-box {
             display: inline-block;
+            min-width: 405px;
+            text-align: right;
             vertical-align: top;
-            padding-left: 20px;
+            padding-left: 130px;
+            margin-top: 15px;
             span {
                 font-family: '黑体 Bold', '黑体 Regular', '黑体';
                 font-size: 15px;
                 color: #FFCC33;
-                font-weight: 700px;
+                font-weight: 700;
             }
             a {
                 text-decoration: none;
                 font-family: '黑体 Bold', '黑体 Regular', '黑体';
                 font-size: 15px;
                 color: #FFCC33;
-                font-weight: 700px;
+                font-weight: 700;
             }
             a:hover {
                 color: rgb(0, 204, 255);
@@ -77,12 +82,115 @@
                 text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.64);
                 margin-right: 10px;
             }
+            .line-one {
+                min-width: 100px;
+                height: 21px;
+            }
+            .line-two {
+                margin-top: 10px;
+            }
         }
     }
     .nav {
         margin-left: 11px;
+        margin-top: 30px;
         height: 46px;
         width: 1240px;
-        background: linear-gradient(180deg, rgba(0, 153, 255, 1) 0%, rgba(0, 153, 255, 1) 0%, rgba(0, 153, 255, 1) 45%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 1) 100%);
+        background: linear-gradient(180deg, rgba(0, 153, 255, 0.6) 0%, rgba(0, 153, 255, .6) 0%, rgba(0, 153, 255, .6) 45%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 1) 100%);
+        border-radius: 5px;
+        padding-left: 20px;
+        li {
+            width: 110px;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            span {
+                font-size: 15px;
+                font-weight: 700;
+                color: #fff;
+                line-height: 46px;
+            }
+            .education-box {
+                position: absolute;
+                width: 110px;
+                background: #99CCFF;
+                text-align: center;
+                display: none;
+                z-index: 999;
+                p {
+                    margin: 0;
+                    font-size: 15px;
+                    font-weight: 700;
+                    color: #fff;
+                    line-height: 45px;
+                }
+                p:hover {
+                    color: rgb(255, 204, 51);
+                }
+            }
+        }
+        li:hover {
+            span {
+                color: rgb(255, 204, 51);
+            }
+        }
+        .education:hover {
+            .education-box {
+                display: block;
+            }
+        }
+    }
+    .content {
+        width: 1136px;
+        .ranking {
+            background: #FAFAFA;
+            padding-bottom: 10px;
+            .title-box {
+                margin-bottom: 10px;
+                span {
+                    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+                    font-weight: 700;
+                    font-style: normal;
+                    font-size: 18px;
+                    color: #FFCC33;
+                    vertical-align: bottom;
+                }
+            }
+            .vr-box {
+                height: 225px;
+                border: 1px solid #d7d7d7;
+                margin: 0 10px 20px 10px;
+                background: #fff;
+                .name {
+                    margin: 5px 0 5px 5px;
+                    font-weight: 700;
+                    font-style: normal;
+                    font-size: 15px;
+                    color: #999;
+                }
+                .id-box {
+                    display: inline-block;
+                    font-size: 12px;
+                    color: #999;
+                    margin: 5px 50px 0 5px;
+                    span {
+                        display: inline-block;
+                        margin-left: 5px;
+                    }
+                }
+                .hot-num {
+                    display: inline-block;
+                    font-size: 12px;
+                    color: #999;
+                    span {
+                        display: inline-block;
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+        .download-ranking {
+            margin-top: 30px;
+        }
     }
 }

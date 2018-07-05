@@ -41,6 +41,7 @@
   padding: 6.5px 5px;
 }
 .login-section .content .line-one {
+  height: 65px;
   overflow: auto;
 }
 .login-section .content .line-one .logo {
