@@ -32,14 +32,7 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [{
-                        loader: 'file-loader',
-
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            bypassOnDebug: true,
-                        },
+                        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
                     }
                 ]
             }, {
