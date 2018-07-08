@@ -1,3 +1,70 @@
-div {
-  color: red;
+.content {
+  width: 1138px;
+  margin-left: 62px;
+  min-height: 600px;
+}
+.content .title {
+  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight: 700;
+  font-style: normal;
+  font-size: 22px;
+  text-shadow: 2px 2px 5px rgba(0, 153, 255, 0.4);
+}
+.content .detail .video-box {
+  display: inline-block;
+  max-width: 793px;
+  min-height: 400px;
+}
+.content .detail .video-box .video-number span {
+  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight: 700;
+  font-style: normal;
+  color: #999;
+}
+.content .detail .video-box .video-number ul li {
+  margin-right: 30px;
+}
+.content .detail .video-box .video-number ul li:nth-child(4) {
+  margin-right: 0;
+}
+.content .detail .video-box .video-number ul li:nth-child(5) {
+  margin-right: 0;
+}
+.content .detail .video-detail {
+  display: inline-block;
+  vertical-align: top;
+  width: 320px;
+  margin-left: 20px;
+}
+.content .detail .video-detail .download-btn {
+  width: 100%;
+  border: 2px solid #00ccff;
+  border-radius: 10px;
+  height: 45px;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+}
+.content .detail .video-detail .download-btn span {
+  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  color: #666;
+}
+.content .detail .video-detail .contact-way {
+  width: 100%;
+  margin-top: 15px;
+  border: 1px solid #00cccc;
+  border-radius: 20px;
+  padding: 20px 0 0 0;
+  font-weight: 700;
+}
+.content .detail .video-detail .contact-way p:not(:first-child) {
+  margin-left: 40px;
+}
+.content .detail .video-detail .contact-way img {
+  width: 32px;
+  margin-right: 10px;
+}
+.content .detail .video-detail .video-text {
+  margin-top: 20px;
 }

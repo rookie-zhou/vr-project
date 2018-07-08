@@ -1,10 +1,17 @@
-import "../css/style.css";
 import "bootcss";
-import "./lib/datapicker/dcalendar.picker.css"
 import "jquery";
-import "./lib/datapicker/dcalendar.picker.js"
-import 'bootjs';
-import "./lib/select2/css/select2.css"
-import select2 from "./lib/select2/js/select2.js"
+import "../css/style.css";
 import './../css/vrproduct.css';
-$("<div>这是jquery生成的</div>").appendTo("body")
+// var videoUrl = require('./../asset/vrproduct/10n58PICCCvGWmIdQ58PIC4bW.mp4');
+var videoUrl = 'http://pic.qiantucdn.com/58pic/28/73/01/66j58PICnrYnrG58PICZcpcds.mp4';
+
+$(function () {
+    $('#video').children('source').attr('src', videoUrl);
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    const productId = getUrlParam('id');
+})

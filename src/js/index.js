@@ -13,72 +13,75 @@ $(function () {
         $('.search-keyword').val($(this).children().text());
     });
     var hotList = [{
-        url:'http://img5.imgtn.bdimg.com/it/u=1109917053,4211270766&fm=27&gp=0.jpg',
+        url:'http://img1.imgtn.bdimg.com/it/u=1763371182,4012165979&fm=27&gp=0.jpg',
         viewTimes: '99',
         id: '20',
         name: '热度排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         viewTimes: '99',
         id: '21',
         name: '热度排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         viewTimes: '99',
         id: '22',
         name: '热度排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         viewTimes: '99',
         id: '23',
         name: '热度排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         viewTimes: '99',
         id: '24',
         name: '热度排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         viewTimes: '99',
         id: '25',
         name: '热度排行'
     }];
     var downloadList = [{
-        url:'http://img5.imgtn.bdimg.com/it/u=1109917053,4211270766&fm=27&gp=0.jpg',
+        url:'',
         downloadTimes: '99',
         id: '0',
         name: '下载排行'
     },{
-        url:'./../../asset/index/phb1-img_u110.png',
+        url:'',
         downloadTimes: '99',
         id: '1',
         name: '下载排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         downloadTimes: '99',
         id: '2',
         name: '下载排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         downloadTimes: '99',
         id: '3',
         name: '下载排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         downloadTimes: '99',
         id: '4',
         name: '下载排行'
     },{
-        url:'./../asset/index/phb1-img_u110.png',
+        url:'',
         downloadTimes: '99',
         id: '5',
         name: '下载排行'
     }];
     hotList.forEach(element => {
+        if (!element.url) {
+            element.url = productImg
+        }
         var thisDom = `
         <div class="col-md-3">
             <div class="vr-box">
-                <img class="product-img" src="${productImg}" alt="vr产品图片" width="100%">
+                <img class="product-img" src="${element.url}" alt="vr产品图片" width="100%">
                 <p class="name">${element.name}</p>
                 <p class="id-box">
                     <span>ID:</span>
@@ -113,6 +116,6 @@ $(function () {
         $(thisDom).appendTo($('.download-ranking'));
     });
     $('.ranking').on('click', '.vr-box', function () {
-        window.location.href='/login.html?id=' + $(this).find('.id').text();
+        window.location.href='/vrproduct.html?id=' + $(this).find('.id').text();
     })
 })

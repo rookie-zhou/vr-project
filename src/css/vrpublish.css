@@ -1,3 +1,86 @@
-div {
+.content {
+  color: #333;
+}
+.content .title {
+  font-family: '华文中宋 Bold', '华文中宋 Regular', '华文中宋';
+  text-shadow: 1px 1px 2px rgba(204, 204, 204, 0.6);
+  font-size: 22px;
+  color: #666;
+  font-weight: bold;
+  margin: 30px 0 20px 0;
+}
+.content #publish {
+  padding: 0 55px;
+}
+.content #publish label {
+  font-weight: normal;
+  min-width: 82px;
+  vertical-align: top;
+}
+.content #publish label span {
   color: red;
+  line-height: 39px;
+}
+.content #publish input {
+  border: 2px solid #00ccff;
+  outline: none;
+  height: 39px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.content #publish input[type=file] {
+  width: 430px;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.content #publish .file-btn {
+  border: 2px solid #00ccff;
+  outline: none;
+  height: 39px;
+  border-radius: 12px;
+  display: inline-block;
+  width: 430px;
+  background: none;
+  position: absolute;
+  left: 107px;
+}
+.content #publish .file-btn img {
+  position: absolute;
+  right: 0;
+  top: 2.5px;
+}
+.content #publish .row {
+  margin: 25px 0;
+}
+.content #publish .row .demo-detail {
+  width: 90%;
+  margin-left: 10px;
+  border: 2px solid #00ccff;
+  outline: none;
+  border-radius: 12px;
+  resize: none;
+  padding-left: 10px;
+}
+.content #publish .row .photo-btn {
+  position: absolute;
+  width: 165px;
+  height: 40px;
+  border: 1px solid #00ccff;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  margin-left: 10px;
+}
+.content #publish .row .photo-btn img {
+  margin-right: 10px;
+}
+.content #publish .row .photo-file {
+  opacity: 0;
+  width: 165px;
+  height: 40px;
+}
+.content #publish .row .img-list {
+  min-height: 100px;
+  padding-left: 107px;
 }

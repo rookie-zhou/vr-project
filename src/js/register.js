@@ -298,8 +298,18 @@ $(function () {
             // 开发者注册
             $('.modal-title').html('开发者注册');
             loginModal.open();
-
         }
     });
+
+    // 会员注册获取参数
+    function getMemberParams() {
+        const data = {
+            username: $('.mem-name').val(),
+            mobileNo: $('.mem-phone').val(),
+            email: $('.mem-email').val(),
+            password: $('.mem-password').val(),
+        }
+
+    }
 
 })

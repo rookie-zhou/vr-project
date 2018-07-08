@@ -13,18 +13,16 @@ $(function () {
         password: false
     }
     var fogotPasswordModal = $('[data-remodal-id=fogotPasswordModal]').remodal();
-    var loginModal = $('[data-remodal-id=loginModal]').remodal();
     $('.forgot-password').on('click', function () {
         fogotPasswordModal.open();
     });
     $('.btn-login').on('click', function () {
-        loginModal.open();
         var userName = $('.user-name').val();
         var password = $('.password').val();
         $.ajax({
-            url: '/userCTL',
+            url: '/api/vrworkshop/userCTL',
             method: 'post',
-            dataType: 'json',
+            // dataType: 'json',
             contentType: 'application/json',
             data: {
                 method: 'login',
@@ -32,12 +30,14 @@ $(function () {
                 password: password
             },
             success: function (res) {
-                $('.login-result').html('登录成功');
-                loginModal.open();
+                console.log(res)
+                if (res == '00') {
+                    alert('账号密码错误，请重新登录')
+                }
             },
             error: function (res) {
-                $('.login-result').html('服务器繁忙，请稍后再试！');
-                loginModal.open();
+                console.log(res.responseText)
+                console.log('111')
             }
         })
     });

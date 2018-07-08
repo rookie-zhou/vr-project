@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    <div>这是publish页面</div>
+    <div class="document">
+        <div class="content">
+            <p class="title">VR产品发布</p>
+            <form id="publish" enctype='multipart/form-data'>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>
+                            <span>*</span>VR产品名称</label>
+                        <input type="text" placeholder="请输入产品名称">
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>*</span>软件大小（KB）</label>
+                        <input type="text" placeholder="请输入软件大小">
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <span>*</span>产品类型</label>
+                        <input type="text" placeholder="请输入产品类型">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>
+                            <span>*</span>演示视频</label>
+                        <button class="file-btn text-left">
+                            <span class="video-name">请选择要上传的视频</span>
+                            <img src="./../asset/vrpublish/u729.png" alt="">
+                        </button>
+                        <input type="file" class="video-file">
+                    </div>
+                    <div class="col-md-6">
+                        <label>
+                            <span>*</span>DEMO文件</label>
+                        <button class="file-btn text-left">
+                            <span class="demo-name">请选择要上传的DEMO文件</span>
+                            <img src="./../asset/vrpublish/u729.png" alt="">
+                        </button>
+                        <input type="file" class="demo-file">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            <span>*</span>产品概述</label>
+                        <textarea class="demo-detail" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            <span>*</span>展示截图</label>
+                        <button class="btn photo-btn">
+                            <img src="./../asset/vrpublish/u747.png" alt="">
+                            <span>选择图片</span>
+                        </button>
+                        <input type="file" class="photo-file">
+                    </div>
+                    <div class="col-md-12 img-list">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="foot text-center">
+            <p class="text">Copyright © 2009 Axure.org All rights reserved.</p>
+            <p>成都联助科技</p>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -30,7 +30,7 @@ module.exports = {
                 loader: cssLoader
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif|mp4)$/,
                 use: [{
                         loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
                     }
