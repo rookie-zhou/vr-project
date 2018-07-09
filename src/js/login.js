@@ -30,14 +30,11 @@ $(function () {
                 password: password
             },
             success: function (res) {
-                console.log(res)
                 if (res == '00') {
-                    alert('账号密码错误，请重新登录')
+                    $('.login-msg').html('用户名或密码错误');
                 }
             },
             error: function (res) {
-                console.log(res.responseText)
-                console.log('111')
             }
         })
     });

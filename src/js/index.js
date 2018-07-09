@@ -13,7 +13,7 @@ $(function () {
         $('.search-keyword').val($(this).children().text());
     });
     var hotList = [{
-        url:'http://img1.imgtn.bdimg.com/it/u=1763371182,4012165979&fm=27&gp=0.jpg',
+        url:'',
         viewTimes: '99',
         id: '20',
         name: '热度排行'

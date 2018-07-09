@@ -292,6 +292,14 @@ $(function () {
     $('.post-btn').on('click', function () {
         if (param.page == 'member') {
             // 会员注册
+            const data = {
+                method: 'register',
+                username: $('.mem-name').val(),
+                mobileNo: $('.mem-phone').val(),
+                email: $('.mem-email').val(),
+                password: $('.mem-password').val(),
+            }
+            register(data);
             $('.modal-title').html('会员注册');
             loginModal.open();
         } else {
@@ -304,12 +312,26 @@ $(function () {
     // 会员注册获取参数
     function getMemberParams() {
         const data = {
+            method: 'register',
             username: $('.mem-name').val(),
             mobileNo: $('.mem-phone').val(),
             email: $('.mem-email').val(),
             password: $('.mem-password').val(),
         }
+    }
 
+    function register(data) {
+        $.ajax({
+            method: 'post',
+            url: '/api/vrworkshop/userCTL',
+            data: data,
+            success: function (res) {
+                alert(res)
+            },
+            error: function (res) {
+                alert(res)
+            }
+        })
     }
 
 })

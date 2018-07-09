@@ -90,6 +90,10 @@
   color: red;
   cursor: pointer;
 }
+.login-section .content .line-four .login-msg {
+  min-height: 20px;
+  color: red;
+}
 .login-section .content .line-five {
   margin-top: 15px;
 }
