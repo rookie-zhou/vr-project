@@ -37,6 +37,26 @@ $(function () {
         viewTimes: '99',
         id: '25',
         name: '热度排行'
+    }, {
+        url: '',
+        viewTimes: '99',
+        id: '22',
+        name: '热度排行'
+    }, {
+        url: '',
+        viewTimes: '99',
+        id: '23',
+        name: '热度排行'
+    }, {
+        url: '',
+        viewTimes: '99',
+        id: '24',
+        name: '热度排行'
+    }, {
+        url: '',
+        viewTimes: '99',
+        id: '25',
+        name: '热度排行'
     }];
     list.forEach(element => {
         if (!element.url) {
@@ -73,6 +93,6 @@ $(function () {
     });
     // 点击图片跳转到产品详情页面
     $('.vr-list').on('click', '.vr-box', function () {
-        window.location.href='/vrproduct.html?id=' + $(this).find('.id').text();
+        window.location.href = '/vrproduct.html?id=' + $(this).find('.id').text();
     });
 })

@@ -32,12 +32,44 @@ $(function () {
             success: function (res) {
                 if (res == '00') {
                     $('.login-msg').html('用户名或密码错误');
+                    localStorage.setItem('userName', '')
+                    localStorage.setItem('userType', '0')
+                }else if (res == '01') {
+                    window.location.href = '/index.html';
+                    localStorage.setItem('userName', '普通会员')
+                    localStorage.setItem('userType', '1')
+                }else if (res == '02') {
+                    window.location.href = '/index.html';
+                    localStorage.setItem('userName', '个人开发者')
+                    localStorage.setItem('userType', '2')
+                }else if (res == '03') {
+                    window.location.href = '/index.html';
+                    localStorage.setItem('userName', '企业开发者')
+                    localStorage.setItem('userType', '3')
                 }
             },
             error: function (res) {
             }
         })
     });
+    // var res = '01'
+    // if (res == '00') {
+    //     $('.login-msg').html('用户名或密码错误');
+    //     localStorage.setItem('userName', '')
+    //     localStorage.setItem('userType', '0')
+    // }else if (res == '01') {
+    //     window.location.href = '/index.html';
+    //     localStorage.setItem('userName', '普通会员')
+    //     localStorage.setItem('userType', '1')
+    // }else if (res == '02') {
+    //     window.location.href = '/index.html';
+    //     localStorage.setItem('userName', '个人开发者')
+    //     localStorage.setItem('userType', '2')
+    // }else if (res == '03') {
+    //     window.location.href = '/index.html';
+    //     localStorage.setItem('userName', '企业开发者')
+    //     localStorage.setItem('userType', '3')
+    // }
 
     function checkParams() {
         if (params.userName && params.password) {

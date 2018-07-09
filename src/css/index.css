@@ -135,65 +135,7 @@
 .document .nav .education:hover .education-box {
   display: block;
 }
-.document .content {
-  width: 1136px;
-}
-.document .content .ranking {
-  background: #FAFAFA;
-  padding-bottom: 10px;
-}
-.document .content .ranking .title-box {
-  margin-bottom: 10px;
-}
-.document .content .ranking .title-box span {
-  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
-  font-weight: 700;
-  font-style: normal;
-  font-size: 18px;
-  color: #FFCC33;
-  vertical-align: bottom;
-}
-.document .content .ranking .vr-box {
-  border: 1px solid #d7d7d7;
-  margin: 0 10px 20px 10px;
-  background: #fff;
-  cursor: pointer;
-}
-.document .content .ranking .vr-box .product-img {
-  width: 232px;
-  min-height: 175px;
-}
-.document .content .ranking .vr-box .product-img:hover {
-  border-right: 4px solid #fff;
-  border-bottom: 4px solid #fff;
-  box-shadow: 4px 4px 4px #888888;
-}
-.document .content .ranking .vr-box .name {
-  margin: 5px 0 5px 5px;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 15px;
-  color: #999;
-}
-.document .content .ranking .vr-box .id-box {
-  display: inline-block;
-  font-size: 12px;
-  color: #999;
-  margin: 5px 50px 0 5px;
-}
-.document .content .ranking .vr-box .id-box span {
-  display: inline-block;
-  margin-left: 5px;
-}
-.document .content .ranking .vr-box .hot-num {
-  display: inline-block;
-  font-size: 12px;
-  color: #999;
-}
-.document .content .ranking .vr-box .hot-num span {
-  display: inline-block;
-  margin-left: 5px;
-}
-.document .content .download-ranking {
-  margin-top: 30px;
+.document iframe {
+  width: 100%;
+  min-height: 1200px;
 }
