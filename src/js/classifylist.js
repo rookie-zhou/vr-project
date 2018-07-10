@@ -115,11 +115,17 @@ $(function () {
 
     var pageNum = 1;
     var pageRows = 12;
+    var pagesList = {};
 
-    var pagesList = {
-        total: 100,
-        rows: list,
+    function getDatas() {
+        pagesList = {
+            total: 30,
+            rows: list,
+        }
+        $('.total-num').html(pagesList.total);
+        $('.page-total-num').html(parseInt(pagesList.total / pageRows));
     }
+    getDatas();
 
     // 点击不同排序
     $('.list-type').on('click', 'span', function () {
@@ -131,34 +137,64 @@ $(function () {
     $('.vr-list').on('click', '.vr-box', function () {
         window.location.href = '/vrproduct.html?id=' + $(this).find('.id').text();
     });
-    $('.pagination').on('click', 'li', function () {
-        $('.pagination').find('a').removeClass('active');
+    // 点击页码
+    $('.pagination-num').on('click', 'li', function () {
+        $('.pagination-num').find('a').removeClass('active');
         $(this).find('a').addClass('active');
+        pageNum = parseInt($(this).find('a').html());
+        $('.page-num').html(pageNum);
     });
 
     function initPage() {
         var pageNumList = parseInt(pagesList.total / pageRows);
-        if (1 < pageNumList && pageNumList <= 5) {
-            console.log(pageNumList)
-            for (let index = 2; index <= pageNumList; index++) {
-                var pageDom = `
-                <li>
-                    <a>${index}</a>
-                </li>
-                `
-                $(pageDom).insertBefore('.next-btn');
-            }
-        } else if (pageNumList > 5) {
-            for (let index = 2; index <= 5; index++) {
-                var pageDom = `
-                <li>
-                    <a>${index}</a>
-                </li>
-                `
-                $(pageDom).insertBefore('.next-btn');
-            }
+        for (let index = pageNumList; index > 1; index--) {
+            var pageDom = `
+            <li>
+            <a value="${index}">${index}</a>
+            </li>
+            `
+            $(pageDom).insertAfter('.first-pageNum');
         }
-        initList(pagesList.rows)
+        initList(pagesList.rows);
     };
     initPage();
-})
+
+    // 上一页
+    $('.prev').on('click', function () {
+        if (pageNum != 1) {
+            $('.pagination-num').find('a').removeClass('active');
+            $('.pagination-num').find('li').eq(pageNum - 2).find('a').addClass('active');
+            pageNum--;
+            $('.page-num').html(pageNum);
+        }
+    });
+    // 下一页
+    $('.next').on('click', function () {
+        if (pageNum == parseInt(pagesList.total / pageRows)) {
+            return;
+        } else {
+            $('.pagination-num').find('a').removeClass('active');
+            $('.pagination-num').find('li').eq(pageNum).find('a').addClass('active');
+            pageNum++;
+            $('.page-num').html(pageNum);
+        }
+    });
+    // 首页
+    $('.first-page').on('click', function () {
+        if (pageNum != 1) {
+            $('.pagination-num').find('a').removeClass('active');
+            $('.pagination-num').find('li').eq(0).find('a').addClass('active');
+            pageNum = 1;
+            $('.page-num').html(pageNum);
+        }
+    });
+    // 尾页
+    $('.last-page').on('click', function () {
+        if (pageNum != parseInt(pagesList.total / pageRows)) {
+            $('.pagination-num').find('a').removeClass('active');
+            $('.pagination-num').find('li').eq(parseInt(pagesList.total / pageRows) - 1).find('a').addClass('active');
+            pageNum = parseInt(pagesList.total / pageRows);
+            $('.page-num').html(pageNum);
+        }
+    })
+});

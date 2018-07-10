@@ -29,20 +29,24 @@
             <ul class="pagination">
                 <div class="page-total">
                     <a>
-                        <span>1/10页</span>
-                        <span>199条</span>
+                        <span style="margin-right: 10px"><span class="page-num" >1</span>/<span class="page-total-num"></span>页</span>
+                        <span><span class="total-num"></span>条</span>
                     </a>
                 </div>
                 <li>
                     <a class="first-page">首页</a>
                 </li>
                 <li>
-                    <a class="prev" aria-label="Previous">
+                    <a class="prev" aria-label="Previous" disabled="disabled">
                         <span aria-hidden="true">上一页</span>
                     </a>
                 </li>
                 <li>
-                    <a class="active">1</a>
+                    <ul class="pagination-num">
+                        <li class="first-pageNum">
+                            <a class="active" value="1">1</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="next-btn">
                     <a class="next">

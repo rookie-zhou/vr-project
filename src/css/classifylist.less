@@ -97,7 +97,6 @@
             color: #999;
             span:nth-child(1) {
                 display: inline-block;
-                margin-right: 10px;
             }
         }
     }
@@ -114,6 +113,29 @@
         }
         .active {
             background: #66ccff;
+        }
+    }
+    .pagination-num {
+        padding-left: 0;
+        li {
+            display: inline-block;
+            margin: 0 10px;
+            a {
+                position: relative;
+                float: left;
+                border: 1px solid #ddd;
+                padding: 6px 12px;
+                cursor: pointer;
+                text-decoration: none;
+                color: #999;
+            }
+            a:hover {
+                color: #999;
+                background: #66ccff;
+            }
+            .active {
+                background: #66ccff;
+            }
         }
     }
 }
