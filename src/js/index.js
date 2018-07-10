@@ -147,6 +147,9 @@ $(function () {
     // 加载列表
     $('ul').on('click', 'li', function () {
         console.log($(this).find('span').html())
+        localStorage.setItem('vr-name', $(this).find('span').html());
+        localStorage.setItem('vr-type', $(this).find('span').attr('value'));
+
         if ($(this).find('span').html() == '首页') {
             $('iframe').attr('src', '/rankingList.html');
         } else {
