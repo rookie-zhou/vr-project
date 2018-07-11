@@ -14,4 +14,16 @@ $(function () {
         return null;
     }
     const productId = getUrlParam('id');
+    console.log(productId)
+    $.ajax({
+        method: 'post',
+        url: '/api/vrworkshop/vrproductCTL',
+        data: {
+            method: 'vrproduct_detailed',
+            vrid: productId
+        },
+        success: function (res) {
+            console.log(res)
+        }
+    })
 })

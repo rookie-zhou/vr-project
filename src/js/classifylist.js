@@ -115,11 +115,12 @@ $(function () {
 
     var pageNum = 1;
     var pageRows = 12;
+    var pageNumLength = 1;
     var pagesList = {};
 
     function getDatas() {
         pagesList = {
-            total: 30,
+            total: 100,
             rows: list,
         }
         $('.total-num').html(pagesList.total);
@@ -146,14 +147,25 @@ $(function () {
     });
 
     function initPage() {
-        var pageNumList = parseInt(pagesList.total / pageRows);
-        for (let index = pageNumList; index > 1; index--) {
-            var pageDom = `
-            <li>
-            <a value="${index}">${index}</a>
-            </li>
-            `
-            $(pageDom).insertAfter('.first-pageNum');
+        pageNumLength = parseInt(pagesList.total / pageRows);
+        if (pageNumLength > 0 && pageNumLength <= 5) {
+            for (let index = pageNumLength; index > 1; index--) {
+                var pageDom = `
+                <li>
+                <a value="${index}">${index}</a>
+                </li>
+                `
+                $(pageDom).insertAfter('.first-pageNum');
+            }
+        } else {
+            for (let index = 5; index > 1; index--) {
+                var pageDom = `
+                <li>
+                <a value="${index}">${index}</a>
+                </li>
+                `
+                $(pageDom).insertAfter('.first-pageNum');
+            }
         }
         initList(pagesList.rows);
     };
@@ -170,8 +182,22 @@ $(function () {
     });
     // 下一页
     $('.next').on('click', function () {
-        if (pageNum == parseInt(pagesList.total / pageRows)) {
+        if (pageNum == pageNumLength) {
             return;
+        } else if (pageNum >= 5) {
+            pageNum++;
+            $('.pagination-num').empty();
+            for (let index = pageNum - 4; index <= pageNum; index++) {
+                var pageDom = `
+                <li>
+                <a value="${index}">${index}</a>
+                </li>
+                `
+                $('.pagination-num').append($(pageDom));
+            }
+            $('.pagination-num').find('li').eq(4).find('a').addClass('active');
+            $('.page-num').html(pageNum);
+
         } else {
             $('.pagination-num').find('a').removeClass('active');
             $('.pagination-num').find('li').eq(pageNum).find('a').addClass('active');
@@ -190,11 +216,11 @@ $(function () {
     });
     // 尾页
     $('.last-page').on('click', function () {
-        if (pageNum != parseInt(pagesList.total / pageRows)) {
+        if (pageNum != pageNumLength) {
             $('.pagination-num').find('a').removeClass('active');
-            $('.pagination-num').find('li').eq(parseInt(pagesList.total / pageRows) - 1).find('a').addClass('active');
-            pageNum = parseInt(pagesList.total / pageRows);
+            $('.pagination-num').find('li').eq(pageNumLength - 1).find('a').addClass('active');
+            pageNum = pageNumLength;
             $('.page-num').html(pageNum);
         }
-    })
+    });
 });
