@@ -4,8 +4,8 @@ import "bootjs";
 import "../css/style.css";
 import "../css/classifylist.css";
 var productImg = require('./../asset/index/phb1-img_u110.png');
-var downLoadImg = require('./../asset/index/u137.png');
-var viewLoadImg = require('./../asset/index/u115.png');
+var downLoadImg = require('./../asset/img/u137.png');
+var viewLoadImg = require('./../asset/img/u115.png');
 
 $(function () {
     $('.vr-type').html(localStorage.getItem('vr-name'));

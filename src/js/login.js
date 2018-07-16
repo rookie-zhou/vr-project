@@ -16,33 +16,34 @@ $(function () {
     $('.forgot-password').on('click', function () {
         fogotPasswordModal.open();
     });
+    // 登录
     $('.btn-login').on('click', function () {
         var userName = $('.user-name').val();
         var password = $('.password').val();
         $.ajax({
-            url: '/api/vrworkshop/userCTL',
+            url: '/api/userCTL',
             method: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             contentType: 'application/json',
-            data: {
+            data: JSON.stringify({
                 method: 'login',
                 username: userName,
                 password: password
-            },
+            }),
             success: function (res) {
-                if (res == '00') {
+                if (res.result == '00') {
                     $('.login-msg').html('用户名或密码错误');
                     localStorage.setItem('userName', '')
                     localStorage.setItem('userType', '0')
-                }else if (res == '01') {
+                }else if (res.result == '01') {
                     window.location.href = '/index.html';
                     localStorage.setItem('userName', '普通会员')
                     localStorage.setItem('userType', '1')
-                }else if (res == '02') {
+                }else if (res.result == '02') {
                     window.location.href = '/index.html';
                     localStorage.setItem('userName', '个人开发者')
                     localStorage.setItem('userType', '2')
-                }else if (res == '03') {
+                }else if (res.result == '03') {
                     window.location.href = '/index.html';
                     localStorage.setItem('userName', '企业开发者')
                     localStorage.setItem('userType', '3')
@@ -52,24 +53,6 @@ $(function () {
             }
         })
     });
-    // var res = '01'
-    // if (res == '00') {
-    //     $('.login-msg').html('用户名或密码错误');
-    //     localStorage.setItem('userName', '')
-    //     localStorage.setItem('userType', '0')
-    // }else if (res == '01') {
-    //     window.location.href = '/index.html';
-    //     localStorage.setItem('userName', '普通会员')
-    //     localStorage.setItem('userType', '1')
-    // }else if (res == '02') {
-    //     window.location.href = '/index.html';
-    //     localStorage.setItem('userName', '个人开发者')
-    //     localStorage.setItem('userType', '2')
-    // }else if (res == '03') {
-    //     window.location.href = '/index.html';
-    //     localStorage.setItem('userName', '企业开发者')
-    //     localStorage.setItem('userType', '3')
-    // }
 
     function checkParams() {
         if (params.userName && params.password) {

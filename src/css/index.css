@@ -111,7 +111,7 @@
   color: #fff;
   line-height: 46px;
 }
-.document .nav li .education-box {
+.document .nav li .small-box {
   position: absolute;
   width: 110px;
   background: #99CCFF;
@@ -119,23 +119,77 @@
   display: none;
   z-index: 999;
 }
-.document .nav li .education-box p {
+.document .nav li .small-box p {
   margin: 0;
   font-size: 15px;
   font-weight: 700;
   color: #fff;
   line-height: 45px;
 }
-.document .nav li .education-box p:hover {
+.document .nav li .small-box p:hover {
   color: #ffcc33;
 }
 .document .nav li:hover span {
   color: #ffcc33;
 }
-.document .nav .education:hover .education-box {
-  display: block;
-}
 .document iframe {
   width: 100%;
-  min-height: 1200px;
+  min-height: 1600px;
+}
+.nav-contact {
+  position: absolute;
+  right: 0;
+  top: 300px;
+  min-width: 50px;
+  min-height: 200px;
+  border: 2px solid #00ccff;
+  border-radius: 20px;
+}
+.nav-contact ul {
+  z-index: 9;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-contact ul li {
+  position: relative;
+  width: 73px;
+  height: 73px;
+  text-align: center;
+  border-bottom: 1px solid #0099FF;
+  overflow: hidden;
+}
+.nav-contact ul li img {
+  width: 60%;
+}
+.nav-contact ul li p {
+  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  color: #00CCFF;
+}
+.nav-contact ul li .online-box {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 73px;
+  border: 1px solid #00CCFF;
+  background: #fff;
+  transition: .3s linear;
+}
+.nav-contact ul li .online-box p {
+  margin-bottom: 0;
+  line-height: 36px;
+}
+.nav-contact ul li:last-child {
+  border-bottom: none;
+}
+.nav-contact ul .first-li:hover {
+  overflow: unset;
+}
+.nav-contact ul .first-li:hover .online-box {
+  left: -150px;
 }
