@@ -32,6 +32,7 @@
   height: 32px;
   background: #00ccff;
   border-radius: 13px;
+  cursor: pointer;
 }
 .document .header .search-box .input-box .search-btn span {
   display: inline-block;
@@ -90,6 +91,9 @@
 .document .header .member-box .line-two {
   margin-top: 10px;
 }
+.document .header .member-box .line-two .developer {
+  cursor: pointer;
+}
 .document .nav {
   margin-left: 11px;
   margin-top: 30px;
@@ -137,27 +141,27 @@
   min-height: 1600px;
 }
 .nav-contact {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 300px;
-  min-width: 50px;
-  min-height: 200px;
-  border: 2px solid #00ccff;
-  border-radius: 20px;
 }
 .nav-contact ul {
-  z-index: 9;
+  position: absolute;
+  right: 0;
   list-style: none;
   padding: 0;
   margin: 0;
+  min-width: 50px;
+  min-height: 200px;
+  border-radius: 20px;
+  border: 2px solid #00ccff;
+  background: #fff;
 }
 .nav-contact ul li {
-  position: relative;
   width: 73px;
   height: 73px;
   text-align: center;
   border-bottom: 1px solid #0099FF;
-  overflow: hidden;
 }
 .nav-contact ul li img {
   width: 60%;
@@ -169,27 +173,38 @@
   font-size: 14px;
   color: #00CCFF;
 }
-.nav-contact ul li .online-box {
-  z-index: 5;
+.nav-contact ul .top-btn {
+  cursor: pointer;
+}
+.nav-contact ul .third-li {
+  cursor: pointer;
+}
+.nav-contact ul li:last-child {
+  border-bottom: none;
+}
+.nav-contact .online-box-detail {
   position: absolute;
   top: 0;
   left: 0;
   width: 150px;
   height: 73px;
   border: 1px solid #00CCFF;
-  background: #fff;
-  transition: .3s linear;
+  border-radius: 10px;
+  transition: .2s linear;
+  padding: 0 5px;
 }
-.nav-contact ul li .online-box p {
+.nav-contact .online-box-detail p {
+  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  color: #00CCFF;
   margin-bottom: 0;
   line-height: 36px;
 }
-.nav-contact ul li:last-child {
-  border-bottom: none;
+.nav-contact .detail1 {
+  top: 1px;
 }
-.nav-contact ul .first-li:hover {
-  overflow: unset;
-}
-.nav-contact ul .first-li:hover .online-box {
-  left: -150px;
+.nav-contact .detail2 {
+  top: 73px;
 }

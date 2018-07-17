@@ -30,6 +30,7 @@
                     height: 32px;
                     background: #00ccff;
                     border-radius: 13px;
+                    cursor: pointer;
                     span {
                         display: inline-block;
                         line-height: 32px;
@@ -88,6 +89,9 @@
             }
             .line-two {
                 margin-top: 10px;
+                .developer {
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -142,25 +146,25 @@
 }
 
 .nav-contact {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 300px;
-    min-width: 50px;
-    min-height: 200px;
-    border: 2px solid #00ccff;
-    border-radius: 20px;
     ul {
-        z-index: 9;
+        position: absolute;
+        right: 0;
         list-style: none;
         padding: 0;
         margin: 0;
+        min-width: 50px;
+        min-height: 200px;
+        border-radius: 20px;
+        border: 2px solid #00ccff;
+        background: #fff;
         li {
-            position: relative;
             width: 73px;
             height: 73px;
             text-align: center;
             border-bottom: 1px solid #0099FF;
-            overflow: hidden;
             img {
                 width: 60%;
             }
@@ -171,30 +175,41 @@
                 font-size: 14px;
                 color: #00CCFF;
             }
-            .online-box {
-                z-index: 5;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 150px;
-                height: 73px;
-                border: 1px solid #00CCFF;
-                background: #fff;
-                transition: .3s linear;
-                p {
-                    margin-bottom: 0;
-                    line-height: 36px;
-                }
-            }
+        }
+        .top-btn {
+            cursor: pointer;
+        }
+        .third-li {
+            cursor: pointer;
         }
         li:last-child {
             border-bottom: none;
         }
-        .first-li:hover {
-            overflow: unset;
-            .online-box {
-                left: -150px;
-            }
+    }
+    .online-box-detail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150px;
+        height: 73px;
+        border: 1px solid #00CCFF;
+        border-radius: 10px;
+        transition: .2s linear;
+        padding: 0 5px;
+        p {
+            font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+            font-weight: 700;
+            font-style: normal;
+            font-size: 14px;
+            color: #00CCFF;
+            margin-bottom: 0;
+            line-height: 36px;
         }
+    }
+    .detail1 {
+        top: 1px;
+    }
+    .detail2 {
+        top: 73px;
     }
 }

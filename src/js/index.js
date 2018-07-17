@@ -8,80 +8,74 @@ import './../css/index.css';
 
 $(function () {
     var navList = [{
-        name: 'VR教育',
-        id: '1',
+        typeName: 'VR教育',
+        typeId: '1',
         list: [{
-            id: '1.1',
-            name: '建筑教育'
-        },{
-            id: '1.2',
-            name: 'K12教育'
+            typeId: '1.1',
+            typeName: '建筑教育'
+        }, {
+            typeId: '1.2',
+            typeName: 'K12教育'
         }]
     }, {
-        name: 'VR家装',
-        id: '2',
+        typeName: 'VR家装',
+        typeId: '2',
         list: [{
-            id: '2.1',
-            name: '欧式'
-        },{
-            id: '2.2',
-            name: '美式'
+            typeId: '2.1',
+            typeName: '欧式'
+        }, {
+            typeId: '2.2',
+            typeName: '美式'
         }]
     }, {
-        name: 'VR工业',
-        id: '3'
+        typeName: 'VR工业',
+        typeId: '3'
     }, {
-        name: 'VR医疗',
-        id: '4'
+        typeName: 'VR医疗',
+        typeId: '4'
     }, {
-        name: 'VR交通',
-        id: '5'
+        typeName: 'VR交通',
+        typeId: '5'
     }, {
-        name: 'VR军事',
-        id: '6'
+        typeName: 'VR军事',
+        typeId: '6'
     }, {
-        name: 'VR展馆',
-        id: '7'
+        typeName: 'VR展馆',
+        typeId: '7'
     }, {
-        name: 'VR安防',
-        id: '8'
+        typeName: 'VR安防',
+        typeId: '8'
     }, {
-        name: '其他',
-        id: '9'
+        typeName: '其他',
+        typeId: '9'
     }];
+
     function getNav(list) {
         list.forEach((item, index) => {
             var navDom;
             if (item.list) {
                 navDom = `<li class="have-list have-list${index}">
-                <span value="${item.id}">${item.name}</span>
+                <span value="${item.typeId}">${item.typeName}</span>
                 </li>`
                 $(navDom).appendTo('.nav-list');
                 var listBox = `<div class="list-unstyled small-box small-box${index}"></div>`;
-                $(listBox).appendTo('.have-list'+ index)
+                $(listBox).appendTo('.have-list' + index);
                 item.list.forEach(elemnt => {
                     var smallList = `
-                    <p value="${elemnt.id}">${elemnt.name}</p>
+                    <p value="${elemnt.typeId}">${elemnt.typeName}</p>
                     `
                     $(smallList).appendTo('.small-box' + index);
                 });
             } else {
                 navDom = `<li>
-                <span value="${item.id}">${item.name}</span>
+                <span value="${item.typeId}">${item.typeName}</span>
                 </li>`
                 $(navDom).appendTo('.nav-list');
             }
         });
     }
-    getNav(navList);
-    // 鼠标移入nav 显示下拉框
-    $('.have-list').mouseover(function () {
-        $(this).find('.small-box').show();
-    });
-    // 鼠标移出nav 隐藏下拉框
-    $('.have-list').mouseleave(function () {
-        $(this).find('.small-box').hide();
-    });
+
+
     var indexModal = $('[data-remodal-id=indexModal]').remodal();
     // 获取登录信息
     const userName = localStorage.getItem('userName');
@@ -113,7 +107,7 @@ $(function () {
     $('.nav-list').on('click', 'li', function () {
         localStorage.setItem('vr-name', $(this).find('span').html());
         localStorage.setItem('vr-type', $(this).find('span').attr('value'));
-        
+
         if ($(this).find('span').html() == '首页') {
             $('iframe').attr('src', '/rankingList.html');
         } else {
@@ -131,4 +125,58 @@ $(function () {
             $('iframe').attr('src', '/classifyList.html');
         }
     });
+
+    // 鼠标移入显示客服联系方式
+    $('.first-li').mouseover(function () {
+        $('.detail1').css({
+            left: '-228px'
+        });
+    });
+    $('.first-li').mouseleave(function () {
+        $('.detail1').css({
+            left: '0'
+        });
+    });
+    $('.second-li').mouseover(function () {
+        $('.detail2').css({
+            left: '-228px'
+        });
+    });
+    $('.second-li').mouseleave(function () {
+        $('.detail2').css({
+            left: '0'
+        });
+    });
+
+    // 回到顶部
+    $('.top-btn').click(function () {
+        window.scrollTo(0, 0);
+    });
+
+    // 获取导航菜单
+    function getNavList() {
+        $.ajax({
+            url: '/api/productTypeCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                method: 'producttype_getall'
+            }),
+            success: function (res) {
+
+            }
+        })
+    }
+    getNav(navList);
+    setTimeout(function () {
+        // 鼠标移入nav 显示下拉框
+        $('.have-list').mouseover(function () {
+            $(this).find('.small-box').show();
+        });
+        // 鼠标移出nav 隐藏下拉框
+        $('.have-list').mouseleave(function () {
+            $(this).find('.small-box').hide();
+        });
+    }, 500)
 });
