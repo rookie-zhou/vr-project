@@ -7,7 +7,7 @@ import './lib/remodal/remodal.min.js';
 import "../css/style.css";
 import './../css/register.css';
 
-$(function () {
+$(document).ready(function () {
     // 弹框
     var loginModal = $('[data-remodal-id=registerModal]').remodal();
     var param = {
@@ -33,6 +33,7 @@ $(function () {
             confirm: false,
         }
     }
+
     // 正则表达式
     var regular = {
         name: /^[0-9a-zA-Z_]{5,}$/,
@@ -83,6 +84,7 @@ $(function () {
             $('.post-btn').attr('disabled', 'disabled');
         }
     }
+
     // 会员注册
     // 用户名正则校验
     $('.mem-name').bind('input propertychange', function () {
@@ -95,6 +97,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 手机号正则
     $('.mem-phone').bind('input propertychange', function () {
         if (!regular.phoneNo.test($(this).val())) {
@@ -106,6 +109,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 邮箱号正则
     $('.mem-email').bind('input propertychange', function () {
         if (!regular.email.test($(this).val())) {
@@ -117,6 +121,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 密码正则
     $('.mem-password').bind('input propertychange', function () {
         if (!regular.password.test($(this).val())) {
@@ -128,6 +133,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 确认密码
     $('.mem-confirm').bind('input propertychange', function () {
         if ($(this).val() != $('.mem-password').val()) {
@@ -148,6 +154,7 @@ $(function () {
         param.group.type = '1';
         checkParams()
     });
+
     //  企业
     $('.group').on('click', function () {
         $('.personal-li').hide();
@@ -155,7 +162,7 @@ $(function () {
         param.group.type = '2';
         checkParams();
     });
-    // 输入框验证
+
     // 用户名正则校验
     $('.group-name').bind('input propertychange', function () {
         if (!regular.name.test($(this).val())) {
@@ -167,6 +174,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 手机号正则
     $('.group-phone').bind('input propertychange', function () {
         if (!regular.phoneNo.test($(this).val())) {
@@ -178,6 +186,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 邮箱号正则
     $('.group-email').bind('input propertychange', function () {
         if (!regular.email.test($(this).val())) {
@@ -189,6 +198,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 身份证号正则
     $('.group-idNo').bind('input propertychange', function () {
         if (!regular.idNo.test($(this).val())) {
@@ -200,6 +210,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 个人姓名正则
     $('.group-realName').bind('input propertychange', function () {
         if (!regular.chinese.test($(this).val())) {
@@ -211,6 +222,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 统一社会信用代码正则
     $('.group-groupNo').bind('input propertychange', function () {
         if (!regular.groupNo.test($(this).val())) {
@@ -222,6 +234,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 企业名称正则
     $('.group-groupName').bind('input propertychange', function () {
         if (!regular.chinese.test($(this).val())) {
@@ -233,6 +246,7 @@ $(function () {
         }
         checkParams();
     });
+
     // QQ正则
     $('.group-QQ').bind('input propertychange', function () {
         if (!regular.QQ.test($(this).val())) {
@@ -244,6 +258,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 微信正则
     $('.group-wechat').bind('input propertychange', function () {
         if (!regular.wechat.test($(this).val())) {
@@ -255,6 +270,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 邮箱号正则
     $('.group-password').bind('input propertychange', function () {
         if (!regular.password.test($(this).val())) {
@@ -266,6 +282,7 @@ $(function () {
         }
         checkParams();
     });
+
     // 确认密码
     $('.group-confirm').bind('input propertychange', function () {
         if ($(this).val() != $('.group-password').val()) {
@@ -278,7 +295,7 @@ $(function () {
         checkParams();
     });
 
-
+    // 校验是否勾选同意协议
     $("#agree").change(function () {
         if ($("#agree").is(":checked")) {
             param.agree = true;
@@ -294,44 +311,70 @@ $(function () {
             // 会员注册
             const data = {
                 method: 'register',
+                usertype: '01',
                 username: $('.mem-name').val(),
                 mobileNo: $('.mem-phone').val(),
                 email: $('.mem-email').val(),
                 password: $('.mem-password').val(),
             }
-            register(data);
             $('.modal-title').html('会员注册');
-            loginModal.open();
+            register(data);
         } else {
             // 开发者注册
             $('.modal-title').html('开发者注册');
-            loginModal.open();
+            const usertype = $("input[name='type']:checked").val();
+            if (usertype == '02') {
+                // 个人
+                const data = {
+                    method: 'register',
+                    usertype: usertype,
+                    username: $('.mem-name').val(),
+                    mobileNo: $('.mem-phone').val(),
+                    email: $('.mem-email').val(),
+                    password: $('.mem-password').val(),
+                    idcardNo: $('.group-idNo').val(),
+                    fullname: $('.group-realName').val(),
+                    qq: $('.group-QQ').val(),
+                    weixin: $('.group-wechat').val()
+                }
+                register(data);
+            } else {
+                // 企业
+                const data = {
+                    method: 'register',
+                    usertype: usertype,
+                    username: $('.mem-name').val(),
+                    mobileNo: $('.mem-phone').val(),
+                    email: $('.mem-email').val(),
+                    password: $('.mem-password').val(),
+                    socialNo: $('.group-groupNo').val(),
+                    socialName: $('.group-groupName').val(),
+                    qq: $('.group-QQ').val(),
+                    weixin: $('.group-wechat').val()
+                }
+                register(data);
+            }
+
         }
     });
 
-    // 会员注册获取参数
-    function getMemberParams() {
-        const data = {
-            method: 'register',
-            username: $('.mem-name').val(),
-            mobileNo: $('.mem-phone').val(),
-            email: $('.mem-email').val(),
-            password: $('.mem-password').val(),
-        }
-    }
-
     function register(data) {
         $.ajax({
-            method: 'post',
-            url: '/api/vrworkshop/userCTL',
-            data: data,
+            type: 'post',
+            url: '/api/userCTL',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
             success: function (res) {
-                alert(res)
+                if (res.result) {
+                    window.location.href = './login.html'
+                } else {
+                    loginModal.open();
+                }
             },
-            error: function (res) {
-                alert(res)
+            error: function () {
+                loginModal.open();
             }
         })
     }
-
-})
+});

@@ -9,7 +9,7 @@
         font-style: normal;
         color: #999;
         font-size: 14px;
-        .vr-type {
+        .vr-name {
             color: #FFCC00;
         }
         span {
@@ -82,59 +82,57 @@
     }
 }
 
-.pagination {
-    .page-total {
+.page-box {
+    text-align: center;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    color: #999;
+    font-size: 14px;
+    .page-detail {
         display: inline-block;
-        a {
-            position: relative;
-            float: left;
-            border: 1px solid #ddd;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
-            padding: 6px 12px;
-            cursor: none;
-            text-decoration: none;
-            color: #999;
-            span:nth-child(1) {
-                display: inline-block;
-            }
+        border: 1px solid #ddd;
+        padding: 0 20px;
+        line-height: 28px;
+        vertical-align: top;
+        margin-right: 30px;
+        .total-num {
+            display: inline-block;
+            margin-left: 10px;
         }
     }
-    li {
+    .vr-pagination {
+        width: auto !important;
         display: inline-block;
-        margin: 0 10px;
-        a {
-            color: #999;
-            cursor: pointer;
+        .spFirst {
+            padding: 0 5px;
         }
-        a:hover {
-            color: #999;
-            background: #66ccff;
+        .spPrev {
+            width: auto;
+            font-size: 12px;
+            margin-left: 10px;
+            padding: 0 5px;
+        }
+        .spNext {
+            width: auto;
+            font-size: 12px;
+            margin-right: 10px;
+            padding: 0 5px;
+        }
+        .spLast {
+            padding: 0 5px;
+        }
+        .spActiveBg {
+            display: none;
         }
         .active {
-            background: #66ccff;
+            background: #367fa9;
+            color: #fff;
         }
-    }
-    .pagination-num {
-        padding-left: 0;
-        li {
-            display: inline-block;
-            margin: 0 10px;
-            a {
-                position: relative;
-                float: left;
-                border: 1px solid #ddd;
-                padding: 6px 12px;
-                cursor: pointer;
-                text-decoration: none;
-                color: #999;
-            }
-            a:hover {
-                color: #999;
-                background: #66ccff;
-            }
-            .active {
-                background: #66ccff;
+        ul {
+            padding: 0;
+            li {
+                margin: 0 10px;
             }
         }
     }

@@ -2,7 +2,7 @@ import "jquery";
 import "bootcss";
 import "../css/style.css";
 import './../css/vrpublish.css';
-$(function () {
+$(document).ready(function () {
     // 上传视频
     $('.video-file').on('change', function () {
         const filePath = $(this).val();

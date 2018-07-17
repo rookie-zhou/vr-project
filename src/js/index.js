@@ -50,30 +50,7 @@ $(function () {
         typeId: '9'
     }];
 
-    function getNav(list) {
-        list.forEach((item, index) => {
-            var navDom;
-            if (item.list) {
-                navDom = `<li class="have-list have-list${index}">
-                <span value="${item.typeId}">${item.typeName}</span>
-                </li>`
-                $(navDom).appendTo('.nav-list');
-                var listBox = `<div class="list-unstyled small-box small-box${index}"></div>`;
-                $(listBox).appendTo('.have-list' + index);
-                item.list.forEach(elemnt => {
-                    var smallList = `
-                    <p value="${elemnt.typeId}">${elemnt.typeName}</p>
-                    `
-                    $(smallList).appendTo('.small-box' + index);
-                });
-            } else {
-                navDom = `<li>
-                <span value="${item.typeId}">${item.typeName}</span>
-                </li>`
-                $(navDom).appendTo('.nav-list');
-            }
-        });
-    }
+
 
 
     var indexModal = $('[data-remodal-id=indexModal]').remodal();
@@ -126,6 +103,62 @@ $(function () {
         }
     });
 
+
+    // 初始化导航菜单
+    function initNav(list) {
+        list.forEach((item, index) => {
+            var navDom;
+            if (item.list) {
+                navDom = `<li class="have-list have-list${index}">
+                <span value="${item.typeId}">${item.typeName}</span>
+                </li>`
+                $(navDom).appendTo('.nav-list');
+                var listBox = `<div class="list-unstyled small-box small-box${index}"></div>`;
+                $(listBox).appendTo('.have-list' + index);
+                item.list.forEach(elemnt => {
+                    var smallList = `
+                    <p value="${elemnt.typeId}">${elemnt.typeName}</p>
+                    `
+                    $(smallList).appendTo('.small-box' + index);
+                });
+            } else {
+                navDom = `<li>
+                <span value="${item.typeId}">${item.typeName}</span>
+                </li>`
+                $(navDom).appendTo('.nav-list');
+            }
+        });
+    }
+
+    // 获取导航菜单
+    function getNavList() {
+        $.ajax({
+            url: '/api/productTypeCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                method: 'producttype_getall'
+            }),
+            success: function (res) {
+                console.log(res)
+            }
+        })
+    }
+    // initNav(navList);
+    // getNavList();
+    // 延时加载导航hover事件
+    setTimeout(function () {
+        // 鼠标移入nav 显示下拉框
+        $('.have-list').mouseover(function () {
+            $(this).find('.small-box').show();
+        });
+        // 鼠标移出nav 隐藏下拉框
+        $('.have-list').mouseleave(function () {
+            $(this).find('.small-box').hide();
+        });
+    }, 500)
+
     // 鼠标移入显示客服联系方式
     $('.first-li').mouseover(function () {
         $('.detail1').css({
@@ -153,30 +186,4 @@ $(function () {
         window.scrollTo(0, 0);
     });
 
-    // 获取导航菜单
-    function getNavList() {
-        $.ajax({
-            url: '/api/productTypeCTL',
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({
-                method: 'producttype_getall'
-            }),
-            success: function (res) {
-
-            }
-        })
-    }
-    getNav(navList);
-    setTimeout(function () {
-        // 鼠标移入nav 显示下拉框
-        $('.have-list').mouseover(function () {
-            $(this).find('.small-box').show();
-        });
-        // 鼠标移出nav 隐藏下拉框
-        $('.have-list').mouseleave(function () {
-            $(this).find('.small-box').hide();
-        });
-    }, 500)
 });

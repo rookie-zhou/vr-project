@@ -5,7 +5,7 @@ import './../css/vrproduct.css';
 // var videoUrl = require('./../asset/vrproduct/10n58PICCCvGWmIdQ58PIC4bW.mp4');
 var videoUrl = 'http://pic.qiantucdn.com/58pic/28/73/01/66j58PICnrYnrG58PICZcpcds.mp4';
 
-$(function () {
+$(document).ready(function () {
     $('#video').children('source').attr('src', videoUrl);
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

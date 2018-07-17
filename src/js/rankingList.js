@@ -5,7 +5,7 @@ var productImg = require('./../asset/index/phb1-img_u110.png');
 var downLoadImg = require('./../asset/img/u137.png');
 var viewLoadImg = require('./../asset/img/u115.png');
 
-$(function () {
+$(document).ready(function () {
     $('.ranking').on('click', '.vr-box', function () {
         window.top.location.href = '/vrproduct.html?id=' + $(this).find('.id').text();
     });

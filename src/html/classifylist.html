@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test avalon</title>
+    <title>VR</title>
 </head>
 
 <body>
@@ -12,54 +12,30 @@
         <div class="header">
             <p>
                 <span>VR类型：</span>
-                <span class="vr-type">VR教育</span>
+                <span class="vr-name">VR教育</span>
             </p>
             <p class="list-type">
-                <span class="active" value="0">总和排序</span>
-                <span value="1">最近更新</span>
-                <span value="2">人气最高</span>
-                <span value="3">下载量最高</span>
+                <span class="active" value="100">综合排序</span>
+                <span value="200">最近更新</span>
+                <span value="300">查看人数最多</span>
+                <span value="400">下载量最多</span>
+                <span value="500">销量最多</span>
+                <span value="600">价格</span>
             </p>
         </div>
         <div class="content">
-            <div class="row vr-list">
-            </div>
+            <div class="row vr-list"></div>
         </div>
-        <nav class="text-center" aria-label="Page navigation">
-            <ul class="pagination">
-                <div class="page-total">
-                    <a>
-                        <span style="margin-right: 10px"><span class="page-num" >1</span>/<span class="page-total-num"></span>页</span>
-                        <span><span class="total-num"></span>条</span>
-                    </a>
-                </div>
-                <li>
-                    <a class="first-page">首页</a>
-                </li>
-                <li>
-                    <a class="prev" aria-label="Previous" disabled="disabled">
-                        <span aria-hidden="true">上一页</span>
-                    </a>
-                </li>
-                <li>
-                    <ul class="pagination-num">
-                        <li class="first-pageNum">
-                            <a class="active" value="1">1</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="next-btn">
-                    <a class="next">
-                        <span>下一页</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="last-page">尾页</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="page-box">
+            <div class="page-detail">
+                <span class="page-num">1</span>/
+                <span class="total-pageNum">1</span>
+                <span class="total-num">0</span>
+                <span>条</span>
+            </div>
+            <div class="vr-pagination"></div>
+        </div>
     </div>
-
 </body>
 
 </html>

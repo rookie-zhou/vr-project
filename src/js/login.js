@@ -7,7 +7,7 @@ import './ajax.js';
 import './../css/style.css';
 import './../css/login.css';
 
-$(function () {
+$(document).ready(function () {
     var params = {
         userName: false,
         password: false
