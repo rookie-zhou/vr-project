@@ -367,7 +367,7 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             success: function (res) {
                 if (res.result) {
-                    window.location.href = './login.html'
+                    window.location.href = './login.html';
                 } else {
                     loginModal.open();
                 }
@@ -375,6 +375,6 @@ $(document).ready(function () {
             error: function () {
                 loginModal.open();
             }
-        })
+        });
     }
 });

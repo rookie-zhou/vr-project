@@ -142,22 +142,22 @@ $(function () {
             }),
             success: function (res) {
                 console.log(res)
+                // initNav(res);
+                // 延时加载导航hover事件
+                setTimeout(function () {
+                    // 鼠标移入nav 显示下拉框
+                    $('.have-list').mouseover(function () {
+                        $(this).find('.small-box').show();
+                    });
+                    // 鼠标移出nav 隐藏下拉框
+                    $('.have-list').mouseleave(function () {
+                        $(this).find('.small-box').hide();
+                    });
+                }, 500);
             }
-        })
+        });
     }
-    // initNav(navList);
     // getNavList();
-    // 延时加载导航hover事件
-    setTimeout(function () {
-        // 鼠标移入nav 显示下拉框
-        $('.have-list').mouseover(function () {
-            $(this).find('.small-box').show();
-        });
-        // 鼠标移出nav 隐藏下拉框
-        $('.have-list').mouseleave(function () {
-            $(this).find('.small-box').hide();
-        });
-    }, 500)
 
     // 鼠标移入显示客服联系方式
     $('.first-li').mouseover(function () {
