@@ -47,6 +47,7 @@ $(document).ready(function () {
             }
         });
     }
+    getDownLoadList();
     // 浏览热度排行榜
     function getHotList() {
         $.ajax({
@@ -85,4 +86,5 @@ $(document).ready(function () {
             }
         });
     }
+    getHotList();
 })

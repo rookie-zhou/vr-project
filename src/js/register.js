@@ -348,7 +348,7 @@ $(document).ready(function () {
                     email: $('.mem-email').val(),
                     password: $('.mem-password').val(),
                     socialNo: $('.group-groupNo').val(),
-                    socialName: $('.group-groupName').val(),
+                    fullname: $('.group-groupName').val(),
                     qq: $('.group-QQ').val(),
                     weixin: $('.group-wechat').val()
                 }

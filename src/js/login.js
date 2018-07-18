@@ -6,8 +6,10 @@ import './lib/remodal/remodal.min.js';
 import './ajax.js';
 import './../css/style.css';
 import './../css/login.css';
+var backgroundImg = require('./../asset/login/u0.jpg');
 
 $(document).ready(function () {
+    $('.login').css('background-image', 'url(' + backgroundImg + ')');
     var params = {
         userName: false,
         password: false
@@ -35,22 +37,21 @@ $(document).ready(function () {
                     $('.login-msg').html('用户名或密码错误');
                     localStorage.setItem('userName', '')
                     localStorage.setItem('userType', '0')
-                }else if (res.result == '01') {
+                } else if (res.result == '01') {
                     window.location.href = '/index.html';
                     localStorage.setItem('userName', '普通会员')
                     localStorage.setItem('userType', '1')
-                }else if (res.result == '02') {
+                } else if (res.result == '02') {
                     window.location.href = '/index.html';
                     localStorage.setItem('userName', '个人开发者')
                     localStorage.setItem('userType', '2')
-                }else if (res.result == '03') {
+                } else if (res.result == '03') {
                     window.location.href = '/index.html';
                     localStorage.setItem('userName', '企业开发者')
                     localStorage.setItem('userType', '3')
                 }
             },
-            error: function (res) {
-            }
+            error: function (res) {}
         })
     });
 

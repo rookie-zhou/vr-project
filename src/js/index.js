@@ -75,6 +75,30 @@ $(function () {
             window.location.href = '/login.html'
         }
     });
+    // 获取关键词
+    function getKeyWords() {
+        $.ajax({
+            url: '/api/searchinfoCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                method: 'search_getmostname',
+                type: '01'
+            }),
+            success: function (res) {
+                res.map(item => {
+                    var keyWordsDom = `
+                    <li>
+                            <span class="font-12">${item}</span>
+                        </li>
+                    `
+                    $(keyWordsDom).appendTo('.keywords');
+                })
+            }
+        });
+    }
+    getKeyWords();
     // 点击关键词搜索
     $('.keywords').on('click', 'li', function () {
         $('.search-keyword').val($(this).children().text());
@@ -136,7 +160,7 @@ $(function () {
             url: '/api/productTypeCTL',
             type: 'post',
             dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json',
             data: JSON.stringify({
                 method: 'producttype_getall'
             }),
@@ -157,7 +181,7 @@ $(function () {
             }
         });
     }
-    // getNavList();
+    getNavList();
 
     // 鼠标移入显示客服联系方式
     $('.first-li').mouseover(function () {

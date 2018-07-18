@@ -1,21 +1,15 @@
-.login-section {
-  width: 488px;
-  height: 397px;
-  margin: 50px 0 50px 675px;
-  position: relative;
-  background: transparent;
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
-.login-section .login-bg {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
+.login-section {
+  width: 359px;
+  height: 273px;
+  margin: 250px 0 0 800px;
 }
 .login-section .content {
-  position: absolute;
-  top: 15px;
-  left: 50px;
-  right: 50px;
+  padding: 15px 25px;
+  border-radius: 20px;
+  background: #fff;
 }
 .login-section .content a {
   color: #999;
@@ -28,7 +22,7 @@
 .login-section .content input {
   outline: none;
   border: none;
-  width: 88%;
+  width: 85%;
   color: #999;
   vertical-align: top;
   line-height: 31px;
@@ -41,19 +35,11 @@
   padding: 6.5px 5px;
 }
 .login-section .content .line-one {
-  height: 65px;
   overflow: auto;
-}
-.login-section .content .line-one .logo {
-  display: inline-block;
-  width: 123px;
-  height: 62px;
-  float: left;
 }
 .login-section .content .line-one a {
   display: inline-block;
   vertical-align: top;
-  margin-top: 25px;
 }
 .login-section .content .line-one .cannot-login {
   margin-left: 40px;
@@ -64,10 +50,9 @@
   display: inline-block;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.64);
   margin-right: 10px;
-  margin-top: 23px;
 }
 .login-section .content .line-two {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .login-section .content .line-two .logo {
   display: inline-block;
@@ -76,7 +61,7 @@
 }
 .login-section .content .line-three {
   height: 48px;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 .login-section .content .line-three .logo {
   display: inline-block;
@@ -107,4 +92,13 @@
   border-style: solid;
   border-color: #0099ff;
   border-radius: 5px;
+}
+.login {
+  height: 630px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.foot {
+  margin-top: 40px;
 }
