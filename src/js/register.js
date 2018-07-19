@@ -8,6 +8,7 @@ import "../css/style.css";
 import './../css/register.css';
 
 $(document).ready(function () {
+    
     // 弹框
     var loginModal = $('[data-remodal-id=registerModal]').remodal();
     var param = {

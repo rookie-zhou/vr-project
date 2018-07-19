@@ -1,0 +1,104 @@
+.content {
+  background: #fafafa;
+  margin: 30px 62px;
+  width: 1136px;
+}
+.content .vr-list {
+  padding: 10px 0;
+}
+.content .vr-list .vr-box {
+  border: 1px solid #d7d7d7;
+  margin: 0 10px 20px 10px;
+  background: #fff;
+  cursor: pointer;
+}
+.content .vr-list .vr-box .product-img {
+  width: 100%;
+  min-height: 175px;
+}
+.content .vr-list .vr-box .product-img:hover {
+  border-right: 4px solid #fff;
+  border-bottom: 4px solid #fff;
+  box-shadow: 4px 4px 4px #888888;
+}
+.content .vr-list .vr-box .name {
+  margin: 5px 0 5px 5px;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 15px;
+  color: #999;
+}
+.content .vr-list .vr-box .id-box {
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  margin: 5px 50px 0 5px;
+}
+.content .vr-list .vr-box .id-box span {
+  display: inline-block;
+  margin-left: 5px;
+}
+.content .vr-list .vr-box .hot-num {
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+}
+.content .vr-list .vr-box .hot-num span {
+  display: inline-block;
+  margin-left: 5px;
+}
+.page-box {
+  text-align: center;
+  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight: 700;
+  font-style: normal;
+  color: #999;
+  font-size: 14px;
+}
+.page-box .page-detail {
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 0 20px;
+  line-height: 28px;
+  vertical-align: top;
+  margin-right: 30px;
+}
+.page-box .page-detail .total-num {
+  display: inline-block;
+  margin-left: 10px;
+}
+.page-box .vr-pagination {
+  width: auto !important;
+  display: inline-block;
+}
+.page-box .vr-pagination .spFirst {
+  padding: 0 5px;
+}
+.page-box .vr-pagination .spPrev {
+  width: auto;
+  font-size: 12px;
+  margin-left: 10px;
+  padding: 0 5px;
+}
+.page-box .vr-pagination .spNext {
+  width: auto;
+  font-size: 12px;
+  margin-right: 10px;
+  padding: 0 5px;
+}
+.page-box .vr-pagination .spLast {
+  padding: 0 5px;
+}
+.page-box .vr-pagination .spActiveBg {
+  display: none;
+}
+.page-box .vr-pagination .active {
+  background: #367fa9;
+  color: #fff;
+}
+.page-box .vr-pagination ul {
+  padding: 0;
+}
+.page-box .vr-pagination ul li {
+  margin: 0 10px;
+}

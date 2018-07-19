@@ -7,6 +7,14 @@ import './../css/style.css';
 import './../css/index.css';
 
 $(function () {
+    // 关闭浏览器 删除localstorage
+    window.onbeforeunload = function () {
+        localStorage.setItem('userName', '');
+        localStorage.setItem('userType', '');
+    };
+    // 产品列表
+    localStorage.setItem('modelOrProduct', '01');
+
     var navList = [{
         typeName: 'VR教育',
         typeId: '1',
@@ -99,9 +107,16 @@ $(function () {
         });
     }
     getKeyWords();
+
     // 点击关键词搜索
     $('.keywords').on('click', 'li', function () {
         $('.search-keyword').val($(this).children().text());
+    });
+
+    // 点击搜索按钮
+    $('.search-btn').click(function () {
+        $('iframe').attr('src', '/searchList.html');
+        localStorage.setItem('search-name', $('.search-keyword').val());
     });
 
     // 加载列表

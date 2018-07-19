@@ -1,0 +1,105 @@
+.content {
+    background: #fafafa;
+    margin: 30px 62px;
+    width: 1136px;
+    .vr-list {
+        padding: 10px 0;
+        .vr-box {
+            border: 1px solid #d7d7d7;
+            margin: 0 10px 20px 10px;
+            background: #fff;
+            cursor: pointer;
+            .product-img {
+                width: 100%;
+                min-height: 175px;
+            }
+            .product-img:hover {
+                border-right: 4px solid #fff;
+                border-bottom: 4px solid #fff;
+                box-shadow: 4px 4px 4px #888888;
+            }
+            .name {
+                margin: 5px 0 5px 5px;
+                font-weight: 700;
+                font-style: normal;
+                font-size: 15px;
+                color: #999;
+            }
+            .id-box {
+                display: inline-block;
+                font-size: 12px;
+                color: #999;
+                margin: 5px 50px 0 5px;
+                span {
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+            }
+            .hot-num {
+                display: inline-block;
+                font-size: 12px;
+                color: #999;
+                span {
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+.page-box {
+    text-align: center;
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    color: #999;
+    font-size: 14px;
+    .page-detail {
+        display: inline-block;
+        border: 1px solid #ddd;
+        padding: 0 20px;
+        line-height: 28px;
+        vertical-align: top;
+        margin-right: 30px;
+        .total-num {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    }
+    .vr-pagination {
+        width: auto !important;
+        display: inline-block;
+        .spFirst {
+            padding: 0 5px;
+        }
+        .spPrev {
+            width: auto;
+            font-size: 12px;
+            margin-left: 10px;
+            padding: 0 5px;
+        }
+        .spNext {
+            width: auto;
+            font-size: 12px;
+            margin-right: 10px;
+            padding: 0 5px;
+        }
+        .spLast {
+            padding: 0 5px;
+        }
+        .spActiveBg {
+            display: none;
+        }
+        .active {
+            background: #367fa9;
+            color: #fff;
+        }
+        ul {
+            padding: 0;
+            li {
+                margin: 0 10px;
+            }
+        }
+    }
+}

@@ -9,6 +9,8 @@ import './../css/login.css';
 var backgroundImg = require('./../asset/login/u0.jpg');
 
 $(document).ready(function () {
+    console.log(sessionStorage.getItem('testKey'));
+
     $('.login').css('background-image', 'url(' + backgroundImg + ')');
     var params = {
         userName: false,
