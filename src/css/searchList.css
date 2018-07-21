@@ -13,13 +13,13 @@
   cursor: pointer;
 }
 .content .vr-list .vr-box .product-img {
-  width: 100%;
+  width: 232px;
   min-height: 175px;
 }
 .content .vr-list .vr-box .product-img:hover {
   border-right: 4px solid #fff;
   border-bottom: 4px solid #fff;
-  box-shadow: 4px 4px 4px #888888;
+  box-shadow: 4px 4px 4px #888;
 }
 .content .vr-list .vr-box .name {
   margin: 5px 0 5px 5px;

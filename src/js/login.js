@@ -9,7 +9,6 @@ import './../css/login.css';
 var backgroundImg = require('./../asset/login/u0.jpg');
 
 $(document).ready(function () {
-    console.log(sessionStorage.getItem('testKey'));
 
     $('.login').css('background-image', 'url(' + backgroundImg + ')');
     var params = {
@@ -36,21 +35,21 @@ $(document).ready(function () {
             }),
             success: function (res) {
                 if (res.result == '00') {
+                    localStorage.setItem('userName', '');
+                    localStorage.setItem('userType', '0');
                     $('.login-msg').html('用户名或密码错误');
-                    localStorage.setItem('userName', '')
-                    localStorage.setItem('userType', '0')
                 } else if (res.result == '01') {
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('userType', '1');
                     window.location.href = '/index.html';
-                    localStorage.setItem('userName', '普通会员')
-                    localStorage.setItem('userType', '1')
                 } else if (res.result == '02') {
+                    localStorage.setItem('userType', '2');
                     window.location.href = '/index.html';
-                    localStorage.setItem('userName', '个人开发者')
-                    localStorage.setItem('userType', '2')
+                    localStorage.setItem('userName', userName);
                 } else if (res.result == '03') {
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('userType', '3');
                     window.location.href = '/index.html';
-                    localStorage.setItem('userName', '企业开发者')
-                    localStorage.setItem('userType', '3')
                 }
             },
             error: function (res) {}

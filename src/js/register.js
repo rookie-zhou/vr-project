@@ -8,13 +8,19 @@ import "../css/style.css";
 import './../css/register.css';
 
 $(document).ready(function () {
-    
+    // 关闭浏览器 删除localstorage
+    // window.onbeforeunload = function () {
+    //     localStorage.setItem('userName', '');
+    //     localStorage.setItem('userType', '');
+    // };
+
     // 弹框
     var loginModal = $('[data-remodal-id=registerModal]').remodal();
     var param = {
         page: 'member',
         agree: true,
         memName: false,
+        memUserName: false,
         memPhone: false,
         memEmail: false,
         memPassword: false,
@@ -22,6 +28,7 @@ $(document).ready(function () {
         group: {
             type: '1',
             name: false,
+            userName: false,
             phoneNo: false,
             email: false,
             idNo: false,
@@ -31,7 +38,7 @@ $(document).ready(function () {
             groupName: false,
             wechat: false,
             password: false,
-            confirm: false,
+            confirm: false
         }
     }
 
@@ -66,10 +73,10 @@ $(document).ready(function () {
 
     // 校验会员注册按钮是否可用
     function checkParams() {
-        if (param.page == 'member' && param.memName && param.memConfirm && param.memPhone && param.memEmail && param.memPassword && param.agree) {
+        if (param.page == 'member' && param.memberUserName && param.memName && param.memConfirm && param.memPhone && param.memEmail && param.memPassword && param.agree) {
             // 解除禁用 注册按钮
             $('.post-btn').removeAttr('disabled');
-        } else if (param.page == 'developer' && param.group.name && param.group.phoneNo && param.group.email && param.group.QQ && param.group.wechat && param.group.password && param.group.confirm && param.agree) {
+        } else if (param.page == 'developer' && param.group.userName && param.group.name && param.group.phoneNo && param.group.email && param.group.QQ && param.group.wechat && param.group.password && param.group.confirm && param.agree) {
             if (param.group.type == '1' && param.group.idNo && param.group.realName) {
                 // 解除禁用 注册按钮
                 $('.post-btn').removeAttr('disabled');
@@ -97,6 +104,32 @@ $(document).ready(function () {
             param.memName = true;
         }
         checkParams();
+    });
+    // 会员用户名是否存在校验
+    $('.mem-name').blur(function () {
+        if (param.memName) {
+            $.ajax({
+                type: 'post',
+                url: '/api/userCTL',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({
+                    method: 'isUserExist',
+                    username: $(this).val()
+                }),
+                success: function (res) {
+                    if (res.result == 'false') {
+                        param.memberUserName = true;
+                        $('.mem-name-notice').html('');
+                        checkParams();
+                    } else {
+                        param.memberUserName = false;
+                        $('.mem-name-notice').html('该用户名已存在！');
+                    }
+                },
+                error: function () {}
+            })
+        }
     });
 
     // 手机号正则
@@ -174,6 +207,32 @@ $(document).ready(function () {
             param.group.name = true;
         }
         checkParams();
+    });
+    // 开发者用户名是否存在校验
+    $('.group-name').blur(function () {
+        if (param.group.name) {
+            $.ajax({
+                type: 'post',
+                url: '/api/userCTL',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({
+                    method: 'isUserExist',
+                    username: $(this).val()
+                }),
+                success: function (res) {
+                    if (res.result == 'false') {
+                        param.group.userName = true;
+                        $('.group-name-notice').html('');
+                        checkParams();
+                    } else {
+                        param.group.userName = false;
+                        $('.group-name-notice').html('该用户名已存在！');
+                    }
+                },
+                error: function () {}
+            })
+        }
     });
 
     // 手机号正则
@@ -329,10 +388,10 @@ $(document).ready(function () {
                 const data = {
                     method: 'register',
                     usertype: usertype,
-                    username: $('.mem-name').val(),
-                    mobileNo: $('.mem-phone').val(),
-                    email: $('.mem-email').val(),
-                    password: $('.mem-password').val(),
+                    username: $('.group-name').val(),
+                    mobileNo: $('.group-phone').val(),
+                    email: $('.group-email').val(),
+                    password: $('.group-password').val(),
                     idcardNo: $('.group-idNo').val(),
                     fullname: $('.group-realName').val(),
                     qq: $('.group-QQ').val(),
@@ -344,10 +403,10 @@ $(document).ready(function () {
                 const data = {
                     method: 'register',
                     usertype: usertype,
-                    username: $('.mem-name').val(),
-                    mobileNo: $('.mem-phone').val(),
-                    email: $('.mem-email').val(),
-                    password: $('.mem-password').val(),
+                    username: $('.group-name').val(),
+                    mobileNo: $('.group-phone').val(),
+                    email: $('.group-email').val(),
+                    password: $('.group-password').val(),
                     socialNo: $('.group-groupNo').val(),
                     fullname: $('.group-groupName').val(),
                     qq: $('.group-QQ').val(),
@@ -367,7 +426,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success: function (res) {
-                if (res.result) {
+                if (res.result == 'true') {
                     window.location.href = './login.html';
                 } else {
                     loginModal.open();

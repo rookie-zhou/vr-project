@@ -8,58 +8,13 @@ import './../css/index.css';
 
 $(function () {
     // 关闭浏览器 删除localstorage
-    window.onbeforeunload = function () {
-        localStorage.setItem('userName', '');
-        localStorage.setItem('userType', '');
-    };
+    // window.onbeforeunload = function () {
+    //     alert('123')
+    //     localStorage.setItem('userName', '');
+    //     localStorage.setItem('userType', '');
+    // };
     // 产品列表
     localStorage.setItem('modelOrProduct', '01');
-
-    var navList = [{
-        typeName: 'VR教育',
-        typeId: '1',
-        list: [{
-            typeId: '1.1',
-            typeName: '建筑教育'
-        }, {
-            typeId: '1.2',
-            typeName: 'K12教育'
-        }]
-    }, {
-        typeName: 'VR家装',
-        typeId: '2',
-        list: [{
-            typeId: '2.1',
-            typeName: '欧式'
-        }, {
-            typeId: '2.2',
-            typeName: '美式'
-        }]
-    }, {
-        typeName: 'VR工业',
-        typeId: '3'
-    }, {
-        typeName: 'VR医疗',
-        typeId: '4'
-    }, {
-        typeName: 'VR交通',
-        typeId: '5'
-    }, {
-        typeName: 'VR军事',
-        typeId: '6'
-    }, {
-        typeName: 'VR展馆',
-        typeId: '7'
-    }, {
-        typeName: 'VR安防',
-        typeId: '8'
-    }, {
-        typeName: '其他',
-        typeId: '9'
-    }];
-
-
-
 
     var indexModal = $('[data-remodal-id=indexModal]').remodal();
     // 获取登录信息
@@ -80,7 +35,7 @@ $(function () {
             $('.modal-text').html('请以开发者身份登录');
             indexModal.open();
         } else {
-            window.location.href = '/login.html'
+            window.location.href = '/devIndex.html'
         }
     });
     // 获取关键词
@@ -119,42 +74,18 @@ $(function () {
         localStorage.setItem('search-name', $('.search-keyword').val());
     });
 
-    // 加载列表
-    $('.nav-list').on('click', 'li', function () {
-        localStorage.setItem('vr-name', $(this).find('span').html());
-        localStorage.setItem('vr-type', $(this).find('span').attr('value'));
-
-        if ($(this).find('span').html() == '首页') {
-            $('iframe').attr('src', '/rankingList.html');
-        } else {
-            $('iframe').attr('src', '/classifyList.html');
-        }
-    });
-    // 加载二级列表
-    $('.small-box').on('click', 'p', function (event) {
-        event.stopPropagation();
-        localStorage.setItem('vr-name', $(this).html());
-        localStorage.setItem('vr-type', $(this).attr('value'));
-        if ($(this).html() == '首页') {
-            $('iframe').attr('src', '/rankingList.html');
-        } else {
-            $('iframe').attr('src', '/classifyList.html');
-        }
-    });
-
-
     // 初始化导航菜单
     function initNav(list) {
         list.forEach((item, index) => {
             var navDom;
-            if (item.list) {
+            if (item.child_type) {
                 navDom = `<li class="have-list have-list${index}">
                 <span value="${item.typeId}">${item.typeName}</span>
                 </li>`
                 $(navDom).appendTo('.nav-list');
                 var listBox = `<div class="list-unstyled small-box small-box${index}"></div>`;
                 $(listBox).appendTo('.have-list' + index);
-                item.list.forEach(elemnt => {
+                item.child_type.forEach(elemnt => {
                     var smallList = `
                     <p value="${elemnt.typeId}">${elemnt.typeName}</p>
                     `
@@ -169,6 +100,7 @@ $(function () {
         });
     }
 
+
     // 获取导航菜单
     function getNavList() {
         $.ajax({
@@ -180,10 +112,26 @@ $(function () {
                 method: 'producttype_getall'
             }),
             success: function (res) {
-                console.log(res)
-                // initNav(res);
+                initNav(res);
                 // 延时加载导航hover事件
                 setTimeout(function () {
+                    // 点击一级菜单
+                    $('.nav-list').on('click', 'li', function () {
+                        localStorage.setItem('vr-name', $(this).find('span').html());
+                        localStorage.setItem('vr-type', $(this).find('span').attr('value'));
+                        if ($(this).find('span').html() == '首页') {
+                            $('iframe').attr('src', '/rankingList.html');
+                        } else {
+                            $('iframe').attr('src', '/classifyList.html');
+                        }
+                    });
+                    // 点击二级菜单
+                    $('.small-box').on('click', 'p', function (event) {
+                        event.stopPropagation();
+                        localStorage.setItem('vr-name', $(this).html());
+                        localStorage.setItem('vr-type', $(this).attr('value'));
+                        $('iframe').attr('src', '/classifyList.html');
+                    });
                     // 鼠标移入nav 显示下拉框
                     $('.have-list').mouseover(function () {
                         $(this).find('.small-box').show();
