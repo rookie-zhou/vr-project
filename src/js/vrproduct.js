@@ -20,7 +20,7 @@ $(document).ready(function () {
     }
     const productId = getUrlParam('id');
     $.ajax({
-        url: '/api/vrproductCTL',
+        url: '/vrproductCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',

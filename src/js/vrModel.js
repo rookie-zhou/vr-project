@@ -20,7 +20,7 @@ $(document).ready(function () {
     const productId = getUrlParam('id');
     $.ajax({
         type: 'post',
-        url: '/api/modelCTL',
+        url: '/modelCTL',
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify({
