@@ -25,7 +25,7 @@ $(document).ready(function () {
     // 产品下载排行榜
     function getDownLoadList() {
         $.ajax({
-            url: '/vrproductCTL',
+            url: '/api/vrproductCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -63,7 +63,7 @@ $(document).ready(function () {
     // 产品浏览热度排行榜
     function getHotList() {
         $.ajax({
-            url: '/vrproductCTL',
+            url: '/api/vrproductCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -101,7 +101,7 @@ $(document).ready(function () {
     // 模型销量排行榜
     function getModelDownLoadList() {
         $.ajax({
-            url: '/modelCTL',
+            url: '/api/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -139,7 +139,7 @@ $(document).ready(function () {
     // 模型精品排行榜
     function getModelHotList() {
         $.ajax({
-            url: '/modelCTL',
+            url: '/api/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

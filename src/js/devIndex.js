@@ -19,11 +19,22 @@ $(document).ready(function () {
     // 获取登录信息
     const userName = localStorage.getItem('userName');
     const userType = localStorage.getItem('userType');
+    if (!userType || userType == 0) {
+        window.location.href = './index.html';
+    }
+    
+    // 显示用户名
     $('.user-name').text(userName);
+
+    // 点击首页
+    $('.index-page').click(function () {
+        $('iframe').attr('src', '/rankingList.html');
+    });
+
     // 获取关键词
     function getKeyWords() {
         $.ajax({
-            url: '/searchinfoCTL',
+            url: '/api/searchinfoCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -85,7 +96,7 @@ $(document).ready(function () {
     // 获取导航菜单
     function getNavList() {
         $.ajax({
-            url: '/modelTypeCTL',
+            url: '/api/modelTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',

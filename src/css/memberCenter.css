@@ -1,0 +1,72 @@
+.member-box {
+  margin-left: 32px;
+}
+.member-box label {
+  margin: 0;
+}
+.member-box .member-header {
+  width: 1198px;
+  height: 72px;
+  background: linear-gradient(180deg, #0099ff 0%, #0099ff 0%, #0099ff 45%, #ffffff 100%, #ffffff 100%);
+}
+.member-box .member-header .logo {
+  width: 123px;
+  height: 62px;
+  display: inline-block;
+  vertical-align: top;
+}
+.member-box .member-header p {
+  font-family: '华文行楷';
+  display: inline-block;
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  text-shadow: 3px 3px 10px rgba(102, 102, 102, 0.6);
+  line-height: 72px;
+  margin-bottom: 0;
+}
+.member-box .member-header .to-index {
+  float: right;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+.member-box .member-header a {
+  color: #FFCC33;
+  text-decoration: none;
+}
+.member-box .member-header a :hover {
+  color: #000;
+}
+.member-box .content {
+  margin-top: 20px;
+}
+.member-box .content .nav {
+  vertical-align: top;
+  display: inline-block;
+  width: 165px;
+  border: 2px solid #17c1fe;
+  border-radius: 20px;
+}
+.member-box .content .nav ul {
+  margin: 0;
+}
+.member-box .content .nav ul li {
+  border-bottom: 1px solid #00ccff;
+  margin: 0;
+  padding-left: 5px;
+  line-height: 50px;
+}
+.member-box .content .nav ul li a {
+  color: #00ccff;
+  outline: none;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+.member-box .content iframe {
+  display: inline-block;
+  border: 1px solid #00ccff;
+  width: 1030px;
+  min-height: 900px;
+  border-radius: 20px;
+  padding: 0 20px;
+}

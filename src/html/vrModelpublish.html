@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模型发布</title>
+</head>
+
+<body>
+    <div class="document">
+        <div class="content">
+            <p class="title">VR产品发布</p>
+            <form id="publish" enctype='multipart/form-data'>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>
+                            <span>*</span>VR模型名称</label>
+                        <input class="name" type="text" placeholder="请输入模型名称">
+                    </div>
+                    <div class="col-md-8">
+                        <label>
+                            <span>*</span>价格：</label>
+                        <input class="price" type="text" placeholder="请输入价格">
+                        <span>维币（注：1维币等于5元人民币）</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>
+                            <span>*</span>模型文件</label>
+                        <button class="file-btn text-left">
+                            <span class="demo-name">请选择要上传的模型文件</span>
+                            <img src="./../asset/vrpublish/u729.png" alt="">
+                        </button>
+                        <input type="file" class="demo-file">
+                    </div>
+                    <div class="col-md-3">
+                        <label>
+                            <span>*</span>软件大小（KB）</label>
+                        <input class="size" type="text" placeholder="请输入软件大小">
+                        <span>KB</span>
+                    </div>
+                    <div class="col-md-3">
+                        <label>
+                            <span>*</span>VR模型类型</label>
+                            <select class="model-type">
+                                <option value="1">类型1</option>
+                                <option value="2">类型2</option>
+                                <option value="3">类型3</option>
+                                <option value="4">类型4</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            <span>*</span>产品概述</label>
+                        <textarea class="demo-detail" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            <span>*</span>展示截图</label>
+                        <button class="btn photo-btn">
+                            <img src="./../asset/vrpublish/u747.png" alt="">
+                            <span>选择图片</span>
+                        </button>
+                        <input type="file" class="photo-file">
+                    </div>
+                    <div class="col-md-12 img-list">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="foot text-center">
+            <p class="text">Copyright © 2009 Axure.org All rights reserved.</p>
+            <p>成都联助科技</p>
+        </div>
+    </div>
+</body>
+
+</html>
