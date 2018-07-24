@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     // 弹框
     var loginModal = $('[data-remodal-id=registerModal]').remodal();
+    var agreeModal = $('[data-remodal-id=agreeModal]').remodal();
     var param = {
         page: 'member',
         agree: true,
@@ -437,4 +438,9 @@ $(document).ready(function () {
             }
         });
     }
+
+    // 显示网站服务条款
+    $('.agree-text').click(function () {
+        agreeModal.open();
+    })
 });

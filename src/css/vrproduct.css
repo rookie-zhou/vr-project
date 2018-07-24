@@ -25,6 +25,15 @@
 .content .detail .video-box .video-number ul li {
   margin-right: 30px;
 }
+.content .detail .video-box .video-number ul li .add-collection {
+  cursor: pointer;
+}
+.content .detail .video-box .video-number ul li .add-praise {
+  cursor: pointer;
+}
+.content .detail .video-box .video-number ul li:nth-child(3) {
+  margin-right: 10px;
+}
 .content .detail .video-box .video-number ul li:nth-child(4) {
   margin-right: 0;
 }

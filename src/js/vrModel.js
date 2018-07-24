@@ -9,7 +9,6 @@ $(document).ready(function () {
     //     localStorage.setItem('userName', '');
     //     localStorage.setItem('userType', '');
     // };
-    
     // 获取产品Id
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -37,10 +36,12 @@ $(document).ready(function () {
         $('.price-num').text(data.price);
         $('.downamount').text(data.downamount);
         $('.softsize').text(data.softsize);
-        $('.collection').text(data.collection);
-        $('.date').text(new Date(data.publishtime.time).toLocaleString());
+        (data.collection) ? $('.collection').text(data.collection): $('.collection').text(0);
+        if (data.publishtime) {
+            $('.date').text(new Date(data.publishtime.time).toLocaleString());
+        }
+        (data.praise) ? $('.praise').text(data.praise): $('.praise').text(0);
         $('.lookcount').text(data.lookcount);
-        $('.praise').text(data.praise);
         $('.text-intro').text(data.intro);
         if (data.image.length > 0) {
             data.image.map(item => {
@@ -54,4 +55,61 @@ $(document).ready(function () {
         }
         $('.home-img').attr('src', data.homeImage).attr('alt', data.name);
     }
+    // 点赞
+    $('.add-praise').click(function () {
+        $.ajax({
+            url: '/api/tradingCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'praise_model',
+                commodityId: productId
+            }),
+            success: function (res) {
+                if (res.result == '00') {
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = './login.html';
+                } else if (res.result == 'true') {
+                    $('.praise').text(parseInt($('.praise').text()) + 1);
+                } else if (res.result == 'false') {
+                    alert('点赞失败，请稍后重试！');
+                } else {
+                    alert(res);
+                }
+            },
+            error: function (res) {
+                alert(res);
+            }
+        });
+    });
+    // 收藏
+    $('.add-collection').click(function () {
+        $.ajax({
+            url: '/api/tradingCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'collect_model',
+                commodityId: productId
+            }),
+            success: function (res) {
+                if (res.result == '00') {
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = './login.html';
+                } else if (res.result == 'true') {
+                    $('.collection').text(parseInt($('.collection').text()) + 1);
+                } else if (res.result == 'false') {
+                    alert('点赞失败，请稍后重试！');
+                } else {
+                    alert(res);
+                }
+            },
+            error: function (res) {
+                alert(res);
+            }
+        });
+    });
+
 });

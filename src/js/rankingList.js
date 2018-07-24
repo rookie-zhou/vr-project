@@ -16,9 +16,9 @@ $(document).ready(function () {
     var modelOrProduct = localStorage.getItem('modelOrProduct');
     $('.ranking').on('click', '.product-img', function () {
         if (modelOrProduct == '01') {
-            window.top.location.href = '/vrproduct.html?id=' + $(this).siblings('.id-box').find('.id').text();
+            window.location.href = '/vrproduct.html?id=' + $(this).siblings('.id-box').find('.id').text();
         } else {
-            window.top.location.href = '/vrModel.html?id=' + $(this).siblings('.id-box').find('.id').text();
+            window.location.href = '/vrModel.html?id=' + $(this).siblings('.id-box').find('.id').text();
         }
     });
 

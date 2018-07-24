@@ -30,7 +30,8 @@
 }
 .content .ranking .vr-box .product-img {
   width: 232px;
-  min-height: 175px;
+  height: 175px;
+  overflow: hidden;
 }
 .content .ranking .vr-box .product-img:hover {
   border-right: 4px solid #fff;

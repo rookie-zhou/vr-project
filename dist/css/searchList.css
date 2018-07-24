@@ -266,7 +266,8 @@ body .remodal-confirm:hover {
 }
 .content .vr-list .vr-box .product-img {
   width: 232px;
-  min-height: 175px;
+  height: 175px;
+  overflow: hidden;
 }
 .content .vr-list .vr-box .product-img:hover {
   border-right: 4px solid #fff;
@@ -298,6 +299,10 @@ body .remodal-confirm:hover {
 .content .vr-list .vr-box .hot-num span {
   display: inline-block;
   margin-left: 5px;
+}
+.content .noData {
+  color: red;
+  display: none;
 }
 .page-box {
   text-align: center;

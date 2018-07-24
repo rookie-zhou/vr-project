@@ -35,7 +35,7 @@ $(function () {
             $('.modal-text').html('请以开发者身份登录');
             indexModal.open();
         } else {
-            window.location.href = '/devIndex.html'
+            window.location.href = './devIndex.html'
         }
     });
     // 获取关键词

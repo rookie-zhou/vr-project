@@ -2,8 +2,8 @@ import "bootcss";
 import "jquery";
 import "../css/style.css";
 import './../css/vrproduct.css';
-// var videoUrl = require('./../asset/vrproduct/10n58PICCCvGWmIdQ58PIC4bW.mp4');
-var videoUrl = 'http://pic.qiantucdn.com/58pic/28/73/01/66j58PICnrYnrG58PICZcpcds.mp4';
+// var videoUrl = require('./../asset/img/2.mp4');
+// var videoUrl = 'http://pic.qiantucdn.com/58pic/28/73/01/66j58PICnrYnrG58PICZcpcds.mp4';
 
 $(document).ready(function () {
     // 关闭浏览器 删除localstorage
@@ -34,11 +34,14 @@ $(document).ready(function () {
     });
     // 加载页面数据
     function initPage(data) {
+        $('.title').text(data.proname);
         $('.softsize').text(data.softsize);
-        $('.collection').text(data.collection);
-        $('.praise').text(data.praise);
+        (data.collection) ? $('.collection').text(data.collection): $('.collection').text(0);
+        (data.praise) ? $('.praise').text(data.praise): $('.praise').text(0);
         $('.downamount').text(data.downamount);
-        $('.publishtime').text(new Date(data.publishtime.time).toLocaleString());
+        if (data.publishtime) {
+            $('.publishtime').text(new Date(data.publishtime.time).toLocaleString());
+        }
         $('.name').text(data.user.fullname);
         $('.qq').text(data.user.qq);
         $('.wechat').text(data.user.weixin);
@@ -48,5 +51,61 @@ $(document).ready(function () {
         // $('#video').children('source').attr('src', videoUrl);
         // $('#video').attr('poster', 'http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png');
     }
+    // 点赞
+    $('.add-praise').click(function () {
+        $.ajax({
+            url: '/api/tradingCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'praise_vr',
+                commodityId: productId
+            }),
+            success: function (res) {
+                if (res.result == '00') {
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = './login.html';
+                } else if (res.result == 'true') {
+                    $('.praise').text(parseInt($('.praise').text()) + 1);
+                } else if (res.result == 'false') {
+                    alert('点赞失败，请稍后重试！');
+                } else {
+                    alert(res);
+                }
+            },
+            error: function (res) {
+                alert(res);
+            }
+        });
+    });
+    // 收藏
+    $('.add-collection').click(function () {
+        $.ajax({
+            url: '/api/tradingCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'collect_vr',
+                commodityId: productId
+            }),
+            success: function (res) {
+                if (res.result == '00') {
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = './login.html';
+                } else if (res.result == 'true') {
+                    $('.collection').text(parseInt($('.collection').text()) + 1);
+                } else if (res.result == 'false') {
+                    alert('点赞失败，请稍后重试！');
+                } else {
+                    alert(res);
+                }
+            },
+            error: function (res) {
+                alert(res);
+            }
+        });
+    });
 
 });

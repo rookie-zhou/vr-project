@@ -36,7 +36,7 @@ $(document).ready(function () {
                 element.homeImage = productImg
             }
             var thisDom = `
-            <div class="col-md-3">
+            <div class="col-xs-3">
                 <div class="vr-box">
                     <img class="product-img" src="${element.homeImage}" alt="vr产品图片" width="100%">
                     <p class="name">${element.proname}</p>
@@ -97,7 +97,7 @@ $(document).ready(function () {
                 element.homeImage = productImg
             }
             var thisDom = `
-            <div class="col-md-3">
+            <div class="col-xs-3">
                 <div class="vr-box">
                     <img class="product-img" src="${element.homeImage}" alt="vr产品图片" width="100%">
                     <p class="name">${element.name}</p>
@@ -168,9 +168,9 @@ $(document).ready(function () {
     // 点击图片跳转到产品详情页面
     $('.vr-list').on('click', '.product-img', function () {
         if (modelOrProduct == '01') {
-            window.top.location.href = '/vrproduct.html?id=' + $(this).siblings('.id-box').find('.id').text();
+            window.location.href = '/vrproduct.html?id=' + $(this).siblings('.id-box').find('.id').text();
         } else {
-            window.top.location.href = '/vrModel.html?id=' + $(this).siblings('.id-box').find('.id').text();
+            window.location.href = '/vrModel.html?id=' + $(this).siblings('.id-box').find('.id').text();
         }
     });
 

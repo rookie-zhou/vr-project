@@ -63,7 +63,12 @@ $(document).ready(function () {
                 searchname: searchName
             }),
             success: function (res) {
-                initList(res.result.data);
+                if (res.length > 0) {
+                    initList(res);
+                    $('.noData').hide();
+                } else {
+                    $('.noData').show();
+                }
             }
         });
     }
@@ -109,7 +114,12 @@ $(document).ready(function () {
                 searchname: searchName
             }),
             success: function (res) {
-                initModelList(res);
+                if (res.length > 0) {
+                    initModelList(res);
+                    $('.noData').hide();
+                } else {
+                    $('.noData').show();
+                }
             }
         });
     }

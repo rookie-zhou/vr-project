@@ -147,6 +147,12 @@ body .remodal-confirm:hover {
   font-size: 20px;
   color: #FF0000;
 }
+.content .detail .model-detail .contact-way ul li .add-collection {
+  cursor: pointer;
+}
+.content .detail .model-detail .contact-way ul li .add-praise {
+  cursor: pointer;
+}
 .content .detail .text-detail {
   width: 100%;
 }
@@ -193,6 +199,7 @@ body .remodal-confirm:hover {
   border-left: 1px solid #00ccff;
 }
 .content .detail .img-detail .img-box img {
+  display: block;
   width: 70%;
   margin: 15px 15%;
 }

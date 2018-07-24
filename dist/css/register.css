@@ -671,3 +671,6 @@ html.remodal-is-locked {
   cursor: pointer;
   margin-left: 5px;
 }
+.text p {
+  text-indent: 2em;
+}
