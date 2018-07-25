@@ -5,7 +5,6 @@
 }
 .document .header .logo {
   width: 123px;
-  height: 62px;
   vertical-align: top;
 }
 .document .header .search-box {
@@ -55,11 +54,11 @@
   color: #0099FF;
 }
 .document .header .member-box {
+  float: right;
+  margin-right: 20px;
   display: inline-block;
-  min-width: 405px;
   text-align: right;
   vertical-align: top;
-  padding-left: 130px;
   margin-top: 15px;
 }
 .document .header .member-box span {
