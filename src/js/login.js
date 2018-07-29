@@ -42,17 +42,22 @@ $(document).ready(function () {
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('userType', '1');
                     window.location.href = '/index.html';
-                    window.opener.location.reload()
+                    window.opener.location.reload();
                 } else if (res.result == '02') {
                     localStorage.setItem('userType', '2');
-                    window.location.href = '/index.html';
+                    window.location.href = '/devIndex.html';
                     localStorage.setItem('userName', userName);
-                    window.opener.location.reload()
+                    window.opener.location.reload();
                 } else if (res.result == '03') {
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('userType', '3');
-                    window.location.href = '/index.html';
-                    window.opener.location.reload()
+                    window.location.href = '/devIndex.html';
+                    window.opener.location.reload();
+                } else if (res.result == '04') {
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('userType', '4');
+                    window.location.href = '/devIndex.html';
+                    window.opener.location.reload();
                 }
             },
             error: function (res) {}
