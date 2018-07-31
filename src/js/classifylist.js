@@ -66,7 +66,7 @@ $(document).ready(function () {
     function getProduceList() {
         $('.vr-list').empty();
         $.ajax({
-            url: '/api/vrproductCTL',
+            url: '/vrproductCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -127,7 +127,7 @@ $(document).ready(function () {
     function getModelList() {
         $('.vr-list').empty();
         $.ajax({
-            url: '/api/modelCTL',
+            url: '/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

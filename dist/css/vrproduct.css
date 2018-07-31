@@ -109,7 +109,7 @@ body .remodal-confirm:hover {
   color: #999;
 }
 .content .detail .video-box .video-number ul li {
-  margin-right: 30px;
+  margin-right: 15px;
 }
 .content .detail .video-box .video-number ul li .add-collection {
   cursor: pointer;
@@ -138,6 +138,7 @@ body .remodal-confirm:hover {
   border-radius: 10px;
   height: 45px;
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  outline: none;
 }
 .content .detail .video-detail .download-btn span {
   font-family: 'Arial Negreta', 'Arial Normal', 'Arial';

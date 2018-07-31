@@ -54,7 +54,7 @@ $(document).ready(function () {
     // 获取产品列表数据
     function getProduceList() {
         $.ajax({
-            url: '/api/searchinfoCTL',
+            url: '/searchinfoCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -105,7 +105,7 @@ $(document).ready(function () {
     // 获取模型列表数据
     function getModelList() {
         $.ajax({
-            url: '/api/searchinfoCTL',
+            url: '/searchinfoCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

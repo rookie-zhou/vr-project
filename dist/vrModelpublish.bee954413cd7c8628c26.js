@@ -1,0 +1,1 @@
+webpackJsonp([12],{1:function(n,t){},2:function(n,t){},36:function(n,t,c){"use strict";(function(n){c(0),c(1),c(2),c(37),n(document).ready(function(){n(".demo-file").on("change",function(){var t=n(this).val(),c=t.split("\\"),o=c[c.length-1];n(".demo-name").html(o)})})}).call(t,c(0))},37:function(n,t){}},[36]);
