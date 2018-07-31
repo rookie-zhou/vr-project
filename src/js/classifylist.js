@@ -87,6 +87,7 @@ $(document).ready(function () {
                 var totalPageNum = res.pagetotal;
                 // 总页数
                 $('.total-PageNum').html(totalPageNum);
+                setIframeHeight();
             }
         });
     }
@@ -147,6 +148,7 @@ $(document).ready(function () {
                 totalPageNum = res.pagetotal;
                 // 总页数
                 $('.total-PageNum').html(res.pagetotal);
+                setIframeHeight();
             }
         });
     }
@@ -213,4 +215,9 @@ $(document).ready(function () {
             firstPage = true;
         }, 200);
     }, 1000);
+    // 设置iframe 高度
+    function setIframeHeight() {
+        var divHeight = $('.content').height();
+        $('iframe', parent.document).css('height', divHeight);
+    }
 });

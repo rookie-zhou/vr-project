@@ -94,6 +94,7 @@ $(document).ready(function () {
                         `
                         $(thisDom).appendTo($('.ranking-1'));
                     });
+                    setIframeHeight();
                 }
             }
         });
@@ -132,6 +133,7 @@ $(document).ready(function () {
                         `
                         $(thisDom).appendTo($('.ranking-1'));
                     });
+                    setIframeHeight();
                 }
             }
         });
@@ -186,5 +188,11 @@ $(document).ready(function () {
         $('.title-2').text('精品排行榜');
         getModelDownLoadList();
         getModelHotList();
+    }
+
+    // 设置iframe 高度
+    function setIframeHeight() {
+        var divHeight = $('.content').height();
+        $('iframe', parent.document).css('height', divHeight);
     }
 });

@@ -1,0 +1,1 @@
+webpackJsonp([4],{1:function(n,c){},14:function(n,c,i){"use strict";(function(n){i(1),i(0),i(2),i(15),n(function(){n(".keywords").on("click","li",function(){n(".search-keyword").val(n(this).children().text())})})}).call(c,i(0))},15:function(n,c){},2:function(n,c){}},[14]);

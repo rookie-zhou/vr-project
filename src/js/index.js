@@ -173,4 +173,7 @@ $(function () {
         window.scrollTo(0, 0);
     });
 
+    function setHeight(height) {
+        $('iframe').css('height', height);
+    }
 });

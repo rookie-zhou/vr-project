@@ -27,9 +27,10 @@ $(document).ready(function () {
             modelid: productId
         }),
         success: function (res) {
-            initPage(res)
+            initPage(res);
         }
     });
+    setIframeHeight();
     // 加载页面数据
     function initPage(data) {
         $('.title').text(data.name);
@@ -111,5 +112,10 @@ $(document).ready(function () {
             }
         });
     });
+    // 设置iframe 高度
+    function setIframeHeight() {
+        var divHeight = $('.content').height();
+        $('iframe', parent.document).css('height', divHeight);
+    }
 
 });

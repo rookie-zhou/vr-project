@@ -17,6 +17,7 @@
   display: inline-block;
   width: 588px;
   min-height: 400px;
+  overflow: hidden;
 }
 .content .detail .model-detail {
   display: inline-block;
@@ -83,6 +84,7 @@
   font-size: 20px;
   color: #666666;
   text-align: left;
+  padding: 10px;
 }
 .content .detail .text-detail p {
   padding: 10px 30px 50px 30px;
@@ -107,6 +109,7 @@
   font-size: 20px;
   color: #666666;
   text-align: left;
+  padding: 10px;
 }
 .content .detail .img-detail .img-box {
   border-right: 1px solid #00ccff;
