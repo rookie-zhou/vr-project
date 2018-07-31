@@ -1,30 +1,40 @@
 import 'bootcss';
 import "jquery";
-import './lib/remodal/remodal.css';
-import './lib/remodal/remodal-default-theme.css';
-import './lib/remodal/remodal.min.js';
 import './../css/style.css';
 import './../css/devIndex.css';
+import {
+    checkLoginStatus,
+    loginStatus
+} from './util';
 
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
+    // 检查是否登录
+    checkLoginStatus();
+    Object.defineProperty(loginStatus, 'status', {
+        set: function () {
+            checkLoginType();
+        }
+    });
+    loginStatus.status = '';
+    // 获取登录信息
+    let userName;
+    let userType;
+
+    function checkLoginType() {
+        userName = localStorage.getItem('userName');
+        userType = localStorage.getItem('userType');
+        // 显示用户名
+        $('.user-name').text(userName);
+        if (!userType || userType == 0) {
+            window.location.href = './index.html';
+        }
+    }
     // 产品列表
     localStorage.setItem('modelOrProduct', '02');
 
-    var indexModal = $('[data-remodal-id=indexModal]').remodal();
-    // 获取登录信息
-    const userName = localStorage.getItem('userName');
-    const userType = localStorage.getItem('userType');
-    if (!userType || userType == 0) {
-        window.location.href = './index.html';
-    }
-    
-    // 显示用户名
-    $('.user-name').text(userName);
+
+
+
 
     // 点击首页
     $('.index-page').click(function () {

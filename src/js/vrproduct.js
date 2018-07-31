@@ -2,15 +2,29 @@ import "bootcss";
 import "jquery";
 import "../css/style.css";
 import './../css/vrproduct.css';
+import {
+    setIframeHeight,
+    checkLoginStatus,
+    loginStatus
+} from './util';
 // var videoUrl = require('./../asset/img/2.mp4');
 // var videoUrl = 'http://pic.qiantucdn.com/58pic/28/73/01/66j58PICnrYnrG58PICZcpcds.mp4';
 
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
+    // 检查是否登录
+    checkLoginStatus();
+    Object.defineProperty(loginStatus, 'status', {
+        set: function () {
+            checkLoginType();
+        }
+    });
+    loginStatus.status = '';
+    // 获取登录信息
+    let userType;
+
+    function checkLoginType() {
+        userType = localStorage.getItem('userType');
+    }
     // 获取产品Id
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -32,7 +46,7 @@ $(document).ready(function () {
             initPage(res);
         }
     });
-    setIframeHeight();
+
     // 加载页面数据
     function initPage(data) {
         $('.title').text(data.proname);
@@ -51,6 +65,7 @@ $(document).ready(function () {
         $('#video').attr('poster', data.homeImage);
         // $('#video').children('source').attr('src', videoUrl);
         // $('#video').attr('poster', 'http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png');
+        setIframeHeight();
     }
     // 点赞
     $('.add-praise').click(function () {
@@ -67,8 +82,8 @@ $(document).ready(function () {
                 if (res.result == '00') {
                     var tempwindow = window.open('_blank');
                     tempwindow.location = './login.html';
-                } else if (res.result == 'true') {
-                    $('.praise').text(parseInt($('.praise').text()) + 1);
+                } else if (res.result > 0) {
+                    $('.praise').text(res.result);
                 } else if (res.result == 'false') {
                     alert('点赞失败，请稍后重试！');
                 } else {
@@ -82,36 +97,35 @@ $(document).ready(function () {
     });
     // 收藏
     $('.add-collection').click(function () {
-        $.ajax({
-            url: '/api/tradingCTL',
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                method: 'collect_vr',
-                commodityId: productId
-            }),
-            success: function (res) {
-                if (res.result == '00') {
-                    var tempwindow = window.open('_blank');
-                    tempwindow.location = './login.html';
-                } else if (res.result == 'true') {
-                    $('.collection').text(parseInt($('.collection').text()) + 1);
-                } else if (res.result == 'false') {
-                    alert('点赞失败，请稍后重试！');
-                } else {
+        if (userType) {
+            $.ajax({
+                url: '/api/tradingCTL',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    method: 'collect_vr',
+                    commodityId: productId
+                }),
+                success: function (res) {
+                    if (res.result == '00') {
+                        var tempwindow = window.open('_blank');
+                        tempwindow.location = './login.html';
+                    } else if (res.result > 0) {
+                        $('.collection').text(res.result);
+                    } else if (res.result == 'false') {
+                        alert('点赞失败，请稍后重试！');
+                    } else {
+                        alert(res);
+                    }
+                },
+                error: function (res) {
                     alert(res);
                 }
-            },
-            error: function (res) {
-                alert(res);
-            }
-        });
+            });
+        } else {
+            alert('登录以后才能收藏');
+        }
+        
     });
-    // 设置iframe 高度
-    function setIframeHeight() {
-        var divHeight = $('.content').height();
-        $('iframe', parent.document).css('height', divHeight);
-    }
-
 });

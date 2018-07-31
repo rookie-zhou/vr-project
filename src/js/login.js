@@ -3,7 +3,6 @@ import 'jquery';
 import './lib/remodal/remodal.css';
 import './lib/remodal/remodal-default-theme.css';
 import './lib/remodal/remodal.min.js';
-import './ajax.js';
 import './../css/style.css';
 import './../css/login.css';
 var backgroundImg = require('./../asset/login/u0.jpg');

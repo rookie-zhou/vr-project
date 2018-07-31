@@ -1,17 +1,15 @@
 import "bootcss";
 import "jquery";
 import '../css/rankingList.css'
+import {
+    setIframeHeight
+} from './util';
 var productImg = require('./../asset/index/phb1-img_u110.png');
 var downLoadImg = require('./../asset/img/u137.png');
 var viewLoadImg = require('./../asset/img/u115.png');
 var saleImg = require('./../asset/img/sale.png');
 
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
 
     var modelOrProduct = localStorage.getItem('modelOrProduct');
     $('.ranking').on('click', '.product-img', function () {
@@ -57,6 +55,7 @@ $(document).ready(function () {
                         $(thisDom).appendTo($('.ranking-2'));
                     });
                 }
+                setIframeHeight();
             }
         });
     }
@@ -94,8 +93,8 @@ $(document).ready(function () {
                         `
                         $(thisDom).appendTo($('.ranking-1'));
                     });
-                    setIframeHeight();
                 }
+                setIframeHeight();
             }
         });
     }
@@ -133,8 +132,8 @@ $(document).ready(function () {
                         `
                         $(thisDom).appendTo($('.ranking-1'));
                     });
-                    setIframeHeight();
                 }
+                setIframeHeight();
             }
         });
     }
@@ -173,6 +172,7 @@ $(document).ready(function () {
                         $(thisDom).appendTo($('.ranking-2'));
                     });
                 }
+                setIframeHeight();
             }
         });
     }
@@ -188,11 +188,5 @@ $(document).ready(function () {
         $('.title-2').text('精品排行榜');
         getModelDownLoadList();
         getModelHotList();
-    }
-
-    // 设置iframe 高度
-    function setIframeHeight() {
-        var divHeight = $('.content').height();
-        $('iframe', parent.document).css('height', divHeight);
     }
 });

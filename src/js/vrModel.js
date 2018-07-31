@@ -2,13 +2,28 @@ import "bootcss";
 import "jquery";
 import "../css/style.css";
 import './../css/vrModel.css';
+import {
+    setIframeHeight,
+    checkLoginStatus,
+    loginStatus
+} from './util';
 
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
+    // 检查是否登录
+    checkLoginStatus();
+    Object.defineProperty(loginStatus, 'status', {
+        set: function () {
+            checkLoginType();
+        }
+    });
+    loginStatus.status = '';
+    // 获取登录信息
+    let userType;
+
+    function checkLoginType() {
+        userType = localStorage.getItem('userType');
+    }
+
     // 获取产品Id
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -17,6 +32,7 @@ $(document).ready(function () {
         return null;
     }
     const productId = getUrlParam('id');
+    // 获取模型详情
     $.ajax({
         type: 'post',
         url: '/api/modelCTL',
@@ -71,8 +87,8 @@ $(document).ready(function () {
                 if (res.result == '00') {
                     var tempwindow = window.open('_blank');
                     tempwindow.location = './login.html';
-                } else if (res.result == 'true') {
-                    $('.praise').text(parseInt($('.praise').text()) + 1);
+                } else if (res.result > 0) {
+                    $('.praise').text(res.result);
                 } else if (res.result == 'false') {
                     alert('点赞失败，请稍后重试！');
                 } else {
@@ -86,36 +102,36 @@ $(document).ready(function () {
     });
     // 收藏
     $('.add-collection').click(function () {
-        $.ajax({
-            url: '/api/tradingCTL',
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                method: 'collect_model',
-                commodityId: productId
-            }),
-            success: function (res) {
-                if (res.result == '00') {
-                    var tempwindow = window.open('_blank');
-                    tempwindow.location = './login.html';
-                } else if (res.result == 'true') {
-                    $('.collection').text(parseInt($('.collection').text()) + 1);
-                } else if (res.result == 'false') {
-                    alert('点赞失败，请稍后重试！');
-                } else {
+        if (userType) {
+            $.ajax({
+                url: '/api/tradingCTL',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    method: 'collect_model',
+                    commodityId: productId
+                }),
+                success: function (res) {
+                    if (res.result == '00') {
+                        var tempwindow = window.open('_blank');
+                        tempwindow.location = './login.html';
+                    } else if (res.result > 0) {
+                        $('.collection').text(res.result);
+                    } else if (res.result == 'false') {
+                        alert('点赞失败，请稍后重试！');
+                    } else {
+                        alert(res);
+                    }
+                },
+                error: function (res) {
                     alert(res);
                 }
-            },
-            error: function (res) {
-                alert(res);
-            }
-        });
+            });
+        } else {
+            alert('登录以后才能收藏');
+        }
+
     });
-    // 设置iframe 高度
-    function setIframeHeight() {
-        var divHeight = $('.content').height();
-        $('iframe', parent.document).css('height', divHeight);
-    }
 
 });

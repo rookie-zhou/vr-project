@@ -5,6 +5,9 @@ import "../css/style.css";
 import "../css/classifylist.css";
 import "./lib/page/simplePaging.css";
 import "./lib/page/simplePaging.js";
+import {
+    setIframeHeight
+} from './util';
 var productImg = require('./../asset/index/phb1-img_u110.png');
 var downLoadImg = require('./../asset/img/u137.png');
 var viewLoadImg = require('./../asset/img/u115.png');
@@ -215,9 +218,4 @@ $(document).ready(function () {
             firstPage = true;
         }, 200);
     }, 1000);
-    // 设置iframe 高度
-    function setIframeHeight() {
-        var divHeight = $('.content').height();
-        $('iframe', parent.document).css('height', divHeight);
-    }
 });
