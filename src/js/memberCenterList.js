@@ -16,6 +16,13 @@ $(document).ready(function () {
     }
     const iframeType = getUrlParam('iframeType');
 
+    //     id：ID号
+    // commodityId：商品ID
+    // commodityType：商品类型
+    // commodityName：商品名称
+    // image_url：图片地址
+    // look：浏览次数
+
 
     // 初始化浏览记录
     function initLookList(list) {
@@ -45,7 +52,7 @@ $(document).ready(function () {
     function getList(method) {
         $('.vr-list').empty();
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -57,8 +64,13 @@ $(document).ready(function () {
                     $('.empty-data').hide();
                     initLookList(res);
                 } else {
-                    $('.empty-data').show();
+                    $('.empty-data1').show();
+                    $('.empty-data2').show();
                 }
+            },
+            error: function () {
+                $('.empty-data1').show();
+                $('.empty-data2').show();
             }
         });
     }
@@ -92,7 +104,7 @@ $(document).ready(function () {
     // 获取收藏列表数据
     function collectionList() {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -106,6 +118,10 @@ $(document).ready(function () {
                 } else {
                     $('.empty-data').show();
                 }
+            },
+            error: function () {
+                $('.empty-data1').show();
+                $('.empty-data2').show();
             }
         });
     }
@@ -152,7 +168,7 @@ $(document).ready(function () {
     // 删除收藏
     $('.vr-list').on('click', '.del-btn', function () {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

@@ -23,7 +23,7 @@ $(document).ready(function () {
         var userName = $('.user-name').val();
         var password = $('.password').val();
         $.ajax({
-            url: '/userCTL',
+            url: '/api/userCTL',
             method: 'post',
             dataType: 'json',
             contentType: 'application/json',

@@ -35,7 +35,7 @@ $(document).ready(function () {
     // 获取模型详情
     $.ajax({
         type: 'post',
-        url: '/modelCTL',
+        url: '/api/modelCTL',
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -75,7 +75,7 @@ $(document).ready(function () {
     // 点赞
     $('.add-praise').click(function () {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -104,7 +104,7 @@ $(document).ready(function () {
     $('.add-collection').click(function () {
         if (userType) {
             $.ajax({
-                url: '/tradingCTL',
+                url: '/api/tradingCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
