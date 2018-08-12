@@ -10,11 +10,6 @@ var downLoadImg = require('./../asset/img/u137.png');
 var viewLoadImg = require('./../asset/img/u115.png');
 var saleImg = require('./../asset/img/sale.png');
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
 
     // 获取vr类型
     var searchName = localStorage.getItem('search-name');

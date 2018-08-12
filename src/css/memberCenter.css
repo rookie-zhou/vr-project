@@ -64,7 +64,6 @@
 }
 .member-box .content iframe {
   display: inline-block;
-  border: 1px solid #00ccff;
   width: 1030px;
   min-height: 900px;
   border-radius: 20px;

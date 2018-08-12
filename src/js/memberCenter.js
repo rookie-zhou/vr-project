@@ -15,7 +15,7 @@ $(document).ready(function () {
     checkLoginStatus();
     Object.defineProperty(loginStatus, 'status', {
         set: function () {
-            checkLoginType();
+            // checkLoginType();
         }
     });
     loginStatus.status = '';

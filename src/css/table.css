@@ -1,0 +1,10 @@
+.content table tr td {
+  vertical-align: middle;
+}
+.content table tr td .btn {
+  color: #fff;
+  border-radius: 20px;
+  padding: 6px 20px;
+  background: #00ccff;
+  outline: none;
+}
