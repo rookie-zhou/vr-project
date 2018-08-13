@@ -10,37 +10,37 @@ var productImg = require('./../asset/index/phb1-img_u110.png');
 $(document).ready(function () {
 
     var tableData = [{
-        image_url: productImg,
+        homeImage: productImg,
         id: '123',
         name: '1',
         price: '200',
-        lookTimes: '20',
-        collectTimes: '20',
+        lookcount: '20',
+        collection: '20',
         praise: '20',
-        sale: '20',
-        releaseTime: '2018-08-13',
+        salesVolume: '20',
+        publishtime: '2018-08-13',
         status: '发布',
     }, {
-        image_url: productImg,
-        id: '1234',
+        homeImage: productImg,
+        id: '123',
         name: '1',
         price: '200',
-        lookTimes: '20',
-        collectTimes: '20',
+        lookcount: '20',
+        collection: '20',
         praise: '20',
-        sale: '20',
-        releaseTime: '2018-08-13',
+        salesVolume: '20',
+        publishtime: '2018-08-13',
         status: '发布',
     }, {
-        image_url: productImg,
-        id: '1235',
+        homeImage: productImg,
+        id: '123',
         name: '1',
         price: '200',
-        lookTimes: '20',
-        collectTimes: '20',
+        lookcount: '20',
+        collection: '20',
         praise: '20',
-        sale: '20',
-        releaseTime: '2018-08-13',
+        salesVolume: '20',
+        publishtime: '2018-08-13',
         status: '发布',
     }];
 
@@ -53,16 +53,16 @@ $(document).ready(function () {
             var thisDom = `
             <tr>
                 <td style="width: 100px;">
-                    <img src="${element.image_url}" alt="" width="100%">
+                    <img src="${element.homeImage}" alt="" width="100%">
                 </td>
                 <td>${element.id}</td>
                 <td>${element.name}</td>
                 <td>${element.price}</td>
-                <td>${element.lookTimes}</td>
-                <td>${element.collectTimes}</td>
+                <td>${element.lookcount}</td>
+                <td>${element.collection}</td>
                 <td>${element.praise}</td>
-                <td>${element.sale}</td>
-                <td>${element.releaseTime}</td>
+                <td>${element.salesVolume}</td>
+                <td>${element.publishtime}</td>
                 <td>${element.status}</td>
                 <td>
                     <button class="btn del-btn">下架</button>
@@ -73,7 +73,7 @@ $(document).ready(function () {
         });
         setIframeHeight();
     }
-    modelList(tableData);
+    // modelList(tableData);
 
     // 获取收藏列表数据
     function releaseModelList() {
@@ -94,10 +94,11 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                $('.empty-data').show();
+                alert('调用接口失败，请稍后重试');
             }
         });
     }
+    releaseModelList();
 
     // 下架
     $('tbody').on('click', '.del-btn', function () {
@@ -120,7 +121,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('删除失败');
+                alert('调用接口失败，请稍后重试');
             }
         });
     });

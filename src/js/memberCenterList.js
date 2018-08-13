@@ -3,10 +3,9 @@ import "jquery";
 import "bootjs";
 import "../css/style.css";
 import "../css/memberCenterList.css";
-import "./lib/page/simplePaging.css";
-import "./lib/page/simplePaging.js";
 import {
-    setIframeHeight
+    setIframeHeight,
+    fmtDate
 } from './util';
 var productImg = require('./../asset/index/phb1-img_u110.png');
 $(document).ready(function () {
@@ -23,7 +22,7 @@ $(document).ready(function () {
     // commodityId：商品ID
     // commodityType：商品类型 01 产品 02模型
     // commodityName：商品名称
-    // image_url：图片地址
+    // homeImage：图片地址
     // look：浏览次数
 
     var dataList = [{
@@ -31,56 +30,64 @@ $(document).ready(function () {
         commodityId: '1',
         commodityType: '01',
         commodityName: '软件',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '01',
         commodityName: '软件',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '01',
         commodityName: '软件',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '02',
         commodityName: '模型1',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '02',
         commodityName: '模型1',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '02',
         commodityName: '模型1',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '02',
         commodityName: '模型1',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }, {
         id: '1',
         commodityId: '1',
         commodityType: '02',
         commodityName: '模型1',
-        image_url: productImg,
+        homeImage: productImg,
+        time: 1534171305000,
         look: '20'
     }]
 
@@ -92,15 +99,17 @@ $(document).ready(function () {
             if (!element.homeImage) {
                 element.homeImage = productImg
             }
+            if (element.time) {
+                element.time = fmtDate(element.time);
+            }
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
-                    <img class="product-img" src="${element.homeImage}" type="${element.type}" id="${element.id}" alt="vr产品图片" width="100%">
+                    <img class="product-img" src="${element.homeImage}" type="${element.commodityType}" id="${element.id}" alt="vr产品图片" width="100%">
                     <div>
-                        <p class="name">${element.proname}
+                        <p class="name">${element.commodityName}
                             <span class="id-box">
-                                <span>ID:</span>
-                                <span class="id">${element.id}</span>
+                                <span class="time">${element.time}</span>
                             </span>
                         </p>
                     </div>
@@ -136,8 +145,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                $('.empty-data1').show();
-                $('.empty-data2').show();
+                alert('调用接口失败，请稍后重试');
             }
         });
     }
@@ -151,16 +159,16 @@ $(document).ready(function () {
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
-                    <img class="product-img" src="${element.homeImage}" type="${element.type}" id="${element.id}" alt="vr产品图片" width="100%">
+                    <img class="product-img" src="${element.homeImage}" type="${element.commodityType}" id="${element.id}" alt="vr产品图片" width="100%">
                     <div>
-                        <p class="name">${element.proname} 
+                        <p class="name">${element.commodityName} 
                             <span class="id-box">
                                 <span>ID:</span>
                                 <span class="id">${element.id}</span>
                             </span>
                         </p>
                         <p class="btn-box">
-                            <button class="del-btn" id="${element.id}" commitId="${element.goodid}" type="${element.type}">删除</button>
+                            <button class="del-btn" id="${element.id}" commitId="${element.commodityType}" type="${element.commodityType}">删除</button>
                         </p>
                     </div>
                 </div>
@@ -194,8 +202,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                $('.empty-data1').show();
-                $('.empty-data2').show();
+                alert('调用接口失败，请稍后重试');
             }
         });
     }
@@ -208,19 +215,19 @@ $(document).ready(function () {
             break;
         case '1':
             // 浏览记录
-            // getList('my_look');
-            initLookList(dataList);
+            getList('my_look');
+            // initLookList(dataList);
             break;
         case '2':
             // 我的点赞
-            // getList('my_praise');
-            initLookList(dataList);
+            getList('my_praise');
+            // initLookList(dataList);
             break;
             case '3':
             $('.vr-Software').hide();
             // 购买的模型
-            // getList('my_buycommodity');
-            initLookList(dataList);
+            getList('my_buycommodity');
+            // initLookList(dataList);
             break;
         default:
             // 收藏列表
@@ -230,9 +237,9 @@ $(document).ready(function () {
     // 点击图片跳转到产品详情页面
     $('.vr-list').on('click', '.product-img', function () {
         if ($(this).attr('type') == '01') {
-            window.top.location.href = '/vrproduct.html?id=' + $(this).attr('id');
+            window.location.href = '/vrproduct.html?id=' + $(this).attr('id');
         } else {
-            window.top.location.href = '/vrModel.html?id=' + $(this).attr('id');
+            window.location.href = '/vrModel.html?id=' + $(this).attr('id');
         }
     });
     // 删除收藏
@@ -256,7 +263,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('删除失败');
+                alert('调用接口失败，请稍后重试');
             }
         });
     })
