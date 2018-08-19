@@ -32,8 +32,11 @@ function checkLoginStatus() {
 }
 // 设置iframe 高度
 function setIframeHeight() {
-    var divHeight = $('.content').height();
-    $('iframe', parent.document).css('height', divHeight);
+    setTimeout(function () {
+        var divHeight = $('.content').height();
+        $('iframe', parent.document).css('height', divHeight + 50);
+    }, 300);
+    
 }
 
 // 时间戳转yyyy-MM-dd

@@ -16,9 +16,9 @@ body {
 
 .ui-step-wrap .ui-step-bg,
 .ui-step-wrap .ui-step-progress {
-	height: 6px;
+	height: 2px;
 	position: absolute;
-	top: 50px;
+	top: 75px;
 	left: 0;
 }
 
@@ -29,7 +29,7 @@ body {
 
 .ui-step-wrap .ui-step-progress {
 	width: 0;
-	background: #64BD2E;
+	background: #00CCFF;
 }
 
 .ui-step-wrap .ui-step {
@@ -51,6 +51,7 @@ body {
 .ui-step-wrap .ui-step .ui-step-item div {
 	text-align: center;
 	color: #625454;
+	font-size: 20px;
 }
 
 .ui-step-wrap .ui-step .ui-step-item .ui-step-item-num {
@@ -59,13 +60,15 @@ body {
 
 .ui-step-wrap .ui-step .ui-step-item .ui-step-item-num span {
 	display: inline-block;
-	width: 26px;
-	height: 26px;
+	width: 56px;
+	height: 56px;
+	font-size: 20px;
+	line-height: 56px;
 	border-radius: 50%;
 	background: #dad9d9;
 }
 
 .ui-step-wrap .ui-step .ui-step-item.active .ui-step-item-num span {
 	color: #fff;
-	background: #64BD2E;
+	background: #199ED8;
 }

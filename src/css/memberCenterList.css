@@ -22,8 +22,6 @@
   min-height: 175px;
 }
 .content .vr-list .vr-box .product-img:hover {
-  border-right: 4px solid #fff;
-  border-bottom: 4px solid #fff;
   box-shadow: 4px 4px 4px #888;
 }
 .content .vr-list .vr-box .name {

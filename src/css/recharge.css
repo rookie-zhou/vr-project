@@ -1,0 +1,32 @@
+.content {
+  padding-left: 100px;
+  padding-top: 30px;
+}
+.content p {
+  color: #00CCFF;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 15px;
+}
+.content p span {
+  color: #FFCC33;
+}
+.content input[type='radio'] {
+  margin-left: 30px;
+}
+.content label {
+  line-height: 30px;
+}
+.content button {
+  outline: none;
+  height: 45px;
+  width: 200px;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0099ff;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 30px;
+}

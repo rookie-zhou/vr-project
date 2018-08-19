@@ -18,79 +18,6 @@ $(document).ready(function () {
     }
     const iframeType = getUrlParam('iframeType');
 
-    //id：ID号
-    // commodityId：商品ID
-    // commodityType：商品类型 01 产品 02模型
-    // commodityName：商品名称
-    // homeImage：图片地址
-    // look：浏览次数
-
-    var dataList = [{
-        id: '123',
-        commodityId: '1',
-        commodityType: '01',
-        commodityName: '软件',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '01',
-        commodityName: '软件',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '01',
-        commodityName: '软件',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '02',
-        commodityName: '模型1',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '02',
-        commodityName: '模型1',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '02',
-        commodityName: '模型1',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '02',
-        commodityName: '模型1',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }, {
-        id: '1',
-        commodityId: '1',
-        commodityType: '02',
-        commodityName: '模型1',
-        homeImage: productImg,
-        time: 1534171305000,
-        look: '20'
-    }]
-
 
     // 初始化浏览记录
     function initLookList(list) {
@@ -137,7 +64,8 @@ $(document).ready(function () {
             }),
             success: function (res) {
                 if (res > 0) {
-                    $('.empty-data').hide();
+                    $('.empty-data1').hide();
+                    $('.empty-data2').hide();
                     initLookList(res);
                 } else {
                     $('.empty-data1').show();
@@ -195,10 +123,12 @@ $(document).ready(function () {
             }),
             success: function (res) {
                 if (res > 0) {
-                    $('.empty-data').hide();
+                    $('.empty-data1').hide();
+                    $('.empty-data2').hide();
                     initCollectionList(res);
                 } else {
-                    $('.empty-data').show();
+                    $('.empty-data1').show();
+                    $('.empty-data2').show();
                 }
             },
             error: function () {
@@ -211,7 +141,7 @@ $(document).ready(function () {
         case '0':
             // 收藏列表
             collectionList();
-            initCollectionList(dataList);
+            // initCollectionList(dataList);
             break;
         case '1':
             // 浏览记录

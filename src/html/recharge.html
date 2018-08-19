@@ -9,7 +9,40 @@
 
 <body>
     <div class="content">
-        
+        <p>
+            <span>充值账号：</span>
+            <span class="user-name"></span>
+            <span style="display: inline-block; margin-left: 100px;">当前余额：</span>
+            <span class="balance"></span>
+        </p>
+        <input class="personal" id="50" type="radio" name="money" value="50" checked>
+        <label class="personal" for="50">充值50元，获得50维币</label>
+        <br>
+        <input class="group" id="100" type="radio" name="money" value="100">
+        <label class="group" for="100">充值100元，获得100维币</label>
+        <br>
+        <input class="group" id="200" type="radio" name="money" value="200">
+        <label class="group" for="200">充值200元，获得200维币</label>
+        <br>
+        <input class="group" id="500" type="radio" name="money" value="500">
+        <label class="group" for="500">充值500元，获得500维币</label>
+        <br>
+        <input class="group" id="0" type="radio" name="money" value="0">
+        <label class="group" for="0">
+            <span>充值金额</span>
+            <input type="text" class="input-number" value="0">
+            <span>元人民币，</span>
+            <span>获得
+                <span class="input-value">0</span>维币</span>
+        </label>
+        <br>
+        <p>付款方式</p>
+        <input class="group" id="group" type="radio" name="payType" value="03" checked>
+        <label class="group" for="group">
+            <img src="./../asset/memberCenter/alipay.png" alt="" width="50%">
+        </label>
+        <br>
+        <button class="btn-recharge">充值维币</button>
     </div>
 </body>
 

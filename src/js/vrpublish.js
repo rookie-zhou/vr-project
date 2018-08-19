@@ -3,11 +3,6 @@ import "bootcss";
 import "../css/style.css";
 import './../css/vrpublish.css';
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
     // 上传视频
     $('.video-file').on('change', function () {
         const filePath = $(this).val();

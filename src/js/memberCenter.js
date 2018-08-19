@@ -15,7 +15,7 @@ $(document).ready(function () {
     checkLoginStatus();
     Object.defineProperty(loginStatus, 'status', {
         set: function () {
-            // checkLoginType();
+            checkLoginType();
         }
     });
     loginStatus.status = '';
@@ -28,4 +28,5 @@ $(document).ready(function () {
             window.location.href = './index.html';
         }
     }
+    $('.user-name').html(localStorage.getItem('userName'));
 });

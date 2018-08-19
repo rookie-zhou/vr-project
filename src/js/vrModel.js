@@ -46,7 +46,6 @@ $(document).ready(function () {
             initPage(res);
         }
     });
-    setIframeHeight();
     // 加载页面数据
     function initPage(data) {
         $('.title').text(data.name);
@@ -63,7 +62,7 @@ $(document).ready(function () {
         if (data.image.length > 0) {
             data.image.map(item => {
                 var dom = `
-                    <img src="${item.imageUrl}" alt="${item.imageName}">
+                <img src="${item.imageUrl}" alt="${item.imageName}">
                 `
                 $(dom).appendTo('.img-box');
             });
@@ -71,6 +70,7 @@ $(document).ready(function () {
             $('.img-detail').hide();
         }
         $('.home-img').attr('src', data.homeImage).attr('alt', data.name);
+        setIframeHeight();
     }
     // 点赞
     $('.add-praise').click(function () {

@@ -63,8 +63,6 @@ $(document).ready(function () {
         $('.proIntro').text(data.proIntro);
         $('#video').children('source').attr('src', data.videourl);
         $('#video').attr('poster', data.homeImage);
-        // $('#video').children('source').attr('src', videoUrl);
-        // $('#video').attr('poster', 'http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png');
         setIframeHeight();
     }
     // 点赞
