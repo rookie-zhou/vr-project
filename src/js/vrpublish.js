@@ -62,7 +62,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success: function (res) {
-                // console.log(res)
+                console.log(res)
             },
             error: function () {
 
@@ -72,25 +72,48 @@ $(document).ready(function () {
 
     // 上传视频
     $('.video-file').on('change', function (e) {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = function () {
-            var dataURL = reader.result;
-            var blob = dataURItoBlob(dataURL);
-            uploadImg(blob, token);
-        };
-
+        const file = e.target.files[0];
         const filePath = $(this).val();
-        getFileName('imgvr', filePath);
         if (filePath.indexOf('mp4') != -1) {
             const arr = filePath.split('\\');
             const fileName = arr[arr.length - 1];
             $(".video-name").html(fileName);
+            getFileName('video', filePath);
+            uploadImg(file, token);
         } else {
             $(".video-name").html('请选择MP4文件');
         }
     });
+    // 上传软件
+    $('.demo-file').on('change', function (e) {
+        const file = e.target.files[0];
+        const filePath = $(this).val();
+        const arr = filePath.split('\\');
+        const fileName = arr[arr.length - 1];
+        $(".video-name").html(fileName);
+        getFileName('vrdemo', filePath);
+        uploadImg(file, token);
+    });
+    // $('.video-file').on('change', function (e) {
+    //     var file = e.target.files[0];
+    //     var reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = function () {
+    //         var dataURL = reader.result;
+    //         var blob = dataURItoBlob(dataURL);
+    //         uploadImg(blob, token);
+    //     };
+
+    //     const filePath = $(this).val();
+    //     getFileName('imgvr', filePath);
+    //     if (filePath.indexOf('mp4') != -1) {
+    //         const arr = filePath.split('\\');
+    //         const fileName = arr[arr.length - 1];
+    //         $(".video-name").html(fileName);
+    //     } else {
+    //         $(".video-name").html('请选择MP4文件');
+    //     }
+    // });
     // 上传demo
     $('.demo-file').on('change', function () {
         const filePath = $(this).val();
@@ -99,8 +122,9 @@ $(document).ready(function () {
         $(".demo-name").html(fileName);
     });
 
-
+    // 上传图片方法
     function uploadImg(imgSource, token) {
+        window.parent.openModal();
         const uptoken = token;
         const file = imgSource;
         const key = null;
@@ -108,9 +132,11 @@ $(document).ready(function () {
         observable.subscribe({
             next: (res) => {
                 // 主要用来展示进度
-                console.log(res)
                 let total = res.total;
-                console.log("进度：" + parseInt(total.percent) + "% ")
+                $('.percent', parent.document).html(parseInt(total.percent));
+                if (parseInt(total.percent) == 100) {
+                    window.parent.closeModal();
+                }
             },
             error: (err) => {
                 // 失败报错信息
@@ -120,12 +146,8 @@ $(document).ready(function () {
                 // 接收成功后返回的信息
                 // window.Qapp.hideLoad()
                 console.log(res)
-                qiniu.imageInfo(res.key, domain).then(res => {
-                    console.log(res)
-                })
             }
-
-        })
+        });
     };
     // 保存
     $('.post-btn').click(function () {
