@@ -4,9 +4,11 @@ import "../css/style.css";
 import './../css/vrpublish.css';
 import * as qiniu from './lib/qiniu.min.js';
 import {
+    setIframeHeight,
     dataURItoBlob
 } from './util';
 $(document).ready(function () {
+    setIframeHeight();
     var postParams = {
         name: '',
         type: '',

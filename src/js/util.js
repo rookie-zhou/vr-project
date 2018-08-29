@@ -35,9 +35,8 @@ function checkLoginStatus() {
 function setIframeHeight() {
     setTimeout(function () {
         var divHeight = $('.content').height();
-        $('iframe', parent.document).css('height', divHeight + 50);
+        $('iframe', parent.document).css('height', divHeight + 70);
     }, 300);
-
 }
 
 // 时间戳转yyyy-MM-dd
