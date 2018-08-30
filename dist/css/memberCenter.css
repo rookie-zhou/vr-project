@@ -507,7 +507,7 @@ html.remodal-is-locked {
   margin: 0;
 }
 .member-box .member-header {
-  width: 1198px;
+  width: 1518px;
   height: 72px;
   background: linear-gradient(180deg, #0099ff 0%, #0099ff 0%, #0099ff 45%, #ffffff 100%, #ffffff 100%);
 }
@@ -529,7 +529,10 @@ html.remodal-is-locked {
 .member-box .member-header .to-index {
   float: right;
   margin-right: 20px;
-  margin-top: 30px;
+  margin-top: 15px;
+}
+.member-box .member-header span {
+  color: #FFCC33;
 }
 .member-box .member-header a {
   color: #FFCC33;
@@ -566,8 +569,7 @@ html.remodal-is-locked {
 }
 .member-box .content iframe {
   display: inline-block;
-  border: 1px solid #00ccff;
-  width: 1030px;
+  width: 1350px;
   min-height: 900px;
   border-radius: 20px;
   padding: 0 20px;

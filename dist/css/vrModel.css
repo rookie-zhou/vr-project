@@ -105,6 +105,9 @@ body .remodal-confirm:hover {
   min-height: 400px;
   overflow: hidden;
 }
+.content .detail .model-box .home-img {
+  width: 100%;
+}
 .content .detail .model-detail {
   display: inline-block;
   vertical-align: top;
