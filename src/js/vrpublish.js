@@ -21,8 +21,7 @@ $(document).ready(function () {
         imglist: []
     }
 
-    var token = '';
-    // var token = 'FQ_7Dfy-FIiwm8BIAfdXnOatB2Tj9qJMIWtykdXG:p-E5-HDd7hDSysIyC7gkQ7MIi3c=:eyJzY29wZSI6InZ2d29rLWxpYW56aHVrZWppIiwiZGVhZGxpbmUiOjE1MzUzMjc2ODF9';
+    var token;
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
@@ -47,6 +46,7 @@ $(document).ready(function () {
         });
     })();
 
+
     // 获取文件名
     function getFileName(type, fullName) {
         var index1 = fullName.lastIndexOf(".");
@@ -64,13 +64,18 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success: function (res) {
-                console.log(res)
+                if (type == 'video') {
+                    postParams.videourl = res.filename;
+                } else if (type == 'vrdemo'){
+                    postParams.demourl = res.filename;
+                }
             },
             error: function () {
-
+                alert('获取文件名错误！')
             }
         });
     }
+
 
     // 上传视频
     $('.video-file').on('change', function (e) {
@@ -96,26 +101,26 @@ $(document).ready(function () {
         getFileName('vrdemo', filePath);
         uploadImg(file, token);
     });
-    // $('.video-file').on('change', function (e) {
-    //     var file = e.target.files[0];
-    //     var reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = function () {
-    //         var dataURL = reader.result;
-    //         var blob = dataURItoBlob(dataURL);
-    //         uploadImg(blob, token);
-    //     };
+    $('.photo-file').on('change', function (e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+            var dataURL = reader.result;
+            var blob = dataURItoBlob(dataURL);
+            uploadImg(blob, token);
+        };
 
-    //     const filePath = $(this).val();
-    //     getFileName('imgvr', filePath);
-    //     if (filePath.indexOf('mp4') != -1) {
-    //         const arr = filePath.split('\\');
-    //         const fileName = arr[arr.length - 1];
-    //         $(".video-name").html(fileName);
-    //     } else {
-    //         $(".video-name").html('请选择MP4文件');
-    //     }
-    // });
+        const filePath = $(this).val();
+        getFileName('imgvr', filePath);
+        if (filePath.indexOf('mp4') != -1) {
+            const arr = filePath.split('\\');
+            const fileName = arr[arr.length - 1];
+            $(".video-name").html(fileName);
+        } else {
+            $(".video-name").html('请选择MP4文件');
+        }
+    });
     // 上传demo
     $('.demo-file').on('change', function () {
         const filePath = $(this).val();
@@ -146,7 +151,6 @@ $(document).ready(function () {
             },
             complete: (res) => {
                 // 接收成功后返回的信息
-                // window.Qapp.hideLoad()
                 console.log(res)
             }
         });
