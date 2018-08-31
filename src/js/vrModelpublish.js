@@ -260,11 +260,11 @@ $(document).ready(function () {
         }
         postParams.name = $('.vr-name').val();
 
-        if (!$('.soft-size').val()) {
-            alert('请输入软件大小（KB）');
+        if (!$('.price').val()) {
+            alert('模型价格！');
             return false;
         }
-        postParams.softsize = $('.soft-size').val();
+        postParams.softsize = $('.price').val();
 
         if (!$('.product-type').val()) {
             alert('请输入产品类型');
