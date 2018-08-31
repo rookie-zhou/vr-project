@@ -99,3 +99,36 @@
 .content #publish .row .model-type {
   width: 120px;
 }
+.content #publish .row .img-list {
+  min-height: 100px;
+  padding-left: 107px;
+}
+.content #publish .row .img-list ul li {
+  margin: 10px 0;
+}
+.content #publish .row .img-list ul li span {
+  display: inline-block;
+  margin-right: 50px;
+}
+.content #publish .row .img-list ul li .group {
+  height: 16px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.content #publish .row .img-list ul li .btn {
+  margin-left: 50px;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #00ccff;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  color: #333;
+  outline: none;
+}
+.content #publish .row .post-btn {
+  width: 165px;
+  height: 40px;
+  border: 1px solid #00ccff;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #00ccff 100%, #00ccff 100%);
+  color: #333;
+  outline: none;
+}
