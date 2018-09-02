@@ -1,1 +1,0 @@
-webpackJsonp([6],{27:function(n,c,i){"use strict";(function(n){i(0),i(3),i(28),n("<div>这是jquery生成的</div>").appendTo("body")}).call(c,i(0))},28:function(n,c){}},[27]);

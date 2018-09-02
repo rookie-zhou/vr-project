@@ -13,7 +13,7 @@ $(document).ready(function () {
     var postParams = {
         name: '',
         type: '',
-        userName: userName,
+        username: userName,
         intro: '',
         softsize: '',
         method: 'vrproduct_publish',
@@ -44,6 +44,26 @@ $(document).ready(function () {
             },
             error: function () {
                 alert('获取上传凭证失败')
+            }
+        });
+        $.ajax({
+            url: '/api/productTypeCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'producttype_getall'
+            }),
+            success: function (res) {
+                if (res.length > 0) {
+                    res.map(item => {
+                        var navDom;
+                        navDom = `<option value="${item.typeId}">
+                            ${item.typeName}
+                            </option>`
+                        $(navDom).appendTo('.model-type');
+                    });
+                }
             }
         });
     })();

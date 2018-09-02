@@ -13,17 +13,18 @@ $(document).ready(function () {
     var postParams = {
         name: '',
         type: '',
-        userName: userName,
+        username: userName,
         intro: '',
         softsize: '',
-        method: 'vrproduct_publish',
-        videourl: '',
-        demourl: '',
+        prize: '',
+        method: 'model_publish',
+        modelurl: '',
         imglist: []
     };
     var imgPushUrl = '';
     var imgName = '';
     var token;
+
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
@@ -44,6 +45,26 @@ $(document).ready(function () {
             },
             error: function () {
                 alert('获取上传凭证失败')
+            }
+        });
+        $.ajax({
+            url: '/api/productTypeCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'producttype_getall'
+            }),
+            success: function (res) {
+                if (res.length > 0) {
+                    res.map(item => {
+                        var navDom;
+                        navDom = `<option value="${item.typeId}">
+                            ${item.typeName}
+                            </option>`
+                        $(navDom).appendTo('.model-type');
+                    });
+                }
             }
         });
     })();
@@ -78,20 +99,6 @@ $(document).ready(function () {
         });
     }
 
-    // 上传视频
-    $('.video-file').on('change', function (e) {
-        const file = e.target.files[0];
-        const filePath = $(this).val();
-        if (filePath.indexOf('mp4') != -1) {
-            const arr = filePath.split('\\');
-            const fileName = arr[arr.length - 1];
-            $(".video-name").html(fileName);
-            getFileName('video', filePath);
-            uploadFile(file, token);
-        } else {
-            $(".video-name").html('请选择MP4文件');
-        }
-    });
     // 上传软件
     $('.demo-file').on('change', function (e) {
         const file = e.target.files[0];
@@ -274,10 +281,6 @@ $(document).ready(function () {
 
         if (!postParams.demourl) {
             alert('请上传demo文件');
-            return false;
-        }
-        if (!postParams.videourl) {
-            alert('请上传演示视频');
             return false;
         }
         if (!$('.demo-detail').val()) {
