@@ -269,46 +269,46 @@ $(document).ready(function () {
             postParams.imglist.splice(index, 1);
         } else {
             alert('当前图片为首页显示图片不能删除！');
-            return false;
+            return;
         }
     });
     // 保存
     $('.post-btn').click(function () {
         if (!$('.vr-name').val()) {
             alert('请输入VR产品名称');
-            return false;
+            return;
         }
         postParams.name = $('.vr-name').val();
 
         if (!$('.soft-size').val()) {
             alert('请输入软件大小（KB）');
-            return false;
+            return;
         }
         postParams.softsize = $('.soft-size').val();
 
-        if (!$('.product-type').val()) {
+        if (!$(".product-type option:selected").val()) {
             alert('请输入产品类型');
-            return false;
+            return;
         }
-        postParams.type = $('.product-type').val();
+        postParams.type = $(".product-type option:selected").val();
 
         if (!postParams.demourl) {
             alert('请上传demo文件');
-            return false;
+            return;
         }
         if (!postParams.videourl) {
             alert('请上传演示视频');
-            return false;
+            return;
         }
         if (!$('.demo-detail').val()) {
             alert('请输入产品概述');
-            return false;
+            return;
         }
         postParams.intro = $('.demo-detail').val();
 
         if (postParams.imglist.length == 0) {
             alert('请上传至少一张图片！');
-            return false;
+            return;
         }
 
         checkIsHomeImg();

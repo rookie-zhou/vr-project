@@ -12,7 +12,7 @@
     <div class="document">
         <div class="content">
             <p class="title">VR产品发布</p>
-            <form id="publish" enctype='multipart/form-data'>
+            <div id="publish">
                 <div class="row">
                     <div class="col-md-4">
                         <label>
@@ -27,7 +27,9 @@
                     <div class="col-md-4">
                         <label>
                             <span>*</span>产品类型</label>
-                        <input class="product-type" type="text" placeholder="请输入产品类型">
+                        <select class="product-type">
+                            <option value="">请选择产品类型</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -75,7 +77,7 @@
                 <div class="row text-center">
                     <button class="btn btn-primary post-btn">保存</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </body>

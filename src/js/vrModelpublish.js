@@ -48,12 +48,12 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/api/productTypeCTL',
+            url: '/api/modelTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-                method: 'producttype_getall'
+                method: 'modeltype_getall'
             }),
             success: function (res) {
                 if (res.length > 0) {
@@ -87,11 +87,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success: function (res) {
-                if (type == 'video') {
-                    postParams.videourl = res.filename;
-                } else if (type == 'vrdemo') {
-                    postParams.demourl = res.filename;
-                }
+                postParams.modelurl = res.filename;
             },
             error: function () {
                 alert('获取文件名错误！')
@@ -106,7 +102,7 @@ $(document).ready(function () {
         const arr = filePath.split('\\');
         const fileName = arr[arr.length - 1];
         $(".demo-name").html(fileName);
-        getFileName('vrdemo', filePath);
+        getFileName('model', filePath);
         uploadFile(file, token);
     });
 
@@ -144,7 +140,7 @@ $(document).ready(function () {
         var expandedname = fullName.substring(index1 + 1, index2);
         var data = {
             method: 'getQiniuUpFilename',
-            type: 'imgvr',
+            type: 'imgmodel',
             expandedname: expandedname
         }
         var promiseFun = new Promise((resolve, reject) => {
@@ -256,57 +252,68 @@ $(document).ready(function () {
             postParams.imglist.splice(index, 1);
         } else {
             alert('当前图片为首页显示图片不能删除！');
-            return false;
+            return;
         }
     });
+    console.log($(".model-type option:selected").val())
     // 保存
     $('.post-btn').click(function () {
         if (!$('.vr-name').val()) {
             alert('请输入VR产品名称');
-            return false;
+            return;
         }
         postParams.name = $('.vr-name').val();
 
-        if (!$('.price').val()) {
-            alert('模型价格！');
-            return false;
+        if (!$(".price").val()) {
+            alert('请输入模型价格！');
+            return;
         }
-        postParams.softsize = $('.price').val();
+        postParams.price = $('.price').val();
+
+        if (!$(".size").val()) {
+            alert('请输入软件大小（KB）！');
+            return;
+        }
+        postParams.softsize = $('.size').val();
 
         if (!$('.product-type').val()) {
             alert('请输入产品类型');
-            return false;
+            return;
         }
-        postParams.type = $('.product-type').val();
+        postParams.type = $(".model-type option:selected").val();
 
-        if (!postParams.demourl) {
+        if (!postParams.modelurl) {
             alert('请上传demo文件');
-            return false;
+            return;
         }
         if (!$('.demo-detail').val()) {
             alert('请输入产品概述');
-            return false;
+            return;
         }
         postParams.intro = $('.demo-detail').val();
 
         if (postParams.imglist.length == 0) {
             alert('请上传至少一张图片！');
-            return false;
+            return;
         }
 
         checkIsHomeImg();
 
         $.ajax({
-            url: '/api/vrproductCTL',
+            url: '/api/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(postParams),
             success: function (res) {
-                console.log(res)
+                if (res.result == 'true') {
+                    alert('保存成功！');
+                } else {
+                    alert('保存失败！');
+                }
             },
             error: function (res) {
-                console.log(res)
+                alert('保存失败！');
             }
         });
     });

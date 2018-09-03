@@ -36,6 +36,15 @@
   z-index: 2;
   cursor: pointer;
 }
+.content #publish select {
+  border: 2px solid #00ccff;
+  outline: none;
+  height: 39px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-left: 10px;
+  padding-left: 10px;
+}
 .content #publish .file-btn {
   border: 2px solid #00ccff;
   outline: none;
