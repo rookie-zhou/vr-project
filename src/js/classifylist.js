@@ -15,12 +15,6 @@ var saleImg = require('./../asset/img/sale.png');
 
 
 $(document).ready(function () {
-    // 关闭浏览器 删除localstorage
-    // window.onbeforeunload = function () {
-    //     localStorage.setItem('userName', '');
-    //     localStorage.setItem('userType', '');
-    // };
-
     // 判断是产品列表还是模型列表
     var modelOrProduct = localStorage.getItem('modelOrProduct');
 
@@ -91,6 +85,9 @@ $(document).ready(function () {
                 // 总页数
                 $('.total-PageNum').html(totalPageNum);
                 setIframeHeight();
+            },
+            error: function() {
+                alert('获取产品列表数据失败请重试！')
             }
         });
     }
@@ -152,6 +149,9 @@ $(document).ready(function () {
                 // 总页数
                 $('.total-PageNum').html(res.pagetotal);
                 setIframeHeight();
+            },
+            error: function() {
+                alert('获取模型列表数据失败请重试！')
             }
         });
     }

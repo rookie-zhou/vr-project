@@ -16,7 +16,7 @@ $(document).ready(function () {
         username: userName,
         intro: '',
         softsize: '',
-        prize: '',
+        price: '',
         method: 'model_publish',
         modelurl: '',
         imglist: []
@@ -255,9 +255,14 @@ $(document).ready(function () {
             return;
         }
     });
-    console.log($(".model-type option:selected").val())
     // 保存
     $('.post-btn').click(function () {
+        if (postParams.imglist.length == 0) {
+            alert('请上传至少一张图片！');
+            return;
+        }
+        checkIsHomeImg();
+        console.log(postParams);
         if (!$('.vr-name').val()) {
             alert('请输入VR产品名称');
             return;
@@ -276,7 +281,7 @@ $(document).ready(function () {
         }
         postParams.softsize = $('.size').val();
 
-        if (!$('.product-type').val()) {
+        if (!$(".model-type option:selected").val()) {
             alert('请输入产品类型');
             return;
         }
@@ -292,13 +297,6 @@ $(document).ready(function () {
         }
         postParams.intro = $('.demo-detail').val();
 
-        if (postParams.imglist.length == 0) {
-            alert('请上传至少一张图片！');
-            return;
-        }
-
-        checkIsHomeImg();
-
         $.ajax({
             url: '/api/modelCTL',
             type: 'post',
@@ -306,14 +304,14 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(postParams),
             success: function (res) {
-                if (res.result == 'true') {
-                    alert('保存成功！');
+                if (res == 'true') {
+                    alert('发布成功，请等待管理员审核后将自动展示在平台！');
                 } else {
-                    alert('保存失败！');
+                    alert('发布失败！');
                 }
             },
             error: function (res) {
-                alert('保存失败！');
+                alert('发布失败！');
             }
         });
     });

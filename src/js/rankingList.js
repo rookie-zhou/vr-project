@@ -56,6 +56,9 @@ $(document).ready(function () {
                     });
                 }
                 setIframeHeight();
+            },
+            error: function() {
+                alert('查询产品下载排行榜失败请重试！');
             }
         });
     }
@@ -95,6 +98,9 @@ $(document).ready(function () {
                     });
                 }
                 setIframeHeight();
+            },
+            error: function() {
+                alert('查询产品浏览热度排行榜失败请重试！');
             }
         });
     }
@@ -134,6 +140,9 @@ $(document).ready(function () {
                     });
                 }
                 setIframeHeight();
+            },
+            error: function() {
+                alert('查询模型销量排行榜失败请重试！')
             }
         });
     }
@@ -173,6 +182,9 @@ $(document).ready(function () {
                     });
                 }
                 setIframeHeight();
+            },
+            error: function() {
+                alert('查询模型精品排行榜失败请重试！');
             }
         });
     }

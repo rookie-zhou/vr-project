@@ -26,7 +26,7 @@ $(function () {
     function checkLoginType() {
         userName = localStorage.getItem('userName');
         userType = localStorage.getItem('userType');
-        if (userType) {
+        if (userType || userType == '00') {
             $('.user-name').html(userName);
             $('.login').hide();
             $('.line-one').show();

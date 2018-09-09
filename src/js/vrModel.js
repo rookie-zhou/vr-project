@@ -50,7 +50,11 @@ $(document).ready(function () {
     function initPage(data) {
         $('.title').text(data.name);
         $('.price-num').text(data.price);
-        $('.downamount').text(data.downamount);
+        if (data.downamount || data.downamount == 0) {
+            $('.downamount').text(data.downamount);
+        }else {
+            alert('没有获取到下载数！')
+        }
         $('.softsize').text(data.softsize);
         (data.collection) ? $('.collection').text(data.collection): $('.collection').text(0);
         if (data.publishtime) {

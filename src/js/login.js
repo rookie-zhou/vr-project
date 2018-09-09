@@ -14,10 +14,6 @@ $(document).ready(function () {
         userName: false,
         password: false
     }
-    var fogotPasswordModal = $('[data-remodal-id=fogotPasswordModal]').remodal();
-    $('.forgot-password').on('click', function () {
-        fogotPasswordModal.open();
-    });
     // 登录
     $('.btn-login').on('click', function () {
         var userName = $('.user-name').val();

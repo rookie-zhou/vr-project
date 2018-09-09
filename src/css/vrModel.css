@@ -16,7 +16,7 @@
 .content .detail .model-box {
   display: inline-block;
   width: 588px;
-  min-height: 400px;
+  height: 300px;
   overflow: hidden;
 }
 .content .detail .model-box .home-img {
@@ -73,6 +73,7 @@
 }
 .content .detail .text-detail {
   width: 100%;
+  margin-top: 40px;
 }
 .content .detail .text-detail .header {
   width: 100%;

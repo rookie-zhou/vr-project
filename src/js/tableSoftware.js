@@ -8,39 +8,6 @@ import {
 } from './util';
 var productImg = require('./../asset/index/phb1-img_u110.png');
 $(document).ready(function () {
-
-    var tableData = [{
-        homeImage: productImg,
-        id: '123',
-        proname: '1',
-        lookcount: '20',
-        collection: '20',
-        praise: '20',
-        downamount: '20',
-        publishtime: '2018-08-13',
-        status: '发布',
-    }, {
-        homeImage: productImg,
-        id: '123',
-        proname: '1',
-        lookcount: '20',
-        collection: '20',
-        praise: '20',
-        downamount: '20',
-        publishtime: '2018-08-13',
-        status: '发布',
-    }, {
-        homeImage: productImg,
-        id: '123',
-        proname: '1',
-        lookcount: '20',
-        collection: '20',
-        praise: '20',
-        downamount: '20',
-        publishtime: '2018-08-13',
-        status: '发布',
-    }];
-
     // 收藏列表
     function modelList(list) {
         list.forEach(element => {
@@ -69,7 +36,6 @@ $(document).ready(function () {
         });
         setIframeHeight();
     }
-    // modelList(tableData);
 
     // 获取收藏列表数据
     function releaseSoftwareList() {

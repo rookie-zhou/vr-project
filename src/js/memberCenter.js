@@ -8,7 +8,8 @@ import "../css/style.css";
 import './../css/memberCenter.css';
 import {
     checkLoginStatus,
-    loginStatus
+    loginStatus,
+    GetQueryString
 } from './util';
 $(document).ready(function () {
     // 检查是否登录
@@ -29,4 +30,8 @@ $(document).ready(function () {
         }
     }
     $('.user-name').html(localStorage.getItem('userName'));
+    
+    if (GetQueryString('recharge')) {
+        $('#listIframe').attr('src', './recharge.html');
+    }
 });

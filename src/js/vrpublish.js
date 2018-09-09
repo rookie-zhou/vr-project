@@ -61,7 +61,7 @@ $(document).ready(function () {
                         navDom = `<option value="${item.typeId}">
                             ${item.typeName}
                             </option>`
-                        $(navDom).appendTo('.model-type');
+                        $(navDom).appendTo('.product-type');
                     });
                 }
             }
@@ -274,6 +274,11 @@ $(document).ready(function () {
     });
     // 保存
     $('.post-btn').click(function () {
+        if (postParams.imglist.length == 0) {
+            alert('请上传至少一张图片！');
+            return;
+        }
+        checkIsHomeImg();
         if (!$('.vr-name').val()) {
             alert('请输入VR产品名称');
             return;
@@ -306,13 +311,6 @@ $(document).ready(function () {
         }
         postParams.intro = $('.demo-detail').val();
 
-        if (postParams.imglist.length == 0) {
-            alert('请上传至少一张图片！');
-            return;
-        }
-
-        checkIsHomeImg();
-
         $.ajax({
             url: '/api/vrproductCTL',
             type: 'post',
@@ -320,10 +318,14 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(postParams),
             success: function (res) {
-                console.log(res)
+                if (res == 'true') {
+                    alert('发布成功，请等待管理员审核后将自动展示在平台！');
+                } else {
+                    alert('发布失败！');
+                }
             },
             error: function (res) {
-                console.log(res)
+                alert('发布失败！');
             }
         });
     });
