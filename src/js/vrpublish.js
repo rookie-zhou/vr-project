@@ -8,7 +8,6 @@ import {
     dataURItoBlob
 } from './util';
 $(document).ready(function () {
-    setIframeHeight();
     const userName = localStorage.getItem('userName');
     var postParams = {
         name: '',
@@ -172,7 +171,7 @@ $(document).ready(function () {
                     resolve(imgPushUrl);
                 },
                 error: function () {
-                    alert('获取文件名错误！')
+                    alert('获取文件名错误，将不能进行上传文件操作！')
                 }
             });
         });
@@ -340,4 +339,7 @@ $(document).ready(function () {
             }
         });
     }
+
+    // 动态设置iframe高度
+    setIframeHeight();
 });

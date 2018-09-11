@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-2">
+            <select class="form-control">
+                <option value="0">ID号</option>
+                <option value="1">名称</option>
+                <option value="2">类型</option>
+                <option value="3">开发者姓名</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="text" class="form-control">
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary">查询</button>
+        </div>
+        <div class="col-md-1 text-center">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 未审核
+                </label>
+            </div>
+        </div>
+        <div class="col-md-1 text-center">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 审核通过
+                </label>
+            </div>
+        </div>
+        <div class="col-md-2 text-center">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 审核不通过
+                </label>
+            </div>
+        </div>
+        <div class="col-md-1 text-center">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 已下架
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row table-list">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-bordered table-hover text-center">
+                <thead class="table-title">
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> 全选
+                                </label>
+                            </div>
+                        </td>
+                        <td>ID号</td>
+                        <td>名称</td>
+                        <td>类型</td>
+                        <td>开发者</td>
+                        <td>价格</td>
+                        <td>发布时间</td>
+                        <td>查看明细</td>
+                    </tr>
+                </thead>
+                <tbody class="table-title">
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                </label>
+                            </div>
+                        </td>
+                        <td>ID号</td>
+                        <td>名称</td>
+                        <td>类型</td>
+                        <td>开发者</td>
+                        <td>价格</td>
+                        <td>发布时间</td>
+                        <td><button class="btn btn-primary">明细</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="page-box">
+            <div class="page-detail">
+                <span class="page-num">1</span>/
+                <span class="total-pageNum">1</span>
+                <span class="total-num">0</span>
+                <span>条</span>
+            </div>
+            <div class="vr-pagination"></div>
+        </div>
+    </div>
+</body>
+
+</html>

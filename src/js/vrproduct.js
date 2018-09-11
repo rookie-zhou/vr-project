@@ -124,6 +124,7 @@ $(document).ready(function () {
         } else {
             alert('登录以后才能收藏');
         }
-        
     });
+    // 动态设置iframe高度
+    setIframeHeight();
 });

@@ -26,8 +26,8 @@ $(document).ready(function () {
             if (!element.homeImage) {
                 element.homeImage = productImg
             }
-            if (element.time) {
-                element.time = fmtDate(element.time);
+            if (element.publishtime) {
+                element.publishtime = fmtDate(element.publishtime);
             }
             var thisDom = `
             <div class="col-xs-3">
@@ -36,7 +36,7 @@ $(document).ready(function () {
                     <div>
                         <p class="name">${element.commodityName}
                             <span class="id-box">
-                                <span class="time">${element.time}</span>
+                                <span class="time">${element.publishtime}</span>
                             </span>
                         </p>
                     </div>
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 method: method
             }),
             success: function (res) {
-                if (res > 0) {
+                if (res.length > 0) {
                     $('.empty-data1').hide();
                     $('.empty-data2').hide();
                     initLookList(res);
@@ -122,7 +122,7 @@ $(document).ready(function () {
                 method: ' my_collect'
             }),
             success: function (res) {
-                if (res > 0) {
+                if (res.length > 0) {
                     $('.empty-data1').hide();
                     $('.empty-data2').hide();
                     initCollectionList(res);

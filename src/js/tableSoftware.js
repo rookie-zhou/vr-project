@@ -4,7 +4,8 @@ import "bootjs";
 import "../css/style.css";
 import "../css/table.css";
 import {
-    setIframeHeight
+    setIframeHeight,
+    fmtDate
 } from './util';
 var productImg = require('./../asset/index/phb1-img_u110.png');
 $(document).ready(function () {
@@ -13,6 +14,9 @@ $(document).ready(function () {
         list.forEach(element => {
             if (!element.homeImage) {
                 element.homeImage = productImg
+            }
+            if (element.publishtime.time) {
+                element.publishtime.time = fmtDate(element.publishtime.time);
             }
             var thisDom = `
             <tr>
@@ -25,7 +29,7 @@ $(document).ready(function () {
                 <td>${element.collection}</td>
                 <td>${element.praise}</td>
                 <td>${element.downamount}</td>
-                <td>${element.publishtime}</td>
+                <td>${element.publishtime.time}</td>
                 <td>${element.status}</td>
                 <td>
                     <button class="btn del-btn">下架</button>
@@ -48,7 +52,7 @@ $(document).ready(function () {
                 method: ' my_publish_vr'
             }),
             success: function (res) {
-                if (res > 0) {
+                if (res.length > 0) {
                     $('.empty-data').hide();
                     modelList(res);
                 } else {
@@ -64,7 +68,6 @@ $(document).ready(function () {
 
     // 下架
     $('tbody').on('click', '.del-btn', function () {
-        $(this).closest('tr').remove();
         $.ajax({
             url: '/api/tradingCTL',
             type: 'post',
@@ -78,6 +81,7 @@ $(document).ready(function () {
             }),
             success: function (res) {
                 if (res.result == 'true') {
+                    $(this).closest('tr').remove();
                 } else {
                     alert('删除失败');
                 }

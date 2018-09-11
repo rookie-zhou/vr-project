@@ -326,4 +326,6 @@ $(document).ready(function () {
             }
         });
     }
+    // 动态设置iframe高度
+    setIframeHeight();
 });
