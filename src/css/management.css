@@ -1,11 +1,8 @@
-.member-box {
-  margin-left: 32px;
-}
 .member-box label {
   margin: 0;
 }
 .member-box .member-header {
-  width: 1518px;
+  width: 1300px;
   height: 72px;
   background: linear-gradient(180deg, #0099ff 0%, #0099ff 0%, #0099ff 45%, #ffffff 100%, #ffffff 100%);
 }
@@ -45,7 +42,7 @@
 .member-box .content .nav {
   vertical-align: top;
   display: inline-block;
-  width: 165px;
+  width: 100px;
   min-height: 300px;
   border: 2px solid #17c1fe;
   border-radius: 20px;
@@ -69,7 +66,7 @@
 }
 .member-box .content iframe {
   display: inline-block;
-  width: 1350px;
+  width: 1200px;
   min-height: 900px;
   border-radius: 20px;
   padding: 0 20px;

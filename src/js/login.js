@@ -51,7 +51,7 @@ $(document).ready(function () {
                 } else if (res.result == '04') {
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('userType', '4');
-                    window.location.href = '/devIndex.html';
+                    window.location.href = '/management.html';
                     window.opener.location.reload();
                 }
             },
