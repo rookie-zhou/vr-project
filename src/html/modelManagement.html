@@ -9,88 +9,98 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-md-2">
-            <select class="form-control name">
-                <option value="10">ID号</option>
-                <option value="20">名称</option>
-                <option value="30">类型</option>
-                <option value="40">开发者姓名</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <input type="text" class="form-control value">
-        </div>
-        <div class="col-md-1">
-            <button class="btn btn-primary check-btn">查询</button>
-        </div>
-        <div class="col-md-1 text-center">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" class="checkbox-1"> 未审核
-                </label>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-2">
+                <select class="form-control name">
+                    <option value="10">ID号</option>
+                    <option value="20">名称</option>
+                    <option value="30">类型</option>
+                    <option value="40">开发者姓名</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control value">
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary check-btn">查询</button>
+            </div>
+            <div class="col-md-1 text-center">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="examine" value="0" class="checkbox-1"> 未审核
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="examine" value="1" class="checkbox-2"> 审核通过
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="examine" value="2" class="checkbox-3"> 审核不通过
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1 text-center">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="examine" value="3" class="checkbox-4"> 已下架
+                    </label>
+                </div>
             </div>
         </div>
-        <div class="col-md-2 text-center">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" class="checkbox-2"> 审核通过
-                </label>
+        <div class="row table-list">
+            <div class="col-md-12 table-responsive">
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="table-title">
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="checkbox-all" value="00" type="checkbox"> 全选
+                                    </label>
+                                </div>
+                            </td>
+                            <td>ID号</td>
+                            <td>名称</td>
+                            <td>类型</td>
+                            <td>开发者</td>
+                            <td>价格</td>
+                            <td>发布时间</td>
+                            <td>查看明细</td>
+                        </tr>
+                    </thead>
+                    <tbody class="table-title tbody-list">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+                <p class="noData text-center" style="color: red">抱歉，没有查询到数据...</p>
             </div>
         </div>
-        <div class="col-md-2 text-center">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" class="checkbox-3"> 审核不通过
-                </label>
+        <div class="row">
+            <div class="page-box">
+                <div class="page-detail">
+                    <span class="page-num">1</span>/
+                    <span class="total-pageNum">1</span>
+                    <span class="total-num">0</span>
+                    <span>条</span>
+                </div>
+                <div class="vr-pagination"></div>
             </div>
         </div>
-        <div class="col-md-1 text-center">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" class="checkbox-4"> 已下架
-                </label>
+        <div class="row">
+            <button class="btn btn-primary col-md-2 col-md-offset-1 through">审核通过</button>
+            <button class="btn btn-primary col-md-2 col-md-offset-1 failed">审核不通过</button>
+            <div class="col-md-5 col-md-offset-1">
+                <p>审核不通过原因：</p>
+                <textarea class="reason" name="reason" cols="50" rows="10" class="form-control"></textarea>
             </div>
-        </div>
-    </div>
-    <div class="row table-list">
-        <div class="col-md-12 table-responsive">
-            <table class="table table-bordered table-hover text-center">
-                <thead class="table-title">
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label>
-                                    <input class="checkbox-all" type="checkbox"> 全选
-                                </label>
-                            </div>
-                        </td>
-                        <td>ID号</td>
-                        <td>名称</td>
-                        <td>类型</td>
-                        <td>开发者</td>
-                        <td>价格</td>
-                        <td>发布时间</td>
-                        <td>查看明细</td>
-                    </tr>
-                </thead>
-                <tbody class="table-title tbody-list">
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-12">
-            <p class="noData text-center" style="color: red">抱歉，没有查询到数据...</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="page-box">
-            <div class="page-detail">
-                <span class="page-num">1</span>/
-                <span class="total-pageNum">1</span>
-                <span class="total-num">0</span>
-                <span>条</span>
-            </div>
-            <div class="vr-pagination"></div>
         </div>
     </div>
 </body>

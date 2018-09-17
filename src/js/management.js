@@ -13,10 +13,10 @@ import {
 
 $(document).ready(function () {
     // 检查是否登录
-    // checkLoginStatus();
+    checkLoginStatus();
     Object.defineProperty(loginStatus, 'status', {
         set: function () {
-            // checkLoginType();
+            checkLoginType();
         }
     });
     loginStatus.status = '';
