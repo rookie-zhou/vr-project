@@ -23,6 +23,7 @@ $(document).ready(function () {
     var imgPushUrl = '';
     var imgName = '';
     var token;
+    var domain = '';
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
@@ -63,6 +64,38 @@ $(document).ready(function () {
                         $(navDom).appendTo('.product-type');
                     });
                 }
+            }
+        });
+        // 获取domain
+        $.ajax({
+            url: '/api/publicCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'getQiniuDomain'
+            }),
+            success: function (res) {
+                domain = 'http://' + res.domain;
+            },
+            error: function () {
+                alert('获取domain失败')
+            }
+        });
+        // 获取限制文件大小及格式
+        $.ajax({
+            url: '/api/publicCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'getfile_sizeandtype'
+            }),
+            success: function (res) {
+                console.log(res)
+            },
+            error: function () {
+                alert('获取限制文件大小及格式失败')
             }
         });
     })();
@@ -237,13 +270,13 @@ $(document).ready(function () {
                 } else {
                     thisImg.isHomepage = 'N'
                 }
-                addImg();
+                addImg(imgPushUrl);
                 postParams.imglist.push(thisImg);
             }
         });
     };
 
-    function addImg() {
+    function addImg(imageUrl) {
         var index = postParams.imglist.length;
         var checked = '';
         if (index == 0) {
@@ -252,6 +285,7 @@ $(document).ready(function () {
         var dom = `
         <li>
             <span>${imgName}</span>
+            <img src="${domain + imageUrl}" width="100">
             <input class="group" id="img-${index}" type="radio" name="type" value="${index}" ${checked}>
             <label class="group" for="img-${index}">是否显示在首页</label>
             <button class="btn del-btn btn-primary" index="${index}">删除</button>

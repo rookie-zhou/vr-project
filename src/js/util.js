@@ -35,7 +35,6 @@ function checkLoginStatus() {
 function setIframeHeight() {
     setTimeout(function () {
         var divHeight = $('.content').height();
-        console.log(divHeight)
         $('iframe', parent.document).css('height', divHeight + 100);
     }, 300);
 }
