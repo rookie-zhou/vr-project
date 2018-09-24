@@ -191,6 +191,9 @@ body .remodal-confirm:hover {
   vertical-align: middle;
   cursor: pointer;
 }
+.content #publish .row .img-list ul li img {
+  width: 200px;
+}
 .content #publish .row .img-list ul li .btn {
   margin-left: 50px;
   width: 60px;

@@ -34,7 +34,7 @@ $(document).ready(function () {
     }
     const productId = getUrlParam('id');
     $.ajax({
-        url: '/api/vrproductCTL',
+        url: '/vrproductCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
@@ -68,7 +68,7 @@ $(document).ready(function () {
     // 点赞
     $('.add-praise').click(function () {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -97,7 +97,7 @@ $(document).ready(function () {
     $('.add-collection').click(function () {
         if (userType) {
             $.ajax({
-                url: '/api/tradingCTL',
+                url: '/tradingCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',

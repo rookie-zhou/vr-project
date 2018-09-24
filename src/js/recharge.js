@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
         if (value > 0) {
             $.ajax({
-                url: '/api/paymentCTL',
+                url: '/paymentCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',

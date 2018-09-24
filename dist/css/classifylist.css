@@ -84,44 +84,44 @@ body .remodal-confirm:hover {
   box-sizing: border-box;
   border: 1px solid #0099ff;
 }
-.header {
+.content {
+  margin: 30px 62px;
+  width: 1106px;
+}
+.content .header {
   width: 1136px;
   background: #fafafa;
   padding: 10px 0;
-  margin-left: 62px;
 }
-.header p {
+.content .header p {
   font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
   font-weight: 700;
   font-style: normal;
   color: #999;
   font-size: 14px;
 }
-.header p .vr-name {
+.content .header p .vr-name {
   color: #FFCC00;
 }
-.header p span {
+.content .header p span {
   display: inline-block;
 }
-.header p span {
+.content .header p span {
   margin-left: 20px;
 }
-.header .list-type span {
+.content .header .list-type span {
   cursor: pointer;
 }
-.header .list-type span:hover {
+.content .header .list-type span:hover {
   color: #FFCC00;
 }
-.header .list-type .active {
+.content .header .list-type .active {
   color: #FFCC00;
-}
-.content {
-  background: #fafafa;
-  margin: 30px 62px;
-  width: 1106px;
 }
 .content .vr-list {
   padding: 10px 0;
+  background: #fafafa;
+  margin-top: 30px;
 }
 .content .vr-list .vr-box {
   border: 1px solid #d7d7d7;
@@ -177,6 +177,7 @@ body .remodal-confirm:hover {
   font-style: normal;
   color: #999;
   font-size: 14px;
+  margin-top: 30px;
 }
 .page-box .page-detail {
   display: inline-block;

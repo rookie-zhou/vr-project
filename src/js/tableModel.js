@@ -46,7 +46,7 @@ $(document).ready(function () {
     // 获取收藏列表数据
     function releaseModelList() {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -72,7 +72,7 @@ $(document).ready(function () {
     $('tbody').on('click', '.del-btn', function () {
         
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

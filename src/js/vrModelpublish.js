@@ -39,7 +39,7 @@ $(document).ready(function () {
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
-            url: '/api/qiniuCTL',
+            url: '/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -59,7 +59,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/api/modelTypeCTL',
+            url: '/modelTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -80,7 +80,7 @@ $(document).ready(function () {
         });
         // 获取domain
         $.ajax({
-            url: '/api/publicCTL',
+            url: '/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -97,7 +97,7 @@ $(document).ready(function () {
 
         // 获取限制文件大小及格式
         $.ajax({
-            url: '/api/publicCTL',
+            url: '/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -130,7 +130,7 @@ $(document).ready(function () {
             expandedname: expandedname
         }
         $.ajax({
-            url: '/api/qiniuCTL',
+            url: '/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -202,7 +202,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/api/qiniuCTL',
+                url: '/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -356,7 +356,7 @@ $(document).ready(function () {
         postParams.intro = $('.demo-detail').val();
 
         $.ajax({
-            url: '/api/modelCTL',
+            url: '/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

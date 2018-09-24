@@ -111,7 +111,7 @@ $(document).ready(function () {
         if (param.memName) {
             $.ajax({
                 type: 'post',
-                url: '/api/userCTL',
+                url: '/userCTL',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify({
@@ -214,7 +214,7 @@ $(document).ready(function () {
         if (param.group.name) {
             $.ajax({
                 type: 'post',
-                url: '/api/userCTL',
+                url: '/userCTL',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify({
@@ -422,7 +422,7 @@ $(document).ready(function () {
     function register(data) {
         $.ajax({
             type: 'post',
-            url: '/api/userCTL',
+            url: '/userCTL',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
