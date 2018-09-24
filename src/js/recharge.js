@@ -43,7 +43,7 @@ $(document).ready(function () {
                     sum: value
                 }),
                 success: function (res) {
-                    console.log(res)
+                    window.open(res.url)
                 }
             });
         } else {

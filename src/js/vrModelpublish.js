@@ -8,6 +8,16 @@ import {
     dataURItoBlob
 } from './util';
 $(document).ready(function () {
+    var fileLimit = {
+        filesize_demo: '',
+        filesize_img: '',
+        filesize_model: '',
+        filesize_video: '',
+        filetype_demo: [],
+        filetype_img: [],
+        filetype_model: [],
+        filetype_video: []
+    }
     setIframeHeight();
     const userName = localStorage.getItem('userName');
     var postParams = {
@@ -95,7 +105,7 @@ $(document).ready(function () {
                 method: 'getfile_sizeandtype'
             }),
             success: function (res) {
-                console.log(res)
+                fileLimit = res;
             },
             error: function () {
                 alert('获取限制文件大小及格式失败')
@@ -110,6 +120,10 @@ $(document).ready(function () {
         var index1 = fullName.lastIndexOf(".");
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
+        if (!fileLimit.filetype_model.includes(expandedname)) {
+            alert('请选择正确的模型格式进行上传！');
+            return;
+        }
         var data = {
             method: 'getQiniuUpFilename',
             type: type,
@@ -130,9 +144,13 @@ $(document).ready(function () {
         });
     }
 
-    // 上传软件
+    // 上传模型
     $('.demo-file').on('change', function (e) {
         const file = e.target.files[0];
+        if (file.sise > parseInt(fileLimit.filesize_model) * 1024 * 1024) {
+            alert('请选择小于' + fileLimit.filesize_model + '的文件！')
+            return;
+        }
         const filePath = $(this).val();
         const arr = filePath.split('\\');
         const fileName = arr[arr.length - 1];
@@ -173,6 +191,10 @@ $(document).ready(function () {
         var index1 = fullName.lastIndexOf(".");
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
+        if (!fileLimit.filetype_img.includes(expandedname)) {
+            alert('请选择正确的图片格式进行上传！');
+            return;
+        }
         var data = {
             method: 'getQiniuUpFilename',
             type: 'imgmodel',
@@ -200,6 +222,10 @@ $(document).ready(function () {
     // 上传图片
     $('.photo-file').on('change', function (e) {
         var file = e.target.files[0];
+        if (file.sise > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
+            alert('请选择小于' + fileLimit.filesize_img + '的图片！')
+            return;
+        }
         var reader = new FileReader();
         var blob;
         reader.readAsDataURL(file);
@@ -210,13 +236,9 @@ $(document).ready(function () {
         const filePath = e.target.files[0].name;
         const index = filePath.lastIndexOf(".");
         imgName = filePath.substring(0, index);
-        if (filePath.indexOf('png') != -1 || filePath.indexOf('jpg') != -1 || filePath.indexOf('jpeg') != -1) {
-            getImgName(filePath).then(() => {
-                uploadImg(blob, token);
-            });
-        } else {
-            alert('请选择jpg、jpeg、png格式的图片进行上传！');
-        }
+        getImgName(filePath).then(() => {
+            uploadImg(blob, token);
+        });
     });
 
 
@@ -271,7 +293,7 @@ $(document).ready(function () {
         var dom = `
         <li>
             <span>${imgName}</span>
-            <img src="${domain + imageUrl}" width="100">
+            <img src="${domain+'/'+imageUrl}" width="100">
             <input class="group" id="img-${index}" type="radio" name="type" value="${index}" ${checked}>
             <label class="group" for="img-${index}">是否显示在首页</label>
             <button class="btn del-btn btn-primary" index="${index}">删除</button>

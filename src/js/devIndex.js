@@ -35,9 +35,9 @@ $(document).ready(function () {
         userType = localStorage.getItem('userType');
         // 显示用户名
         $('.user-name').text(userName);
-        // if (!userType || userType == 0) {
-        //     window.location.href = './index.html';
-        // }
+        if (!userType || userType == 0) {
+            window.location.href = './index.html';
+        }
     }
     // 产品列表
     localStorage.setItem('modelOrProduct', '02');

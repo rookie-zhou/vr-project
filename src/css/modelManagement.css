@@ -4,6 +4,9 @@
 .row table .table-title tr td {
   vertical-align: middle;
 }
+.row table .table-title tr td img {
+  width: 50px;
+}
 .page-box {
   text-align: center;
   font-family: 'Arial Negreta', 'Arial Normal', 'Arial';

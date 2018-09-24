@@ -8,6 +8,16 @@ import {
     dataURItoBlob
 } from './util';
 $(document).ready(function () {
+    var fileLimit = {
+        filesize_demo: '',
+        filesize_img: '',
+        filesize_model: '',
+        filesize_video: '',
+        filetype_demo: [],
+        filetype_img: [],
+        filetype_model: [],
+        filetype_video: []
+    }
     const userName = localStorage.getItem('userName');
     var postParams = {
         name: '',
@@ -92,7 +102,7 @@ $(document).ready(function () {
                 method: 'getfile_sizeandtype'
             }),
             success: function (res) {
-                console.log(res)
+                fileLimit = res;
             },
             error: function () {
                 alert('获取限制文件大小及格式失败')
@@ -106,6 +116,17 @@ $(document).ready(function () {
         var index1 = fullName.lastIndexOf(".");
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
+        if (type == 'video') {
+            if (!fileLimit.filetype_video.includes(expandedname)) {
+                alert('请选择正确的视频格式进行上传！');
+                return;
+            }
+        } else if (type == 'vrdemo'){
+            if (!fileLimit.filetype_video.includes(expandedname)) {
+                alert('请选择正确的DEMO格式进行上传！');
+                return;
+            }
+        }
         var data = {
             method: 'getQiniuUpFilename',
             type: type,
@@ -134,6 +155,10 @@ $(document).ready(function () {
     $('.video-file').on('change', function (e) {
         const file = e.target.files[0];
         const filePath = $(this).val();
+        if (file.sise > parseInt(fileLimit.filesize_video) * 1024 * 1024) {
+            alert('请选择小于' + fileLimit.filesize_video + '的文件！');
+            return;
+        }
         if (filePath.indexOf('mp4') != -1) {
             const arr = filePath.split('\\');
             const fileName = arr[arr.length - 1];
@@ -147,6 +172,10 @@ $(document).ready(function () {
     // 上传软件
     $('.demo-file').on('change', function (e) {
         const file = e.target.files[0];
+        if (file.sise > parseInt(fileLimit.filesize_demo) * 1024 * 1024) {
+            alert('请选择小于' + fileLimit.filesize_demo + '的文件！')
+            return;
+        }
         const filePath = $(this).val();
         const arr = filePath.split('\\');
         const fileName = arr[arr.length - 1];
@@ -187,6 +216,10 @@ $(document).ready(function () {
         var index1 = fullName.lastIndexOf(".");
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
+        if (!fileLimit.filetype_img.includes(expandedname)) {
+            alert('请选择正确的图片格式进行上传！');
+            return;
+        }
         var data = {
             method: 'getQiniuUpFilename',
             type: 'imgvr',
@@ -214,6 +247,10 @@ $(document).ready(function () {
     // 上传图片
     $('.photo-file').on('change', function (e) {
         var file = e.target.files[0];
+        if (file.sise > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
+            alert('请选择小于' + fileLimit.filesize_img + '的图片！')
+            return;
+        }
         var reader = new FileReader();
         var blob;
         reader.readAsDataURL(file);

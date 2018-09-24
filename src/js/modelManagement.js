@@ -39,10 +39,16 @@ $(document).ready(function () {
                 </td>
                 <td>${element.id}</td>
                 <td>${element.name}</td>
-                <td>${element.type}</td>
-                <td>${element.devUsername}</td>
+                <td><img src="${element.homeImage}"></td>
+                <td>${element.salesVolume}</td>
                 <td>${element.price}</td>
                 <td>${thisDate}</td>
+                <td>${element.collection}</td>
+                <td>${element.status}</td>
+                <td>${element.status_name}</td>
+                <td>${element.type}</td>
+                <td>${element.devUsername}</td>
+                <td>${element.devUserfullname}</td>
                 <td><button modelId="${element.id}" class="btn btn-primary btn-detail">明细</button></td>
             </tr>
             `
@@ -178,6 +184,7 @@ $(document).ready(function () {
             examineStatus: '1',
         }
         if (idList.length > 0) {
+            paramsList.commodityId = paramsList.commodityId.toString();
             examine(paramsList);
         } else {
             alert('请选择需要审批的模型！')
@@ -197,6 +204,7 @@ $(document).ready(function () {
             reason: $('.reason').val()
         }
         if (idList.length > 0 && $('.reason').val()) {
+            paramsList.commodityId = paramsList.commodityId.toString();
             examine(paramsList);
         } else {
             alert('请选择需要审批的模型,并填写审核不通过原因！')
