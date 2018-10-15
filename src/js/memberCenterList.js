@@ -26,9 +26,6 @@ $(document).ready(function () {
             if (!element.homeImage) {
                 element.homeImage = productImg
             }
-            if (element.publishtime) {
-                element.publishtime = fmtDate(element.publishtime);
-            }
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
@@ -36,7 +33,7 @@ $(document).ready(function () {
                     <div>
                         <p class="name">${element.commodityName}
                             <span class="id-box">
-                                <span class="time">${element.publishtime}</span>
+                                <span class="time">${element.commodityId}</span>
                             </span>
                         </p>
                     </div>
@@ -73,7 +70,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('调用接口失败，请稍后重试');
+                window.parent.showAlertParent('调用接口失败，请稍后重试');
             }
         });
     }
@@ -132,7 +129,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('调用接口失败，请稍后重试');
+                window.parent.showAlertParent('调用接口失败，请稍后重试');
             }
         });
     }
@@ -189,11 +186,11 @@ $(document).ready(function () {
                 if (res.result == 'true') {
                     $(this).closest('.col-xs-3').remove();
                 } else {
-                    alert('删除失败');
+                    window.parent.showAlertParent('删除失败');
                 }
             },
             error: function () {
-                alert('调用接口失败，请稍后重试');
+                window.parent.showAlertParent('调用接口失败，请稍后重试');
             }
         });
     })

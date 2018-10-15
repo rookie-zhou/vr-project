@@ -83,13 +83,13 @@ $(document).ready(function () {
                 } else if (res.result > 0) {
                     $('.praise').text(res.result);
                 } else if (res.result == 'false') {
-                    alert('点赞失败，请稍后重试！');
+                    window.parent.showAlertParent('点赞失败，请稍后重试！');
                 } else {
-                    alert(res);
+                    window.parent.showAlertParent(res);
                 }
             },
             error: function (res) {
-                alert(res);
+                window.parent.showAlertParent(res);
             }
         });
     });
@@ -112,19 +112,45 @@ $(document).ready(function () {
                     } else if (res.result > 0) {
                         $('.collection').text(res.result);
                     } else if (res.result == 'false') {
-                        alert('点赞失败，请稍后重试！');
+                        window.parent.showAlertParent('点赞失败，请稍后重试！');
                     } else {
-                        alert(res);
+                        window.parent.showAlertParent(res);
                     }
                 },
                 error: function (res) {
-                    alert(res);
+                    window.parent.showAlertParent(res);
                 }
             });
         } else {
-            alert('登录以后才能收藏');
+            window.parent.showAlertParent('登录以后才能收藏');
         }
     });
+    $('.download-demo').click(function () {
+        $.ajax({
+            url: '/tradingCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'vrproduct_demodownload',
+                commodityId: productId
+            }),
+            success: function (res) {
+                if (res.result == '00') {
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = './login.html';
+                } else if (res.content){
+                    window.parent.showAlertParent(res.content);
+                }else if (res.result){
+                    var tempwindow1 = window.open('_blank');
+                    tempwindow1.location = res.result;
+                }
+            },
+            error: function (res) {
+                window.parent.showAlertParent(res);
+            }
+        });
+    })
     // 动态设置iframe高度
     setIframeHeight();
 });

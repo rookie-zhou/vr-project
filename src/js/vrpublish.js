@@ -31,9 +31,17 @@ $(document).ready(function () {
         imglist: []
     };
     var imgPushUrl = '';
+    var filePushUrl = '';
     var imgName = '';
     var token;
     var domain = '';
+    var sizeReg = /^[1-9]\d*(\.\d+)?$/i;
+    $('.soft-size').bind('input propertychange', function () {
+        if (!sizeReg.test($(this).val())) {
+            window.parent.showAlertParent('请输入大于0的数字');
+            document.getElementsByClassName('soft-size')[0].value = '';
+        }
+    });
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
@@ -49,11 +57,11 @@ $(document).ready(function () {
                     token = res.uptoken;
                     return token;
                 } else {
-                    alert('获取上传凭证失败')
+                    window.parent.showAlertParent('获取上传凭证失败')
                 }
             },
             error: function () {
-                alert('获取上传凭证失败')
+                window.parent.showAlertParent('获取上传凭证失败')
             }
         });
         $.ajax({
@@ -89,7 +97,7 @@ $(document).ready(function () {
                 domain = 'http://' + res.domain;
             },
             error: function () {
-                alert('获取domain失败')
+                window.parent.showAlertParent('获取domain失败')
             }
         });
         // 获取限制文件大小及格式
@@ -105,26 +113,30 @@ $(document).ready(function () {
                 fileLimit = res;
             },
             error: function () {
-                alert('获取限制文件大小及格式失败')
+                window.parent.showAlertParent('获取限制文件大小及格式失败')
             }
         });
     })();
 
 
     // 获取文件名
-    function getFileName(type, fullName) {
+    function getFileName(type, fullName, file) {
         var index1 = fullName.lastIndexOf(".");
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
         if (type == 'video') {
             if (!fileLimit.filetype_video.includes(expandedname)) {
-                alert('请选择正确的视频格式进行上传！');
+                window.parent.showAlertParent('请选择正确的视频格式进行上传！');
                 return;
+            } else {
+                $(".video-name").html(fullName);
             }
-        } else if (type == 'vrdemo'){
+        } else if (type == 'vrdemo') {
             if (!fileLimit.filetype_video.includes(expandedname)) {
-                alert('请选择正确的DEMO格式进行上传！');
+                window.parent.showAlertParent('请选择正确的DEMO格式进行上传！');
                 return;
+            } else {
+                $(".demo-name").html(fullName);
             }
         }
         var data = {
@@ -132,23 +144,27 @@ $(document).ready(function () {
             type: type,
             expandedname: expandedname
         }
-        $.ajax({
-            url: '/qiniuCTL',
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data),
-            success: function (res) {
-                if (type == 'video') {
-                    postParams.videourl = res.filename;
-                } else if (type == 'vrdemo') {
-                    postParams.demourl = res.filename;
+        var promiseFun = new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/qiniuCTL',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+                success: function (res) {
+                    if (type == 'video') {
+                        postParams.videourl = res.filename
+                    } else {
+                        postParams.demourl = res.filename
+                    }
+                    resolve(res.filename);
+                },
+                error: function () {
+                    window.parent.showAlertParent('获取文件名错误，将不能进行上传文件操作！')
                 }
-            },
-            error: function () {
-                alert('获取文件名错误！')
-            }
+            });
         });
+        return promiseFun;
     }
 
     // 上传视频
@@ -156,40 +172,36 @@ $(document).ready(function () {
         const file = e.target.files[0];
         const filePath = $(this).val();
         if (file.sise > parseInt(fileLimit.filesize_video) * 1024 * 1024) {
-            alert('请选择小于' + fileLimit.filesize_video + '的文件！');
+            window.parent.showAlertParent('请选择小于' + fileLimit.filesize_video + '的文件！');
             return;
         }
-        if (filePath.indexOf('mp4') != -1) {
-            const arr = filePath.split('\\');
-            const fileName = arr[arr.length - 1];
-            $(".video-name").html(fileName);
-            getFileName('video', filePath);
-            uploadFile(file, token);
-        } else {
-            $(".video-name").html('请选择MP4文件');
-        }
+        const arr = filePath.split('\\');
+        const fileName = arr[arr.length - 1];
+        getFileName('video', fileName, file).then((res) => {
+            uploadFile(file, token, res);
+        })
     });
     // 上传软件
     $('.demo-file').on('change', function (e) {
         const file = e.target.files[0];
         if (file.sise > parseInt(fileLimit.filesize_demo) * 1024 * 1024) {
-            alert('请选择小于' + fileLimit.filesize_demo + '的文件！')
+            window.parent.showAlertParent('请选择小于' + fileLimit.filesize_demo + '的文件！')
             return;
         }
         const filePath = $(this).val();
         const arr = filePath.split('\\');
         const fileName = arr[arr.length - 1];
-        $(".demo-name").html(fileName);
-        getFileName('vrdemo', filePath);
-        uploadFile(file, token);
+        getFileName('vrdemo', fileName, file).then((res) => {
+            uploadFile(file, token, res);
+        })
     });
 
     // 上传视频和文件的方法
-    function uploadFile(imgSource, token) {
+    function uploadFile(fileSource, token, fileUrl) {
         window.parent.openModal();
         const uptoken = token;
-        const file = imgSource;
-        const key = null;
+        const file = fileSource;
+        const key = fileUrl;
         let observable = qiniu.upload(file, key, uptoken);
         observable.subscribe({
             next: (res) => {
@@ -217,7 +229,7 @@ $(document).ready(function () {
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
         if (!fileLimit.filetype_img.includes(expandedname)) {
-            alert('请选择正确的图片格式进行上传！');
+            window.parent.showAlertParent('请选择正确的图片格式进行上传！');
             return;
         }
         var data = {
@@ -234,10 +246,10 @@ $(document).ready(function () {
                 data: JSON.stringify(data),
                 success: function (res) {
                     imgPushUrl = res.filename;
-                    resolve(imgPushUrl);
+                    resolve(res.filename);
                 },
                 error: function () {
-                    alert('获取文件名错误，将不能进行上传文件操作！')
+                    window.parent.showAlertParent('获取文件名错误，将不能进行上传文件操作！')
                 }
             });
         });
@@ -248,7 +260,7 @@ $(document).ready(function () {
     $('.photo-file').on('change', function (e) {
         var file = e.target.files[0];
         if (file.sise > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
-            alert('请选择小于' + fileLimit.filesize_img + '的图片！')
+            window.parent.showAlertParent('请选择小于' + fileLimit.filesize_img + '的图片！')
             return;
         }
         var reader = new FileReader();
@@ -262,21 +274,21 @@ $(document).ready(function () {
         const index = filePath.lastIndexOf(".");
         imgName = filePath.substring(0, index);
         if (filePath.indexOf('png') != -1 || filePath.indexOf('jpg') != -1 || filePath.indexOf('jpeg') != -1) {
-            getImgName(filePath).then(() => {
-                uploadImg(blob, token);
+            getImgName(filePath).then((res) => {
+                uploadImg(blob, token, res);
             });
         } else {
-            alert('请选择jpg、jpeg、png格式的图片进行上传！');
+            window.parent.showAlertParent('请选择jpg、jpeg、png格式的图片进行上传！');
         }
     });
 
 
     // 上传图片方法
-    function uploadImg(imgSource, token) {
+    function uploadImg(imgSource, token, imgUrl) {
         window.parent.openModal();
         const uptoken = token;
         const file = imgSource;
-        const key = null;
+        const key = imgUrl;
         let observable = qiniu.upload(file, key, uptoken);
         observable.subscribe({
             next: (res) => {
@@ -338,45 +350,45 @@ $(document).ready(function () {
             $(this).closest('li').remove();
             postParams.imglist.splice(index, 1);
         } else {
-            alert('当前图片为首页显示图片不能删除！');
+            window.parent.showAlertParent('当前图片为首页显示图片不能删除！');
             return;
         }
     });
     // 保存
     $('.post-btn').click(function () {
         if (postParams.imglist.length == 0) {
-            alert('请上传至少一张图片！');
+            window.parent.showAlertParent('请上传至少一张图片！');
             return;
         }
         checkIsHomeImg();
         if (!$('.vr-name').val()) {
-            alert('请输入VR产品名称');
+            window.parent.showAlertParent('请输入VR产品名称');
             return;
         }
         postParams.name = $('.vr-name').val();
 
         if (!$('.soft-size').val()) {
-            alert('请输入软件大小（KB）');
+            window.parent.showAlertParent('请输入软件大小（KB）');
             return;
         }
         postParams.softsize = $('.soft-size').val();
 
         if (!$(".product-type option:selected").val()) {
-            alert('请输入产品类型');
+            window.parent.showAlertParent('请输入产品类型');
             return;
         }
         postParams.type = $(".product-type option:selected").val();
 
         if (!postParams.demourl) {
-            alert('请上传demo文件');
+            window.parent.showAlertParent('请上传demo文件');
             return;
         }
         if (!postParams.videourl) {
-            alert('请上传演示视频');
+            window.parent.showAlertParent('请上传演示视频');
             return;
         }
         if (!$('.demo-detail').val()) {
-            alert('请输入产品概述');
+            window.parent.showAlertParent('请输入产品概述');
             return;
         }
         postParams.intro = $('.demo-detail').val();
@@ -389,13 +401,13 @@ $(document).ready(function () {
             data: JSON.stringify(postParams),
             success: function (res) {
                 if (res == 'true') {
-                    alert('发布成功，请等待管理员审核后将自动展示在平台！');
+                    window.parent.showAlertParent('发布成功，请等待管理员审核后将自动展示在平台！');
                 } else {
-                    alert('发布失败！');
+                    window.parent.showAlertParent('发布失败！');
                 }
             },
             error: function (res) {
-                alert('发布失败！');
+                window.parent.showAlertParent('发布失败！');
             }
         });
     });

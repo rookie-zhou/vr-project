@@ -7,9 +7,13 @@ import './../css/style.css';
 import './../css/devIndex.css';
 import {
     checkLoginStatus,
-    loginStatus
+    loginStatus,
+    showAlertMsg
 } from './util';
 $(document).ready(function () {
+    window.showAlertParent = function (content) {
+        showAlertMsg(content)
+    }
     var updateModal = $('[data-remodal-id=updateModal]').remodal();
     window.openModal = function () {
         updateModal.open();

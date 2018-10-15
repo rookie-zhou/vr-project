@@ -26,6 +26,12 @@ $(document).ready(function () {
     // 获取vr类型
     $('.vr-name').html(localStorage.getItem('vr-name'));
     var vrType = localStorage.getItem('vr-type');
+    if (modelOrProduct == '02') {
+        $('.vr-titleName').html('VR模型')
+        $('.vr-product').hide();
+    }else {
+        $('.vr-model').hide();
+    }
 
     function initList(list) {
         list.forEach(element => {
@@ -87,7 +93,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function() {
-                alert('获取产品列表数据失败请重试！')
+                window.parent.showAlertParent('获取产品列表数据失败请重试！')
             }
         });
     }
@@ -101,7 +107,7 @@ $(document).ready(function () {
             <div class="col-xs-3">
                 <div class="vr-box">
                     <img class="product-img" src="${element.homeImage}" alt="vr产品图片" width="100%">
-                    <p class="name">${element.name}</p>
+                    <p class="name">${element.name} <span class="price">价格：<span>${element.price}维币</span></span></p>
                     <p class="id-box">
                         <span>ID:</span>
                         <span class="id">${element.id}</span>
@@ -151,7 +157,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function() {
-                alert('获取模型列表数据失败请重试！')
+                window.parent.showAlertParent('获取模型列表数据失败请重试！')
             }
         });
     }

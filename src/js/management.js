@@ -8,10 +8,14 @@ import "../css/style.css";
 import './../css/management.css';
 import {
     checkLoginStatus,
-    loginStatus
+    loginStatus,
+    showAlertMsg
 } from './util'
 
 $(document).ready(function () {
+    window.showAlertParent = function (content) {
+        showAlertMsg(content)
+    }
     // 检查是否登录
     checkLoginStatus();
     Object.defineProperty(loginStatus, 'status', {

@@ -13,9 +13,10 @@ $(document).ready(function () {
     var totalPageNum = 1;
     var pageNum = 1;
     var pageRows = 10;
+    var dataList = [];
     var searchParams = {
         method: ' getExamine_MODEL',
-        paramName: '10',
+        paramName: '20',
         value: '',
         status: '',
         pageNumber: pageNum,
@@ -71,6 +72,7 @@ $(document).ready(function () {
                 $('.tbody-list').empty();
                 if (res.data.length > 0) {
                     initList(res.data);
+                    dataList = res.data;
                     $('.noData').hide();
                 } else {
                     $('.noData').show();
@@ -103,7 +105,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function () {
-                alert('获取列表数据失败请重试！');
+                window.parent.showAlertParent('获取列表数据失败请重试！');
             }
         });
     }
@@ -121,6 +123,7 @@ $(document).ready(function () {
                 $('.tbody-list').empty();
                 if (res.data.length > 0) {
                     initList(res.data);
+                    dataList = res.data;
                     $('.noData').hide();
                 } else {
                     $('.noData').show();
@@ -134,7 +137,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function () {
-                alert('获取列表数据失败请重试！');
+                window.parent.showAlertParent('获取列表数据失败请重试！');
             }
         });
     }
@@ -173,8 +176,15 @@ $(document).ready(function () {
     });
     // 审核通过
     $('.through').click(function () {
+        var checkStatus = true;
         idList = [];
         $.each($('input[name=checkId]:checked'), function () {
+            dataList.map(item => {
+                if ($(this).val() == item.id && item.status == 1) {
+                    window.parent.showAlertParent('不能选择已通过审核的模型');
+                    checkStatus = false;
+                }
+            })
             idList.push($(this).val());
         });
         var paramsList = {
@@ -185,9 +195,11 @@ $(document).ready(function () {
         }
         if (idList.length > 0) {
             paramsList.commodityId = paramsList.commodityId.toString();
-            examine(paramsList);
+            if (checkStatus) {
+                examine(paramsList);
+            }
         } else {
-            alert('请选择需要审批的模型！')
+            window.parent.showAlertParent('请选择需要审批的模型！')
         }
     });
     // 审核不通过
@@ -207,7 +219,7 @@ $(document).ready(function () {
             paramsList.commodityId = paramsList.commodityId.toString();
             examine(paramsList);
         } else {
-            alert('请选择需要审批的模型,并填写审核不通过原因！')
+            window.parent.showAlertParent('请选择需要审批的模型,并填写审核不通过原因！')
         }
     });
 
@@ -219,13 +231,13 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(params),
             success: function (res) {
-                if (res == 'true') {
-                    alert('审核通过！');
+                if (res.result == true) {
+                    window.parent.showAlertParent('审核通过！');
                     window.location.reload();
                 }
             },
             error: function () {
-                alert('调用接口失败请稍后再试！')
+                window.parent.showAlertParent('调用接口失败请稍后再试！')
             }
         })
     }

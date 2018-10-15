@@ -39,6 +39,11 @@
   font-size: 15px;
   color: #999;
 }
+.content .ranking .vr-box .name .price {
+  float: right;
+  margin-right: 5px;
+  color: #337ab7;
+}
 .content .ranking .vr-box .id-box {
   display: inline-block;
   font-size: 12px;

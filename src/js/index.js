@@ -7,10 +7,14 @@ import './../css/style.css';
 import './../css/index.css';
 import {
     checkLoginStatus,
-    loginStatus
+    loginStatus,
+    showAlertMsg
 } from './util';
 
 $(function () {
+    window.showAlertParent = function (content) {
+        showAlertMsg(content)
+    }
     // 检查是否登录
     checkLoginStatus();
     Object.defineProperty(loginStatus, 'status', {

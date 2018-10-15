@@ -18,25 +18,46 @@ $(document).ready(function () {
             if (element.publishtime.time) {
                 element.publishtime.time = fmtDate(element.publishtime.time);
             }
-            var thisDom = `
-            <tr>
-                <td style="width: 100px;">
-                    <img src="${element.homeImage}" alt="" width="100%">
-                </td>
-                <td>${element.id}</td>
-                <td>${element.name}</td>
-                <td>${element.price}</td>
-                <td>${element.lookcount}</td>
-                <td>${element.collection}</td>
-                <td>${element.praise}</td>
-                <td>${element.salesVolume}</td>
-                <td>${element.publishtime.time}</td>
-                <td>${element.status}</td>
-                <td>
-                    <button class="btn del-btn">下架</button>
-                </td>
-            </tr>
-            `
+            var thisDom;
+            if (element.status_name == '审核通过') {
+                thisDom = `
+                    <tr>
+                        <td style="width: 100px;">
+                            <img src="${element.homeImage}" alt="" width="100%">
+                        </td>
+                        <td>${element.id}</td>
+                        <td>${element.name}</td>
+                        <td>${element.price}</td>
+                        <td>${element.lookcount}</td>
+                        <td>${element.collection}</td>
+                        <td>${element.praise}</td>
+                        <td>${element.salesVolume}</td>
+                        <td>${element.publishtime.time}</td>
+                        <td>${element.status_name}</td>
+                        <td>
+                            <button class="btn del-btn">下架</button>
+                        </td>
+                    </tr>
+                `
+            }else {
+                thisDom = `
+                    <tr>
+                        <td style="width: 100px;">
+                            <img src="${element.homeImage}" alt="" width="100%">
+                        </td>
+                        <td>${element.id}</td>
+                        <td>${element.name}</td>
+                        <td>${element.price}</td>
+                        <td>${element.lookcount}</td>
+                        <td>${element.collection}</td>
+                        <td>${element.praise}</td>
+                        <td>${element.salesVolume}</td>
+                        <td>${element.publishtime.time}</td>
+                        <td>${element.status}</td>
+                        <td></td>
+                    </tr>
+                `
+            }
             $(thisDom).appendTo($('tbody'));
         });
         setIframeHeight();
@@ -62,7 +83,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('调用接口失败，请稍后重试');
+                window.parent.showAlertParent('调用接口失败，请稍后重试');
             }
         });
     }
@@ -70,7 +91,7 @@ $(document).ready(function () {
 
     // 下架
     $('tbody').on('click', '.del-btn', function () {
-        
+
         $.ajax({
             url: '/tradingCTL',
             type: 'post',
@@ -86,11 +107,11 @@ $(document).ready(function () {
                 if (res.result == 'true') {
                     $(this).closest('tr').remove();
                 } else {
-                    alert('删除失败');
+                    window.parent.showAlertParent('删除失败');
                 }
             },
             error: function () {
-                alert('调用接口失败，请稍后重试');
+                window.parent.showAlertParent('调用接口失败，请稍后重试');
             }
         });
     });

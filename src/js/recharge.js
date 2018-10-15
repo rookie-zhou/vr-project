@@ -8,6 +8,7 @@ import {
     loginStatus
 } from './util';
 $(document).ready(function () {
+    var coefficient = 0
     // 检查是否登录
     checkLoginStatus();
     Object.defineProperty(loginStatus, 'status', {
@@ -22,7 +23,7 @@ $(document).ready(function () {
     function checkLoginType() {
         userType = localStorage.getItem('userType');
         if (!userType || userType == 0) {
-            window.location.href = './index.html';
+            window.parent.location.href = './index.html';
         }
     }
     $('.user-name').html(localStorage.getItem('userName'));
@@ -47,18 +48,45 @@ $(document).ready(function () {
                 }
             });
         } else {
-            alert('请输入正确的金额！！');
+            window.parent.showAlertParent('请输入正确的金额！！');
         }
     });
     $('.input-number').bind('input propertychange', function () {
         if ($(this).val() > 0) {
-            $('.input-value').html(parseInt($(this).val()))
+            $('.input-value').html(parseInt($(this).val()) * coefficient)
         }else {
             $('.input-value').html(0)
         }
     });
-    $('input').click(function () {
-        console.log($(this).val())
-    })
+    $.ajax({
+        url: '/paymentCTL',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            method: ' getAccountInfo'
+        }),
+        success: function (res) {
+            if (res.status == '01') {
+                $('.money').html(res.vrmoney)
+            }
+        }
+    });
+    $.ajax({
+        url: '/publicCTL',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            method: ' RMB_VRMONEY'
+        }),
+        success: function (res) {
+            coefficient = res.RMB_VRMONEY;
+            $('.50-wb').html(res.RMB_VRMONEY * 50);
+            $('.100-wb').html(res.RMB_VRMONEY * 100);
+            $('.200-wb').html(res.RMB_VRMONEY * 200);
+            $('.500-wb').html(res.RMB_VRMONEY * 500);
+        }
+    });
 
 });

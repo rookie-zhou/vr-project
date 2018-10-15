@@ -32,6 +32,7 @@ $(document).ready(function () {
         return null;
     }
     const productId = getUrlParam('id');
+    let modelPrice = '';
     // 获取模型详情
     $.ajax({
         type: 'post',
@@ -44,16 +45,17 @@ $(document).ready(function () {
         }),
         success: function (res) {
             initPage(res);
+            modelPrice = res.price;
         }
     });
     // 加载页面数据
     function initPage(data) {
         $('.title').text(data.name);
         $('.price-num').text(data.price);
-        if (data.downamount || data.downamount == 0) {
-            $('.downamount').text(data.downamount);
-        }else {
-            alert('没有获取到下载数！')
+        if (data.salesVolume || data.salesVolume == 0) {
+            $('.downamount').text(data.salesVolume);
+        } else {
+            window.parent.showAlertParent('没有获取到下载数！')
         }
         $('.softsize').text(data.softsize);
         (data.collection) ? $('.collection').text(data.collection): $('.collection').text(0);
@@ -94,13 +96,13 @@ $(document).ready(function () {
                 } else if (res.result > 0) {
                     $('.praise').text(res.result);
                 } else if (res.result == 'false') {
-                    alert('点赞失败，请稍后重试！');
+                    window.parent.showAlertParent('点赞失败，请稍后重试！');
                 } else {
-                    alert(res);
+                    window.parent.showAlertParent(res);
                 }
             },
             error: function (res) {
-                alert(res);
+                window.parent.showAlertParent(res);
             }
         });
     });
@@ -123,19 +125,46 @@ $(document).ready(function () {
                     } else if (res.result > 0) {
                         $('.collection').text(res.result);
                     } else if (res.result == 'false') {
-                        alert('点赞失败，请稍后重试！');
+                        window.parent.showAlertParent('点赞失败，请稍后重试！');
                     } else {
-                        alert(res);
+                        window.parent.showAlertParent(res);
                     }
                 },
                 error: function (res) {
-                    alert(res);
+                    window.parent.showAlertParent(res);
                 }
             });
         } else {
-            alert('登录以后才能收藏');
+            window.parent.showAlertParent('登录以后才能收藏');
         }
-
     });
+    $('.download-model').click(function () {
 
+        $.ajax({
+            url: '/tradingCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                method: 'buymodel',
+                commodityId: productId,
+                vrmoney: modelPrice
+
+            }),
+            success: function (res) {
+                if (res.result == '00') {
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = './login.html';
+                } else if (res.content) {
+                    window.parent.showAlertParent(res.content)
+                } else if (res.result) {
+                    var tempwindow1 = window.open('_blank');
+                    tempwindow1.location = res.result;
+                }
+            },
+            error: function (res) {
+                window.parent.showAlertParent(res);
+            }
+        });
+    })
 });

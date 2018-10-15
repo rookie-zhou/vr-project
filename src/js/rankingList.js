@@ -10,7 +10,6 @@ var viewLoadImg = require('./../asset/img/u115.png');
 var saleImg = require('./../asset/img/sale.png');
 
 $(document).ready(function () {
-
     var modelOrProduct = localStorage.getItem('modelOrProduct');
     $('.ranking').on('click', '.product-img', function () {
         if (modelOrProduct == '01') {
@@ -19,7 +18,6 @@ $(document).ready(function () {
             window.location.href = '/vrModel.html?id=' + $(this).siblings('.id-box').find('.id').text();
         }
     });
-
     // 产品下载排行榜
     function getDownLoadList() {
         $.ajax({
@@ -58,7 +56,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function() {
-                alert('查询产品下载排行榜失败请重试！');
+                window.parent.showAlertParent('查询产品下载排行榜失败请重试！');
             }
         });
     }
@@ -100,7 +98,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function() {
-                alert('查询产品浏览热度排行榜失败请重试！');
+                window.parent.showAlertParent('查询产品浏览热度排行榜失败请重试！');
             }
         });
     }
@@ -124,7 +122,7 @@ $(document).ready(function () {
                         <div class="col-md-3">
                             <div class="vr-box">
                                 <img class="product-img" src="${element.homeImage}" alt="vr产品图片" width="100%">
-                                <p class="name">${element.name}</p>
+                                <p class="name">${element.name} <span class="price">价格：<span>${element.price}维币</span></span></p>
                                 <p class="id-box">
                                     <span>ID:</span>
                                     <span class="id">${element.id}</span>
@@ -142,7 +140,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function() {
-                alert('查询模型销量排行榜失败请重试！')
+                window.parent.showAlertParent('查询模型销量排行榜失败请重试！')
             }
         });
     }
@@ -184,7 +182,7 @@ $(document).ready(function () {
                 setIframeHeight();
             },
             error: function() {
-                alert('查询模型精品排行榜失败请重试！');
+                window.parent.showAlertParent('查询模型精品排行榜失败请重试！');
             }
         });
     }

@@ -60,6 +60,11 @@
   font-size: 15px;
   color: #999;
 }
+.content .vr-list .vr-box .name .price {
+  float: right;
+  margin-right: 5px;
+  color: #337ab7;
+}
 .content .vr-list .vr-box .id-box {
   display: inline-block;
   font-size: 12px;

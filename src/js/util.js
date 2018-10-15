@@ -1,5 +1,9 @@
 import "jquery";
 import * as qiniu from './lib/qiniu.min.js';
+import 'jquery';
+import './lib/remodal/remodal.css';
+import './lib/remodal/remodal-default-theme.css';
+import './lib/remodal/remodal.min.js';
 var loginStatus = {
     status: ''
 }
@@ -72,11 +76,32 @@ function GetQueryString(name) {
     return null;
 }
 
+function showAlertMsg(content) {
+    if (document.getElementsByClassName('alertMsgModal')[0] == undefined) {
+        const alertMsgModalDom = `
+        <div class="alertMsgModal" data-remodal-id="alertMsgModal">
+            <p class="showAlert-msg">
+                ${content}
+            </p>
+            <br>
+            <button data-remodal-action="confirm" class="remodal-confirm">确认</button>
+        </div>
+    `
+        $(alertMsgModalDom).appendTo($('body'));
+    }else {
+        window.parent.document.getElementsByClassName('showAlert-msg')[0].innerHTML = content
+    }
+    var alertMsgModal = $('[data-remodal-id=alertMsgModal]').remodal();
+    alertMsgModal.open();
+}
+
+
 export {
     checkLoginStatus,
     loginStatus,
     setIframeHeight,
     fmtDate,
     dataURItoBlob,
-    GetQueryString
+    GetQueryString,
+    showAlertMsg
 }
