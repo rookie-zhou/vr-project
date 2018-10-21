@@ -53,7 +53,6 @@ $(document).ready(function () {
         $('.step').hide();
         $('.step-' + params).show();
     }
-
     function ajaxFun(data) {
         for (const key in data) {
             if (!data[key]) {
@@ -104,7 +103,7 @@ $(document).ready(function () {
                         showAlertMsg('验证码发送成功！');
                         nextBtnDisabled = true
                     } else {
-                        showAlertMsg('验证码发送失败！');
+                        showAlertMsg(res.result);
                     }
                 },
                 error: function () {

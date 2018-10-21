@@ -16,7 +16,7 @@ module.exports = webpackMerge(webpackBase, {
             warnings: true
         },
         host: 'localhost',
-        port: 8080,
+        port: 8081,
         proxy: {
             '/api': {
                 target: 'http://209b484.all123.net:40990',

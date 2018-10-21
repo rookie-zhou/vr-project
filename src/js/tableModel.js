@@ -53,7 +53,7 @@ $(document).ready(function () {
                         <td>${element.praise}</td>
                         <td>${element.salesVolume}</td>
                         <td>${element.publishtime.time}</td>
-                        <td>${element.status}</td>
+                        <td>${element.status_name}</td>
                         <td></td>
                     </tr>
                 `
@@ -98,13 +98,12 @@ $(document).ready(function () {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
-                method: ' collect_delete',
-                id: $(this).attr('id'),
+                method: ' stop_sold',
                 commodityId: $(this).attr('commitId'),
                 commodityType: $(this).attr('type')
             }),
             success: function (res) {
-                if (res.result == 'true') {
+                if (res.result == true) {
                     $(this).closest('tr').remove();
                 } else {
                     window.parent.showAlertParent('删除失败');

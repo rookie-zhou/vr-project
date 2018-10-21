@@ -132,7 +132,7 @@ $(document).ready(function () {
                 $(".video-name").html(fullName);
             }
         } else if (type == 'vrdemo') {
-            if (!fileLimit.filetype_video.includes(expandedname)) {
+            if (!fileLimit.filetype_demo.includes(expandedname)) {
                 window.parent.showAlertParent('请选择正确的DEMO格式进行上传！');
                 return;
             } else {
@@ -171,20 +171,22 @@ $(document).ready(function () {
     $('.video-file').on('change', function (e) {
         const file = e.target.files[0];
         const filePath = $(this).val();
-        if (file.sise > parseInt(fileLimit.filesize_video) * 1024 * 1024) {
+        fileLimit.filesize_video = '20MB'
+        if (file.size - (parseInt(fileLimit.filesize_video) * 1024 * 1024) > 0) {
             window.parent.showAlertParent('请选择小于' + fileLimit.filesize_video + '的文件！');
-            return;
+        }else {
+            const arr = filePath.split('\\');
+            const fileName = arr[arr.length - 1];
+            getFileName('video', fileName, file).then((res) => {
+                uploadFile(file, token, res);
+            })
         }
-        const arr = filePath.split('\\');
-        const fileName = arr[arr.length - 1];
-        getFileName('video', fileName, file).then((res) => {
-            uploadFile(file, token, res);
-        })
+        
     });
     // 上传软件
     $('.demo-file').on('change', function (e) {
         const file = e.target.files[0];
-        if (file.sise > parseInt(fileLimit.filesize_demo) * 1024 * 1024) {
+        if (file.size > parseInt(fileLimit.filesize_demo) * 1024 * 1024) {
             window.parent.showAlertParent('请选择小于' + fileLimit.filesize_demo + '的文件！')
             return;
         }
@@ -259,7 +261,7 @@ $(document).ready(function () {
     // 上传图片
     $('.photo-file').on('change', function (e) {
         var file = e.target.files[0];
-        if (file.sise > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
+        if (file.size > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
             window.parent.showAlertParent('请选择小于' + fileLimit.filesize_img + '的图片！')
             return;
         }
@@ -400,7 +402,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(postParams),
             success: function (res) {
-                if (res == 'true') {
+                if (res.result == 'true') {
                     window.parent.showAlertParent('发布成功，请等待管理员审核后将自动展示在平台！');
                 } else {
                     window.parent.showAlertParent('发布失败！');

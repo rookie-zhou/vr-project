@@ -26,6 +26,16 @@ $(document).ready(function () {
             if (!element.homeImage) {
                 element.homeImage = productImg
             }
+            if (element.publishtime) {
+                element.showTime = fmtDate(element.publishtime)
+                if (element.publishtime.time) {
+                    element.showTime = fmtDate(element.publishtime.time)
+                } else {
+                    element.showTime = '获取时间失败'
+                }
+            } else {
+                element.showTime = '获取时间失败'
+            }
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
@@ -33,9 +43,10 @@ $(document).ready(function () {
                     <div>
                         <p class="name">${element.commodityName}
                             <span class="id-box">
-                                <span class="time">${element.commodityId}</span>
+                                <span>ID:</span><span class="time">${element.commodityId}</span>
                             </span>
                         </p>
+                        <p>${element.showTime}</p>
                     </div>
                 </div>
             </div>
@@ -150,7 +161,7 @@ $(document).ready(function () {
             getList('my_praise');
             // initLookList(dataList);
             break;
-            case '3':
+        case '3':
             $('.vr-Software').hide();
             // 购买的模型
             getList('my_buycommodity');

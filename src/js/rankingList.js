@@ -164,7 +164,7 @@ $(document).ready(function () {
                         <div class="col-md-3">
                             <div class="vr-box">
                                 <img class="product-img" src="${element.homeImage}" alt="vr产品图片" width="100%">
-                                <p class="name">${element.name}</p>
+                                <p class="name">${element.name} <span class="price">价格：<span>${element.price}维币</span></span></p>
                                 <p class="id-box">
                                     <span>ID:</span>
                                     <span class="id">${element.id}</span>

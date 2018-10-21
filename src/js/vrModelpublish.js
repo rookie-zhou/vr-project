@@ -36,6 +36,19 @@ $(document).ready(function () {
     var domain = '';
     var token;
 
+    $('.size').bind('input propertychange', function () {
+        if (!sizeReg.test($(this).val())) {
+            window.parent.showAlertParent('请输入大于0的数字');
+            document.getElementsByClassName('size')[0].value = '';
+        }
+    });
+    $('.price').bind('input propertychange', function () {
+        if (!sizeReg.test($(this).val())) {
+            window.parent.showAlertParent('请输入大于0的数字');
+            document.getElementsByClassName('price')[0].value = '';
+        }
+    });
+
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
@@ -111,6 +124,20 @@ $(document).ready(function () {
                 window.parent.showAlertParent('获取限制文件大小及格式失败')
             }
         });
+        // 获取以人民币等于多少维币
+        $.ajax({
+        url: '/publicCTL',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            method: ' RMB_VRMONEY'
+        }),
+        success: function (res) {
+            coefficient = res.RMB_VRMONEY;
+            $('.money-wb').thml(res.RMB_VRMONEY)
+        }
+    });
     })();
 
 
@@ -155,7 +182,7 @@ $(document).ready(function () {
     // 上传模型
     $('.demo-file').on('change', function (e) {
         const file = e.target.files[0];
-        if (file.sise > parseInt(fileLimit.filesize_model) * 1024 * 1024) {
+        if (file.size > parseInt(fileLimit.filesize_model) * 1024 * 1024) {
             window.parent.showAlertParent('请选择小于' + fileLimit.filesize_model + '的文件！')
             return;
         }
@@ -230,7 +257,7 @@ $(document).ready(function () {
     // 上传图片
     $('.photo-file').on('change', function (e) {
         var file = e.target.files[0];
-        if (file.sise > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
+        if (file.size > parseInt(fileLimit.filesize_img) * 1024 * 1024) {
             window.parent.showAlertParent('请选择小于' + fileLimit.filesize_img + '的图片！')
             return;
         }
@@ -354,7 +381,7 @@ $(document).ready(function () {
         postParams.type = $(".model-type option:selected").val();
 
         if (!postParams.modelurl) {
-            window.parent.showAlertParent('请上传demo文件');
+            window.parent.showAlertParent('请上传ＶＲ模型文件');
             return;
         }
         if (!$('.demo-detail').val()) {
@@ -370,7 +397,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(postParams),
             success: function (res) {
-                if (res == 'true') {
+                if (res.result == 'true') {
                     window.parent.showAlertParent('发布成功，请等待管理员审核后将自动展示在平台！');
                 } else {
                     window.parent.showAlertParent('发布失败！');

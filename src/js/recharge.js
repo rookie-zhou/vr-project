@@ -67,8 +67,8 @@ $(document).ready(function () {
             method: ' getAccountInfo'
         }),
         success: function (res) {
-            if (res.status == '01') {
-                $('.money').html(res.vrmoney)
+            if (res.result.status == '01') {
+                $('.balance').html(res.result.vrmoney + '维币')
             }
         }
     });

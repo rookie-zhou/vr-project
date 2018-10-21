@@ -1,6 +1,4 @@
 import "jquery";
-import * as qiniu from './lib/qiniu.min.js';
-import 'jquery';
 import './lib/remodal/remodal.css';
 import './lib/remodal/remodal-default-theme.css';
 import './lib/remodal/remodal.min.js';
