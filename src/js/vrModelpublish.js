@@ -35,6 +35,7 @@ $(document).ready(function () {
     var imgName = '';
     var domain = '';
     var token;
+    var sizeReg = /^[1-9]\d*(\.\d+)?$/i;
 
     $('.size').bind('input propertychange', function () {
         if (!sizeReg.test($(this).val())) {
@@ -52,7 +53,7 @@ $(document).ready(function () {
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
-            url: '/qiniuCTL',
+            url: '/api/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -72,7 +73,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/modelTypeCTL',
+            url: '/api/modelTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -83,17 +84,26 @@ $(document).ready(function () {
                 if (res.length > 0) {
                     res.map(item => {
                         var navDom;
-                        navDom = `<option value="${item.typeId}">
+                        navDom = `<option value="${item.typeId}" style="background: #00ccff">
                             ${item.typeName}
                             </option>`
                         $(navDom).appendTo('.model-type');
+                        if (item.child_type.length > 0) {
+                            item.child_type.map(value => {
+                                var navDomSmall;
+                                navDomSmall = `<option value="${value.typeId}">
+                            ${value.typeName}
+                            </option>`
+                                $(navDomSmall).appendTo('.model-type');
+                            })
+                        }
                     });
                 }
             }
         });
         // 获取domain
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -110,7 +120,7 @@ $(document).ready(function () {
 
         // 获取限制文件大小及格式
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -126,18 +136,18 @@ $(document).ready(function () {
         });
         // 获取以人民币等于多少维币
         $.ajax({
-        url: '/publicCTL',
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify({
-            method: ' RMB_VRMONEY'
-        }),
-        success: function (res) {
-            coefficient = res.RMB_VRMONEY;
-            $('.money-wb').thml(res.RMB_VRMONEY)
-        }
-    });
+            url: '/api/publicCTL',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                method: ' RMB_VRMONEY'
+            }),
+            success: function (res) {
+                // coefficient = res.RMB_VRMONEY;
+                $('.money-wb').html(res.RMB_VRMONEY)
+            }
+        });
     })();
 
 
@@ -151,7 +161,7 @@ $(document).ready(function () {
         if (!fileLimit.filetype_model.includes(expandedname)) {
             window.parent.showAlertParent('请选择正确的模型格式进行上传！');
             return;
-        }else {
+        } else {
             $(".demo-name").html(fullName);
         }
         var data = {
@@ -159,10 +169,10 @@ $(document).ready(function () {
             type: type,
             expandedname: expandedname
         }
-        
+
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/qiniuCTL',
+                url: '/api/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -227,7 +237,7 @@ $(document).ready(function () {
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
         if (!fileLimit.filetype_img.includes(expandedname)) {
-            window.parent.showAlertParent('请选择正确的图片格式进行上传！');
+            window.parent.showAlertParent('请选择正确的图片格式进行上传！（扩展名为：jpg,png的文件）');
             return;
         }
         var data = {
@@ -237,7 +247,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/qiniuCTL',
+                url: '/api/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -391,7 +401,7 @@ $(document).ready(function () {
         postParams.intro = $('.demo-detail').val();
 
         $.ajax({
-            url: '/modelCTL',
+            url: '/api/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

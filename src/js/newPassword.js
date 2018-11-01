@@ -60,7 +60,7 @@ $(document).ready(function () {
             }
         }
         $.ajax({
-            url: '/findPasswordCTL',
+            url: '/api/findPasswordCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -76,7 +76,9 @@ $(document).ready(function () {
                 if (data == 'true') {
                     $step.nextStep();
                     showIndex($step.getIndex());
-                } else {
+                } else if (data == 'false'){
+                    showAlertMsg('验证码错误或已超时')
+                }else {
                     showAlertMsg('数据提交失败请稍后重试！')
                 }
             },
@@ -89,7 +91,7 @@ $(document).ready(function () {
     $('.send-code').click(function () {
         if ($('.user-name').val() && $('.email').val()) {
             $.ajax({
-                url: '/findPasswordCTL',
+                url: '/api/findPasswordCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',

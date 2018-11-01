@@ -34,7 +34,7 @@ $(document).ready(function () {
                         <td>${element.publishtime.time}</td>
                         <td>${element.status_name}</td>
                         <td>
-                        <button class="btn del-btn">下架</button>
+                        <button class="btn del-btn" commitId="${element.commitId}" type="${element.type}">下架</button>
                         </td>
                     </tr>
                 `
@@ -64,7 +64,7 @@ $(document).ready(function () {
     // 获取收藏列表数据
     function releaseSoftwareList() {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -89,7 +89,7 @@ $(document).ready(function () {
     // 下架
     $('tbody').on('click', '.del-btn', function () {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

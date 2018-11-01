@@ -64,7 +64,7 @@ $(document).ready(function () {
         $('.vr-pagination').empty();
         $.ajax({
             type: 'post',
-            url: '/examineCTL',
+            url: '/api/examineCTL',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(params),
@@ -115,7 +115,7 @@ $(document).ready(function () {
     function getOtherPage(params) {
         $.ajax({
             type: 'post',
-            url: '/examineCTL',
+            url: '/api/examineCTL',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(params),
@@ -226,7 +226,7 @@ $(document).ready(function () {
     function examine(params) {
         $.ajax({
             type: 'post',
-            url: '/examineCTL',
+            url: '/api/examineCTL',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(params),

@@ -8,7 +8,7 @@ var loginStatus = {
 
 function checkLoginStatus() {
     $.ajax({
-        url: '/userCTL',
+        url: '/api/userCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',

@@ -45,7 +45,7 @@ $(document).ready(function () {
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
-            url: '/qiniuCTL',
+            url: '/api/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -65,7 +65,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/productTypeCTL',
+            url: '/api/productTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -76,17 +76,26 @@ $(document).ready(function () {
                 if (res.length > 0) {
                     res.map(item => {
                         var navDom;
-                        navDom = `<option value="${item.typeId}">
+                        navDom = `<option value="${item.typeId}" style="background: #00ccff">
                             ${item.typeName}
                             </option>`
                         $(navDom).appendTo('.product-type');
+                        if (item.child_type.length > 0) {
+                            item.child_type.map(value => {
+                                var navDomSmall;
+                                navDomSmall = `<option value="${value.typeId}">
+                            ${value.typeName}
+                            </option>`
+                                $(navDomSmall).appendTo('.product-type');
+                            })
+                        }
                     });
                 }
             }
         });
         // 获取domain
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -102,7 +111,7 @@ $(document).ready(function () {
         });
         // 获取限制文件大小及格式
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -117,6 +126,9 @@ $(document).ready(function () {
             }
         });
     })();
+
+    // 切换产品类型
+
 
 
     // 获取文件名
@@ -146,7 +158,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/qiniuCTL',
+                url: '/api/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -171,17 +183,16 @@ $(document).ready(function () {
     $('.video-file').on('change', function (e) {
         const file = e.target.files[0];
         const filePath = $(this).val();
-        fileLimit.filesize_video = '20MB'
         if (file.size - (parseInt(fileLimit.filesize_video) * 1024 * 1024) > 0) {
             window.parent.showAlertParent('请选择小于' + fileLimit.filesize_video + '的文件！');
-        }else {
+        } else {
             const arr = filePath.split('\\');
             const fileName = arr[arr.length - 1];
             getFileName('video', fileName, file).then((res) => {
                 uploadFile(file, token, res);
             })
         }
-        
+
     });
     // 上传软件
     $('.demo-file').on('change', function (e) {
@@ -231,7 +242,7 @@ $(document).ready(function () {
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
         if (!fileLimit.filetype_img.includes(expandedname)) {
-            window.parent.showAlertParent('请选择正确的图片格式进行上传！');
+            window.parent.showAlertParent('请选择正确的图片格式进行上传！（扩展名为：jpg,png的文件）');
             return;
         }
         var data = {
@@ -241,7 +252,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/qiniuCTL',
+                url: '/api/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -277,6 +288,7 @@ $(document).ready(function () {
         imgName = filePath.substring(0, index);
         if (filePath.indexOf('png') != -1 || filePath.indexOf('jpg') != -1 || filePath.indexOf('jpeg') != -1) {
             getImgName(filePath).then((res) => {
+                console.log(res)
                 uploadImg(blob, token, res);
             });
         } else {
@@ -396,7 +408,7 @@ $(document).ready(function () {
         postParams.intro = $('.demo-detail').val();
 
         $.ajax({
-            url: '/vrproductCTL',
+            url: '/api/vrproductCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

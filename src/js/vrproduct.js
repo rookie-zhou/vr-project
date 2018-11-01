@@ -34,7 +34,7 @@ $(document).ready(function () {
     }
     const productId = getUrlParam('id');
     $.ajax({
-        url: '/vrproductCTL',
+        url: '/api/vrproductCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
@@ -68,7 +68,7 @@ $(document).ready(function () {
     // 点赞
     $('.add-praise').click(function () {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -97,7 +97,7 @@ $(document).ready(function () {
     $('.add-collection').click(function () {
         if (userType) {
             $.ajax({
-                url: '/tradingCTL',
+                url: '/api/tradingCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -127,7 +127,7 @@ $(document).ready(function () {
     });
     $('.download-demo').click(function () {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',

@@ -61,7 +61,7 @@ $(function () {
     // 获取关键词
     function getKeyWords() {
         $.ajax({
-            url: '/searchinfoCTL',
+            url: '/api/searchinfoCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -124,7 +124,7 @@ $(function () {
     // 获取导航菜单
     function getNavList() {
         $.ajax({
-            url: '/productTypeCTL',
+            url: '/api/productTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
