@@ -36,7 +36,7 @@ $(document).ready(function () {
     // 获取模型详情
     $.ajax({
         type: 'post',
-        url: '/api/modelCTL',
+        url: '/modelCTL',
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -81,7 +81,7 @@ $(document).ready(function () {
     // 点赞
     $('.add-praise').click(function () {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -110,7 +110,7 @@ $(document).ready(function () {
     $('.add-collection').click(function () {
         if (userType) {
             $.ajax({
-                url: '/api/tradingCTL',
+                url: '/tradingCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -138,10 +138,10 @@ $(document).ready(function () {
             window.parent.showAlertParent('登录以后才能收藏');
         }
     });
+    // 下载
     $('.download-model').click(function () {
-
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -149,17 +149,16 @@ $(document).ready(function () {
                 method: 'buymodel',
                 commodityId: productId,
                 vrmoney: modelPrice
-
             }),
             success: function (res) {
                 if (res.result == '00') {
                     var tempwindow = window.open('_blank');
                     tempwindow.location = './login.html';
-                } else if (res.content) {
-                    tempwindow.location = res.content
-                } else if (res.result) {
-                    var tempwindow1 = window.open('_blank');
-                    tempwindow1.location = res.result;
+                } else if (res.resultcode == 'true') {
+                    var tempwindow3 = window.open('_blank');
+                    tempwindow3.location = res.content
+                } else {
+                    window.parent.showAlertParent(res.content);
                 }
             },
             error: function (res) {

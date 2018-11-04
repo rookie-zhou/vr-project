@@ -34,7 +34,7 @@ $(document).ready(function () {
         }
         if (value > 0) {
             $.ajax({
-                url: '/api/paymentCTL',
+                url: '/paymentCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -59,7 +59,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: '/api/paymentCTL',
+        url: '/paymentCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -73,7 +73,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: '/api/publicCTL',
+        url: '/publicCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',

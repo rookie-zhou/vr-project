@@ -45,7 +45,7 @@ $(document).ready(function () {
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
-            url: '/api/qiniuCTL',
+            url: '/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -65,7 +65,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/api/productTypeCTL',
+            url: '/productTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -95,7 +95,7 @@ $(document).ready(function () {
         });
         // 获取domain
         $.ajax({
-            url: '/api/publicCTL',
+            url: '/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -111,7 +111,7 @@ $(document).ready(function () {
         });
         // 获取限制文件大小及格式
         $.ajax({
-            url: '/api/publicCTL',
+            url: '/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -138,17 +138,15 @@ $(document).ready(function () {
         var expandedname = fullName.substring(index1 + 1, index2);
         if (type == 'video') {
             if (!fileLimit.filetype_video.includes(expandedname)) {
-                window.parent.showAlertParent('请选择正确的视频格式进行上传！');
+                const typeList = fileLimit.filetype_video.toString()
+                window.parent.showAlertParent(`请选择正确的视频格式进行上传！（扩展名为：${typeList}的视频）`);
                 return;
-            } else {
-                $(".video-name").html(fullName);
             }
         } else if (type == 'vrdemo') {
             if (!fileLimit.filetype_demo.includes(expandedname)) {
-                window.parent.showAlertParent('请选择正确的DEMO格式进行上传！');
+                const typeList = fileLimit.filetype_demo.toString()
+                window.parent.showAlertParent(`请选择正确的DEMO格式进行上传！（扩展名为：${typeList}的视频）`);
                 return;
-            } else {
-                $(".demo-name").html(fullName);
             }
         }
         var data = {
@@ -158,7 +156,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/api/qiniuCTL',
+                url: '/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -166,8 +164,10 @@ $(document).ready(function () {
                 success: function (res) {
                     if (type == 'video') {
                         postParams.videourl = res.filename
+                        $(".video-name").html(postParams.videourl);
                     } else {
                         postParams.demourl = res.filename
+                        $(".demo-name").html(res.filename);
                     }
                     resolve(res.filename);
                 },
@@ -221,9 +221,12 @@ $(document).ready(function () {
                 // 主要用来展示进度
                 let total = res.total;
                 $('.percent', parent.document).html(parseInt(total.percent));
-                if (parseInt(total.percent) == 100) {
-                    window.parent.closeModal();
-                }
+                setInterval(function closeAll() {
+                    if (parseInt(total.percent) == 100) {
+                        window.parent.closeModal();
+                        clearInterval(closeAll);
+                    }
+                }, 1000)
             },
             error: (err) => {
                 // 失败报错信息
@@ -231,6 +234,7 @@ $(document).ready(function () {
             },
             complete: (res) => {
                 // 接收成功后返回的信息
+                window.parent.closeModal();
                 console.log(res)
             }
         });
@@ -242,7 +246,8 @@ $(document).ready(function () {
         var index2 = fullName.length;
         var expandedname = fullName.substring(index1 + 1, index2);
         if (!fileLimit.filetype_img.includes(expandedname)) {
-            window.parent.showAlertParent('请选择正确的图片格式进行上传！（扩展名为：jpg,png的文件）');
+            const ImgTypeList = fileLimit.filetype_img.toString()
+            window.parent.showAlertParent(`请选择正确的图片格式进行上传！（扩展名为：${ImgTypeList}的图片）`);
             return;
         }
         var data = {
@@ -252,7 +257,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/api/qiniuCTL',
+                url: '/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -286,14 +291,9 @@ $(document).ready(function () {
         const filePath = e.target.files[0].name;
         const index = filePath.lastIndexOf(".");
         imgName = filePath.substring(0, index);
-        if (filePath.indexOf('png') != -1 || filePath.indexOf('jpg') != -1 || filePath.indexOf('jpeg') != -1) {
-            getImgName(filePath).then((res) => {
-                console.log(res)
-                uploadImg(blob, token, res);
-            });
-        } else {
-            window.parent.showAlertParent('请选择jpg、jpeg、png格式的图片进行上传！');
-        }
+        getImgName(filePath).then((res) => {
+            uploadImg(blob, token, res);
+        });
     });
 
 
@@ -309,11 +309,12 @@ $(document).ready(function () {
                 // 主要用来展示进度
                 let total = res.total;
                 $('.percent', parent.document).html(parseInt(total.percent));
-                if (parseInt(total.percent) == 100) {
-                    setTimeout(() => {
+                setInterval(function closeAll() {
+                    if (parseInt(total.percent) == 100) {
                         window.parent.closeModal();
-                    }, 200);
-                }
+                        clearInterval(clearAll);
+                    }
+                }, 1000)
             },
             error: (err) => {
                 // 失败报错信息
@@ -321,6 +322,7 @@ $(document).ready(function () {
             },
             complete: (res) => {
                 // 接收成功后返回的信息
+                window.parent.closeModal();
                 var thisImg = {
                     imageName: '',
                     imageUrl: '',
@@ -408,13 +410,14 @@ $(document).ready(function () {
         postParams.intro = $('.demo-detail').val();
 
         $.ajax({
-            url: '/api/vrproductCTL',
+            url: '/vrproductCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(postParams),
             success: function (res) {
-                if (res.result == 'true') {
+                if (res.result == 'true' || res.result == true) {
+                    clearAll();
                     window.parent.showAlertParent('发布成功，请等待管理员审核后将自动展示在平台！');
                 } else {
                     window.parent.showAlertParent('发布失败！');
@@ -439,4 +442,25 @@ $(document).ready(function () {
 
     // 动态设置iframe高度
     setIframeHeight();
+    // 清空数据
+    function clearAll() {
+        postParams = {
+            name: '',
+            type: '',
+            username: userName,
+            intro: '',
+            softsize: '',
+            method: 'vrproduct_publish',
+            videourl: '',
+            demourl: '',
+            imglist: []
+        };
+        $('.vr-name').val('');
+        $('.soft-size').val('');
+        $(".product-type").val('');
+        $('.video-name').html('');
+        $('.demo-name').html('');
+        $('.demo-detail').val('');
+        $('ul').empty();
+    }
 });

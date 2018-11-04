@@ -39,7 +39,7 @@ $(document).ready(function () {
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
-                    <img class="product-img" src="${element.homeImage}" type="${element.commodityType}" id="${element.id}" alt="vr产品图片" width="100%">
+                    <img class="product-img" src="${element.homeImage}" type="${element.commodityType}" id="${element.commodityId}" alt="vr产品图片" width="100%">
                     <div>
                         <p class="name">${element.commodityName}
                             <span class="id-box">
@@ -63,7 +63,7 @@ $(document).ready(function () {
     function getList(method) {
         $('.vr-list').empty();
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -122,7 +122,7 @@ $(document).ready(function () {
     // 获取收藏列表数据
     function collectionList() {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -183,7 +183,7 @@ $(document).ready(function () {
     // 删除收藏
     $('.vr-list').on('click', '.del-btn', function () {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

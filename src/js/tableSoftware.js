@@ -11,6 +11,7 @@ var productImg = require('./../asset/index/phb1-img_u110.png');
 $(document).ready(function () {
     // 收藏列表
     function modelList(list) {
+        $('tbody').empty();
         list.forEach(element => {
             if (!element.homeImage) {
                 element.homeImage = productImg
@@ -34,7 +35,7 @@ $(document).ready(function () {
                         <td>${element.publishtime.time}</td>
                         <td>${element.status_name}</td>
                         <td>
-                        <button class="btn del-btn" commitId="${element.commitId}" type="${element.type}">下架</button>
+                        <button class="btn del-btn" commitId="${element.id}">下架</button>
                         </td>
                     </tr>
                 `
@@ -64,7 +65,7 @@ $(document).ready(function () {
     // 获取收藏列表数据
     function releaseSoftwareList() {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -89,18 +90,19 @@ $(document).ready(function () {
     // 下架
     $('tbody').on('click', '.del-btn', function () {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
-                method: ' stop_sold',
+                method: 'stop_sold',
                 commodityId: $(this).attr('commitId'),
-                commodityType: $(this).attr('type')
+                commodityType: '01'
             }),
             success: function (res) {
                 if (res.result == true) {
-                    $(this).closest('tr').remove();
+                    window.parent.showAlertParent('下架成功！')
+                    releaseSoftwareList();
                 } else {
                     window.parent.showAlertParent('删除失败');
                 }
