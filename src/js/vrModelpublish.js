@@ -284,18 +284,19 @@ $(document).ready(function () {
         const filePath = e.target.files[0].name;
         const index = filePath.lastIndexOf(".");
         imgName = filePath.substring(0, index);
-        getImgName(filePath).then(() => {
-            uploadImg(blob, token);
+        getImgName(filePath).then((res) => {
+            console.log(res)
+            uploadImg(blob, token,res);
         });
     });
 
 
     // 上传图片方法
-    function uploadImg(imgSource, token) {
+    function uploadImg(imgSource, token,filename) {
         window.parent.openModal();
         const uptoken = token;
         const file = imgSource;
-        const key = null;
+        const key = filename;
         let observable = qiniu.upload(file, key, uptoken);
         observable.subscribe({
             next: (res) => {
