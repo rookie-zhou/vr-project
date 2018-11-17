@@ -8,6 +8,9 @@ const pathMap = require('../src/pathmap.json');
 const nodeModPath = path.resolve(__dirname, './node_modules');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const config = require('./config.js')
+require('es5-shim');
+require('es5-shim/es5-sham');
+require('es6-promise');
 //css
 let extractCSS = new ExtractTextPlugin('css/[name].css?[chunkhash]')
 let cssLoader = extractCSS.extract({
@@ -32,9 +35,8 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif|mp4)$/,
                 use: [{
-                        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
-                    }
-                ]
+                    loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
+                }]
             }, {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
@@ -44,6 +46,11 @@ module.exports = {
                 test: /\.js$/,
                 exclude: [/node_modules/, /lib/],
                 loader: 'babel-loader'
+            }, {
+                test: /\.js$/,
+                exclude: [/node_modules/, /lib/],
+                enforce: 'post', // post-loader处理
+                loader: 'es3ify-loader'
             }
         ]
     },

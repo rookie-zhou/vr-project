@@ -23,8 +23,8 @@ $(document).ready(function () {
     function initLookList(list) {
         $('.vr-list').empty();
         list.forEach(element => {
-            if (!element.homeImage) {
-                element.homeImage = productImg
+            if (!element.image_url) {
+                element.image_url = productImg
             }
             if (element.publishtime) {
                 element.showTime = fmtDate(element.publishtime)
@@ -39,7 +39,7 @@ $(document).ready(function () {
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
-                    <img class="product-img" src="${element.homeImage}" type="${element.commodityType}" id="${element.commodityId}" alt="vr产品图片" width="100%">
+                    <img class="product-img" src="${element.image_url}" type="${element.commodityType}" id="${element.commodityId}" alt="vr产品图片" width="100%">
                     <div>
                         <p class="name">${element.commodityName}
                             <span class="id-box">
@@ -89,13 +89,13 @@ $(document).ready(function () {
     // 收藏列表
     function initCollectionList(list) {
         list.forEach(element => {
-            if (!element.homeImage) {
-                element.homeImage = productImg
+            if (!element.image_url) {
+                element.image_url = productImg
             }
             var thisDom = `
             <div class="col-xs-3">
                 <div class="vr-box">
-                    <img class="product-img" src="${element.homeImage}" type="${element.commodityType}" id="${element.id}" alt="vr产品图片" width="100%">
+                    <img class="product-img" src="${element.image_url}" type="${element.commodityType}" id="${element.id}" alt="vr产品图片" width="100%">
                     <div>
                         <p class="name">${element.commodityName} 
                             <span class="id-box">

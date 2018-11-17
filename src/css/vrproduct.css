@@ -15,6 +15,15 @@
   max-width: 660px;
   min-height: 400px;
 }
+.content .detail .video-box video::-internal-media-controls-download-button {
+  display: none;
+}
+.content .detail .video-box video::-webkit-media-controls-enclosure {
+  overflow: hidden;
+}
+.content .detail .video-box video::-webkit-media-controls-panel {
+  width: calc(130%);
+}
 .content .detail .video-box .video-number span {
   font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
   font-weight: 700;

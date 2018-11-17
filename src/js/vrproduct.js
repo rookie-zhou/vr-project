@@ -61,7 +61,7 @@ $(document).ready(function () {
         $('.qq').text(data.user.qq);
         $('.wechat').text(data.user.weixin);
         $('.proIntro').text(data.proIntro);
-        $('#video').children('source').attr('src', data.videourl);
+        $('#video').attr('src', data.videourl);
         $('#video').attr('poster', data.homeImage);
         setIframeHeight();
     }
