@@ -6,26 +6,26 @@ const webpackMerge = require("webpack-merge");
 const config = require("./config");
 // 合并配置文件
 module.exports = webpackMerge(webpackBase, {
-    // 配置 webpack-dev-server
-    devServer: {
-        // 项目根目录
-        contentBase: './dist',
-        // 错误、警告展示设置
-        overlay: {
-            errors: true,
-            warnings: true
-        },
-        host: 'localhost',
-        port: 8080,
-        proxy: {
-            '/api': {
-                target: 'http://209b484.all123.net:40990',
-                secure: false,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/api': ''
-                }
-            }
+  // 配置 webpack-dev-server
+  devServer: {
+    // 项目根目录
+    contentBase: "./dist",
+    // 错误、警告展示设置
+    overlay: {
+      errors: true,
+      warnings: true
+    },
+    host: "127.0.0.1",
+    port: 8080,
+    proxy: {
+      "/api": {
+        target: "http://209b484.all123.net:40990",
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
         }
+      }
     }
+  }
 });

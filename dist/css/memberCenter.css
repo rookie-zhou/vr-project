@@ -500,25 +500,23 @@ body .remodal-confirm:hover {
   box-sizing: border-box;
   border: 1px solid #0099ff;
 }
-.member-box {
-  margin-left: 32px;
-}
-.member-box label {
-  margin: 0;
-}
-.member-box .member-header {
-  width: 1300px;
-  height: 72px;
+.full-member-center {
+  width: 100%;
   background: linear-gradient(180deg, #0099ff 0%, #0099ff 0%, #0099ff 45%, #ffffff 100%, #ffffff 100%);
 }
-.member-box .member-header .logo {
+.full-member-center .member-header {
+  width: 1300px;
+  height: 72px;
+  margin: 0 auto;
+}
+.full-member-center .member-header .logo {
   width: 123px;
   height: 62px;
   display: inline-block;
   vertical-align: top;
 }
-.member-box .member-header p {
-  font-family: '\534E\6587\884C\6977';
+.full-member-center .member-header p {
+  font-family: "\534E\6587\884C\6977";
   display: inline-block;
   color: #fff;
   text-rendering: optimizeLegibility;
@@ -526,20 +524,26 @@ body .remodal-confirm:hover {
   line-height: 72px;
   margin-bottom: 0;
 }
-.member-box .member-header .to-index {
+.full-member-center .member-header .to-index {
   float: right;
   margin-right: 20px;
   margin-top: 15px;
 }
-.member-box .member-header span {
-  color: #FFCC33;
+.full-member-center .member-header span {
+  color: #ffcc33;
 }
-.member-box .member-header a {
-  color: #FFCC33;
+.full-member-center .member-header a {
+  color: #ffcc33;
   text-decoration: none;
 }
-.member-box .member-header a :hover {
+.full-member-center .member-header a :hover {
   color: #000;
+}
+.member-box {
+  margin-left: 32px;
+}
+.member-box label {
+  margin: 0;
 }
 .member-box .content {
   margin-top: 20px;
