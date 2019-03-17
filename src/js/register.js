@@ -451,13 +451,13 @@ $(document).ready(function() {
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(data),
       success: function(res) {
-        if (res.result == "true") {
+        registerModal.open();
+        if (res["result"] == "true") {
           registerStatus = true;
           $(".register-msg").html("注册成功！");
         } else {
           registerStatus = false;
           $(".register-msg").html("注册失败！请重试，或联系平台管理员。");
-          registerModal.open();
         }
       },
       error: function() {
