@@ -41,9 +41,24 @@
         <label class="group" for="group">
             <img src="./../asset/memberCenter/alipay.png" alt="" width="50%">
         </label>
+        <input class="group" id="group" type="radio" name="payType" value="04">
+        <label class="group" for="group">
+            <img src="./../asset/memberCenter/wechatPay.png" alt="" width="50%">
+        </label>
         <br>
         <button class="btn-recharge">充值维币</button>
     </div>
+    <div class="remodal" data-remodal-id="wechatModal">
+        <!-- <button data-remodal-action="close" class="remodal-close"></button> -->
+        <h3 class="modal-title">微信扫码支付</h3>
+        <p class="pay-img">
+            <div id="qrcode"></div>
+        </p>
+        <br />
+        <button data-remodal-action="confirm" class="remodal-confirm">
+          确认
+        </button>
+      </div>
 </body>
 
 </html>

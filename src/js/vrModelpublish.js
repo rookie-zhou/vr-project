@@ -28,7 +28,7 @@ $(document).ready(function () {
         softsize: '',
         price: '',
         method: 'model_publish',
-        modelurl: '',
+        modelurl: '/api',
         imglist: []
     };
     var imgPushUrl = '';
@@ -53,7 +53,7 @@ $(document).ready(function () {
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
-            url: '/qiniuCTL',
+            url: '/api/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -73,7 +73,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/modelTypeCTL',
+            url: '/api/modelTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -103,7 +103,7 @@ $(document).ready(function () {
         });
         // 获取domain
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
         // 获取限制文件大小及格式
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -136,7 +136,7 @@ $(document).ready(function () {
         });
         // 获取以人民币等于多少维币
         $.ajax({
-            url: '/publicCTL',
+            url: '/api/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -170,7 +170,7 @@ $(document).ready(function () {
 
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/qiniuCTL',
+                url: '/api/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -250,7 +250,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/qiniuCTL',
+                url: '/api/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -319,7 +319,7 @@ $(document).ready(function () {
                 window.parent.closeModal();
                 var thisImg = {
                     imageName: '',
-                    imageUrl: '',
+                    imageurl: '/api',
                     isHomepage: ''
                 }
                 thisImg.imageName = imgName;
@@ -406,7 +406,7 @@ $(document).ready(function () {
         postParams.intro = $('.demo-detail').val();
 
         $.ajax({
-            url: '/modelCTL',
+            url: '/api/modelCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -447,7 +447,7 @@ $(document).ready(function () {
             softsize: '',
             price: '',
             method: 'model_publish',
-            modelurl: '',
+            modelurl: '/api',
             imglist: []
         };
         $('.vr-name').val('');

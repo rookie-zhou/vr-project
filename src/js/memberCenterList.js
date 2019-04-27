@@ -63,7 +63,7 @@ $(document).ready(function () {
     function getList(method) {
         $('.vr-list').empty();
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -122,7 +122,7 @@ $(document).ready(function () {
     // 获取收藏列表数据
     function collectionList() {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -183,7 +183,7 @@ $(document).ready(function () {
     // 删除收藏
     $('.vr-list').on('click', '.del-btn', function () {
         $.ajax({
-            url: '/tradingCTL',
+            url: '/api/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
