@@ -20,7 +20,7 @@ let cssLoader = extractCSS.extract({
 module.exports = {
     entry: Object.assign(config.entries(), {
         // 用到什么公共lib（例如jquery.js），就把它加进vendor去，目的是将公用库单独提取打包
-        'vendor': ['jquery', 'avalon', 'bootjs']
+        'vendor': ['jquery', 'avalon', 'bootjs', 'qrcode']
     }),
     output: {
         path: path.join(__dirname, "../dist"),

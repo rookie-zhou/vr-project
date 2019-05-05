@@ -6,53 +6,25 @@ import "./lib/remodal/remodal-default-theme.css";
 import "./lib/remodal/remodal.min.js";
 import "../css/style.css";
 import "../css/recharge.css";
-import "./lib/qrcode.min.js"
 import {
     checkLoginStatus,
     loginStatus
 } from './util';
 $(document).ready(function () {
     var wechatModal = $("[data-remodal-id=wechatModal]").remodal();
-    var wechatUrl;
-    function generateQRCode(rendermethod, picwidth, picheight, url) {
-        $("#qrcode").qrcode({ 
-                render: rendermethod, // 渲染方式有table方式（IE兼容）和canvas方式
-                width: picwidth, //宽度 
-                height:picheight, //高度 
-                text: utf16to8(url), //内容 
-                typeNumber:-1,//计算模式
-                correctLevel:2,//二维码纠错级别
-                background:"#ffffff",//背景颜色
-                foreground:"#000000"  //二维码颜色
-     
-            });
-        }
-        function init() {
-            generateQRCode("canvas",150, 150, wechatUrl);
-        }
-            //中文编码格式转换
-        function utf16to8(str) {
-            var out, i, len, c;
-            out = "";
-            len = str.length;
-            for (i = 0; i < len; i++) {
-                c = str.charCodeAt(i);
-                if ((c >= 0x0001) && (c <= 0x007F)) {
-                    out += str.charAt(i);
-                } else if (c > 0x07FF) {
-                    out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-                    out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
-                    out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
-                } else {
-                    out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
-                    out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
-                }
-            }
-            return out;
-        }
-
-
-
+    var qrcode = new QRCode('qrcode', {
+        text: 'test',
+        width: 256,
+        height: 256,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    function openWechatCode(wechatUrl) {
+        qrcode.clear(); // 清除代码
+        qrcode.makeCode(wechatUrl); 
+        wechatModal.open();
+    }
     var coefficient = 0
     // 检查是否登录
     checkLoginStatus();
@@ -94,7 +66,7 @@ $(document).ready(function () {
                     window.open(res.url)
                 }
             });
-        }else if(value > 0 && payType == 4) {
+        } else if (value > 0 && payType == 4) {
             // 微信
             $.ajax({
                 url: '/api/paymentCTL',
@@ -107,10 +79,8 @@ $(document).ready(function () {
                     sum: value
                 }),
                 success: function (res) {
-                    // window.open(res.url)
-                    wechatUrl = res.url;
-                    init();
-                    wechatModal.open();
+                    console.log(res);
+                    openWechatCode(res.url);
                 }
             });
         } else {
@@ -120,7 +90,7 @@ $(document).ready(function () {
     $('.input-number').bind('input propertychange', function () {
         if ($(this).val() > 0) {
             $('.input-value').html(parseInt($(this).val()) * coefficient)
-        }else {
+        } else {
             $('.input-value').html(0)
         }
     });

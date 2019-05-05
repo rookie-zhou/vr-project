@@ -1,6 +1,7 @@
 {
     "jquery": "js/lib/jquery.js",
     "avalon": "js/lib/avalon.js",
+    "qrcode": "js/lib/qrcode.js",
     "bootcss":"js/lib/bootstrap-3.3.7/css/bootstrap.min.css",
     "bootjs":"js/lib/bootstrap-3.3.7/js/bootstrap.min.js"
 }
