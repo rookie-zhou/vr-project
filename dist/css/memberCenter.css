@@ -539,10 +539,13 @@ body .remodal-confirm:hover {
 .full-member-center .member-header a :hover {
   color: #000;
 }
+<<<<<<< HEAD
 .full-member-center .member-header .developer {
   cursor: pointer;
   margin-left: 20px;
 }
+=======
+>>>>>>> f82d6c2cb37b823655f1bfed91eee8d7bad94c0a
 .member-box {
   margin-left: 32px;
 }
@@ -582,6 +585,7 @@ body .remodal-confirm:hover {
   border-radius: 20px;
   padding: 0 20px;
 }
+<<<<<<< HEAD
 .nav-contact {
   position: fixed;
   right: 0;
@@ -651,3 +655,5 @@ body .remodal-confirm:hover {
 .nav-contact .detail2 {
   top: 73px;
 }
+=======
+>>>>>>> f82d6c2cb37b823655f1bfed91eee8d7bad94c0a
