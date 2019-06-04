@@ -36,7 +36,7 @@ $(document).ready(function () {
     // 获取模型详情
     $.ajax({
         type: 'post',
-        url: '/api/modelCTL',
+        url: '/modelCTL',
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -81,7 +81,7 @@ $(document).ready(function () {
     // 点赞
     $('.add-praise').click(function () {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -110,7 +110,7 @@ $(document).ready(function () {
     $('.add-collection').click(function () {
         if (userType) {
             $.ajax({
-                url: '/api/tradingCTL',
+                url: '/tradingCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -141,7 +141,7 @@ $(document).ready(function () {
     // 下载
     $('.download-model').click(function () {
         $.ajax({
-            url: '/api/tradingCTL',
+            url: '/tradingCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',

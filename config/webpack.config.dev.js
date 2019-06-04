@@ -9,7 +9,7 @@ module.exports = webpackMerge(webpackBase, {
   // 配置 webpack-dev-server
   devServer: {
     // 项目根目录
-    contentBase: "./dist",
+    contentBase: "../dist",
     // 错误、警告展示设置
     overlay: {
       errors: true,
@@ -19,7 +19,7 @@ module.exports = webpackMerge(webpackBase, {
     port: 8089,
     proxy: {
       "/api": {
-        target: "http://209b484.all123.net:40990",
+        target: "http://www.vvwok.com",
         secure: false,
         changeOrigin: true,
         pathRewrite: {

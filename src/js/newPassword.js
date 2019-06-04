@@ -60,7 +60,7 @@ $(document).ready(function () {
             }
         }
         $.ajax({
-            url: '/api/findPasswordCTL',
+            url: '/findPasswordCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -91,7 +91,7 @@ $(document).ready(function () {
     $('.send-code').click(function () {
         if ($('.user-name').val() && $('.email').val()) {
             $.ajax({
-                url: '/api/findPasswordCTL',
+                url: '/findPasswordCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',

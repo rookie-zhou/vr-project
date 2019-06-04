@@ -26,8 +26,8 @@ $(document).ready(function () {
         intro: '',
         softsize: '',
         method: 'vrproduct_publish',
-        videourl: '/api',
-        demourl: '/api',
+        videourl: '',
+        demourl: '',
         imglist: []
     };
     var imgPushUrl = '';
@@ -45,7 +45,7 @@ $(document).ready(function () {
     // 获取上传token
     (function getQiniuToken() {
         $.ajax({
-            url: '/api/qiniuCTL',
+            url: '/qiniuCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -65,7 +65,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/api/productTypeCTL',
+            url: '/productTypeCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -95,7 +95,7 @@ $(document).ready(function () {
         });
         // 获取domain
         $.ajax({
-            url: '/api/publicCTL',
+            url: '/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -111,7 +111,7 @@ $(document).ready(function () {
         });
         // 获取限制文件大小及格式
         $.ajax({
-            url: '/api/publicCTL',
+            url: '/publicCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -156,7 +156,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/api/qiniuCTL',
+                url: '/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -257,7 +257,7 @@ $(document).ready(function () {
         }
         var promiseFun = new Promise((resolve, reject) => {
             $.ajax({
-                url: '/api/qiniuCTL',
+                url: '/qiniuCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -325,7 +325,7 @@ $(document).ready(function () {
                 window.parent.closeModal();
                 var thisImg = {
                     imageName: '',
-                    imageurl: '/api',
+                    imageurl: '',
                     isHomepage: ''
                 }
                 thisImg.imageName = imgName;
@@ -347,6 +347,7 @@ $(document).ready(function () {
         if (index == 0) {
             checked = 'checked';
         }
+        console.log(domain + imageUrl);
         var dom = `
         <li>
             <span>${imgName}</span>
@@ -410,7 +411,7 @@ $(document).ready(function () {
         postParams.intro = $('.demo-detail').val();
 
         $.ajax({
-            url: '/api/vrproductCTL',
+            url: '/vrproductCTL',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -451,8 +452,8 @@ $(document).ready(function () {
             intro: '',
             softsize: '',
             method: 'vrproduct_publish',
-            videourl: '/api',
-            demourl: '/api',
+            videourl: '',
+            demourl: '',
             imglist: []
         };
         $('.vr-name').val('');

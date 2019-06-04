@@ -30,3 +30,22 @@
   margin-top: 30px;
   margin-left: 30px;
 }
+.content .remodal,
+.content .remodal-wrapper:after {
+  vertical-align: top;
+}
+.je-text {
+  display: inline-block;
+  font-size: 20px;
+  margin: 0 0 0 30px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.wechat-pay {
+  height: 50px;
+}
+.wechat-desc {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+}

@@ -20,9 +20,10 @@ $(document).ready(function () {
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
     });
+
     function openWechatCode(wechatUrl) {
         qrcode.clear(); // 清除代码
-        qrcode.makeCode(wechatUrl); 
+        qrcode.makeCode(wechatUrl);
         wechatModal.open();
     }
     var coefficient = 0
@@ -53,7 +54,7 @@ $(document).ready(function () {
         if (value > 0 && payType == 3) {
             // 支付宝
             $.ajax({
-                url: '/api/paymentCTL',
+                url: '/paymentCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -69,7 +70,7 @@ $(document).ready(function () {
         } else if (value > 0 && payType == 4) {
             // 微信
             $.ajax({
-                url: '/api/paymentCTL',
+                url: '/paymentCTL',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -79,8 +80,13 @@ $(document).ready(function () {
                     sum: value
                 }),
                 success: function (res) {
-                    console.log(res);
-                    openWechatCode(res.url);
+                    openWechatCode('test');
+                    if (res.code_url) {
+                        openWechatCode(res.code_url);
+                        $('.je').text((res.je / 100).toFixed(2));
+                    }else {
+                        alert(res.error)
+                    }
                 }
             });
         } else {
@@ -95,12 +101,12 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: '/api/paymentCTL',
+        url: '/paymentCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
-            method: ' getAccountInfo'
+            method: 'getAccountInfo'
         }),
         success: function (res) {
             if (res.result.status == '01') {
@@ -109,7 +115,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: '/api/publicCTL',
+        url: '/publicCTL',
         type: 'post',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
