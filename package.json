@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "jquery": "^1.11.3",
+    "jquery": "^3.5.0",
     "qiniu-js": "^2.4.0",
     "qrcode": "^0.0.1"
   }
